@@ -1,0 +1,19 @@
+= fashiontools 工具库
+
+image:https://img.shields.io/badge/dahan-offical-orange[dahan]
+image:https://img.shields.io/badge/test-100%25-success[test]
+image:https://img.shields.io/badge/maven--center-alibaba-critical[maven-center]
+image:https://img.shields.io/badge/build-passing-brightgreen[build]
+
+== 构建
+
+此项目使用 Maven toolchains 进行构建操作，JDK要求17及以上，JDK版本最低要求 17。
+
+JDK17 是 OpenJDK 的下一个 LTS 版本，通常我们可以选择不同的发行版进行开发或部署，常用 JDK 发行版：
+
+* link:https://openjdk.org/projects/jdk/17/[OpenJDK]
+* link:https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html[Oracle OpenJDK]
+* link:https://aws.amazon.com/cn/corretto/?filtered-posts.sort-by=item.additionalFields.createdDate&filtered-posts.sort-order=desc[Aws Corretto]
+* link:https://github.com/dragonwell-project/dragonwell17[Alibaba Dragonwell]
+
+对于本项目来说后续可能会升级到 JDK21，17可能是个过渡版本！
