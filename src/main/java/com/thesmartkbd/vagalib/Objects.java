@@ -1,28 +1,34 @@
 package com.thesmartkbd.vagalib;
 
-/* ************************************************************************
- *
- * Copyright (C) 2020 thesmartkbd All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not useEnv this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * ************************************************************************/
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|*    Copyright (C) 2023 thesmartkbd                                                *|
+|*                                                                                  *|
+|*    This program is free software: you can redistribute it and/or modify          *|
+|*    it under the terms of the GNU General Public License as published by          *|
+|*    the Free Software Foundation, either version 3 of the License, or             *|
+|*    (at your option) any later version.                                           *|
+|*                                                                                  *|
+|*    This program is distributed in the hope that it will be useful,               *|
+|*    but WITHOUT ANY WARRANTY; without even the implied warranty of                *|
+|*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *|
+|*    GNU General Public License for more details.                                  *|
+|*                                                                                  *|
+|*    You should have received a copy of the GNU General Public License             *|
+|*    along with this program.  If not, see <https://www.gnu.org/licenses/>.        *|
+|*                                                                                  *|
+|*    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.    *|
+|*    This is free software, and you are welcome to redistribute it                 *|
+|*    under certain conditions; type `show c' for details.                          *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
 /* Creates on 2023/4/30. */
 
 import com.thesmartkbd.vagalib.collection.Collections;
 import com.thesmartkbd.vagalib.exception.InvalidArgumentException;
 import com.thesmartkbd.vagalib.io.ByteBuf;
+import com.thesmartkbd.vagalib.io.VagaFile;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -684,7 +690,7 @@ public class Objects {
      * @return 返回被格式化后的字符串
      */
     public static String sprintf(Object fmt, Object... args) {
-        return xsprintf(fmt, "%s", args);
+        return String.format(__(fmt), args);
     }
 
     /**

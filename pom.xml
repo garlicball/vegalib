@@ -21,7 +21,7 @@
         <apache-poi.version>5.2.3</apache-poi.version>
         <asm.version>9.5</asm.version>
         <lombok.version>1.18.26</lombok.version>
-        <java.compiler.version>17</java.compiler.version>
+        <java.compiler.version>21</java.compiler.version>
     </properties>
 
     <dependencies>

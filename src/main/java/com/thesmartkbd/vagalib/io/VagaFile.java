@@ -1,22 +1,27 @@
 package com.thesmartkbd.vagalib.io;
 
-/* ************************************************************************
- *
- * Copyright (C) 2020 thesmartkbd All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not useEnv this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * ************************************************************************/
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|*    Copyright (C) 2023 thesmartkbd                                                *|
+|*                                                                                  *|
+|*    This program is free software: you can redistribute it and/or modify          *|
+|*    it under the terms of the GNU General Public License as published by          *|
+|*    the Free Software Foundation, either version 3 of the License, or             *|
+|*    (at your option) any later version.                                           *|
+|*                                                                                  *|
+|*    This program is distributed in the hope that it will be useful,               *|
+|*    but WITHOUT ANY WARRANTY; without even the implied warranty of                *|
+|*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *|
+|*    GNU General Public License for more details.                                  *|
+|*                                                                                  *|
+|*    You should have received a copy of the GNU General Public License             *|
+|*    along with this program.  If not, see <https://www.gnu.org/licenses/>.        *|
+|*                                                                                  *|
+|*    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.    *|
+|*    This is free software, and you are welcome to redistribute it                 *|
+|*    under certain conditions; type `show c' for details.                          *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
 /* Creates on 2023/4/29. */
 
@@ -35,11 +40,11 @@ import static com.thesmartkbd.vagalib.Objects.sprintf;
  *
  * @author thesmartkbd
  */
-public class MutableFile extends File {
+public class VagaFile extends File {
 
     /**
-     * 通过 {@link File} 对象创建一个新的 {@link #MutableFile} 实例对象。将
-     * 给定的 file 转换成 {@link #MutableFile} 对象实例。<p>
+     * 通过 {@link File} 对象创建一个新的 {@link #VagaFile} 实例对象。将
+     * 给定的 file 转换成 {@link #VagaFile} 对象实例。<p>
      *
      * 如果给定 file 为空，则会抛出空指针异常，
      *
@@ -48,12 +53,12 @@ public class MutableFile extends File {
      *
      * @throws NullPointerException 如果 {@code file} 为 null
      */
-    public MutableFile(File file) {
+    public VagaFile(File file) {
         super(file.getPath());
     }
 
     /**
-     * 通过 pathname 创建一个新的 {@link #MutableFile} 实例对象。将
+     * 通过 pathname 创建一个新的 {@link #VagaFile} 实例对象。将
      * 给定的 pathname 转换成一个相对路径。如果给定 pathname 为空字符串，
      * 那么结果就是空的相对路径名。
      *
@@ -62,12 +67,12 @@ public class MutableFile extends File {
      *
      * @throws NullPointerException 如果 {@code pathname} 为 null
      */
-    public MutableFile(String pathname) {
+    public VagaFile(String pathname) {
         super(pathname);
     }
 
     /**
-     * 通过 pathname 创建一个新的 {@link #MutableFile} 实例对象。将
+     * 通过 pathname 创建一个新的 {@link #VagaFile} 实例对象。将
      * 给定的 pathname 转换成一个相对路径。如果给定 pathname 为空字符串，
      * 那么结果就是空的相对路径名。<p>
      *
@@ -81,14 +86,14 @@ public class MutableFile extends File {
      *
      * @throws NullPointerException 如果 {@code pathname} 为 null
      */
-    public MutableFile(String pathname, Object... args) {
+    public VagaFile(String pathname, Object... args) {
         this(sprintf(pathname, args));
     }
 
     /**
-     * 从 {@code parent} 父路径字符串和 {@code child} 子路径字符串构建一个新的 {@link #MutableFile} 对象
+     * 从 {@code parent} 父路径字符串和 {@code child} 子路径字符串构建一个新的 {@link #VagaFile} 对象
      * 实例。如果{@code parent} 父路径字符串为 {@code null} 那么新的文件实例就像是调用了
-     * 单参数构建 {@link #MutableFile(String)} 一样被创建。<p>
+     * 单参数构建 {@link #VagaFile(String)} 一样被创建。<p>
      *
      * 如果父路径不为 {@code null} 那么 {@code parent} 父路径字符串会被表示成一个目录。而 {@code child} 子路径
      * 字符串会被视为是父路径下的一个目录或文件。<p>
@@ -101,14 +106,14 @@ public class MutableFile extends File {
      * @param child 子路径名称字符串
      * @throws NullPointerException 子路径不能为空
      */
-    public MutableFile(String parent, String child) {
+    public VagaFile(String parent, String child) {
         super(parent, child);
     }
 
     /**
-     * 从 {@code parent} 父路径文件实例和 {@code child} 子路径字符串构建一个新的 {@link #MutableFile} 对象
+     * 从 {@code parent} 父路径文件实例和 {@code child} 子路径字符串构建一个新的 {@link #VagaFile} 对象
      * 实例。如果{@code parent} 父路径文件实例为 {@code null} 那么新的文件实例就像是调用了
-     * 单参数构建 {@link #MutableFile(String)} 一样被创建。<p>
+     * 单参数构建 {@link #VagaFile(String)} 一样被创建。<p>
      *
      * 如果父路径不为 {@code null} 那么 {@code parent} 父路径文件实例会被表示成一个目录。而 {@code child} 子路径
      * 字符串会被视为是父路径下的一个目录或文件。<p>
@@ -121,7 +126,7 @@ public class MutableFile extends File {
      * @param child 子路径名称字符串
      * @throws NullPointerException 子路径不能为空
      */
-    public MutableFile(File parent, String child) {
+    public VagaFile(File parent, String child) {
         super(parent, child);
     }
 
@@ -162,14 +167,14 @@ public class MutableFile extends File {
      * @see URI
      * @since 1.4
      */
-    public MutableFile(URI uri) {
+    public VagaFile(URI uri) {
         super(uri);
     }
 
     /**
      * 传入一个 {@link URL} 对象实例，这个构造函数会通过 {@link URL} 对象中内置的
-     * {@link URL#getFile()} 方法转换成 {@link MutableFile} 中的抽象路径。然后调用
-     * {@link MutableFile#MutableFile(String)} 函数创建出一个实例对象。
+     * {@link URL#getFile()} 方法转换成 {@link VagaFile} 中的抽象路径。然后调用
+     * {@link VagaFile#VagaFile(String)} 函数创建出一个实例对象。
      *
      * @param url
      *        {@link URL} 对象实例
@@ -177,7 +182,7 @@ public class MutableFile extends File {
      * @throws NullPointerException
      *         {@code url} 参数为 {@code null}
      */
-    public MutableFile(URL url) {
+    public VagaFile(URL url) {
         super(url.getFile());
     }
 
@@ -295,8 +300,8 @@ public class MutableFile extends File {
      *
      * @since 1.2
      */
-    public MutableFile parentVortexFile() {
-        return new MutableFile(getParentFile());
+    public VagaFile parentVagaFile() {
+        return new VagaFile(getParentFile());
     }
 
     /**
@@ -305,7 +310,7 @@ public class MutableFile extends File {
      *
      * @return {@code true} 表示删除成功，{@code false} 反之。
      */
-    private boolean builtinForceDelete() {
+    private boolean builtin_force_delete() {
         boolean retval;
         if (!(retval = delete())) {
             System.gc();
@@ -320,17 +325,17 @@ public class MutableFile extends File {
      *
      * @return {@code true} 表示删除成功，{@code false} 反之。
      */
-    private boolean builtinForceDeleteDirectory() {
+    private boolean builtin_force_delete_directory() {
         if (!exists())
             return true;
 
         if (isFile())
-            return builtinForceDelete();
+            return builtin_force_delete();
 
-        for (MutableFile child : Objects.requireNonNull(openDirectory())) {
+        for (VagaFile child : Objects.requireNonNull(openDirectory())) {
             if (child.isDirectory())
-                child.builtinForceDeleteDirectory();
-            child.builtinForceDelete();
+                child.builtin_force_delete_directory();
+            child.builtin_force_delete();
         }
 
         return delete();
@@ -343,25 +348,25 @@ public class MutableFile extends File {
      * @return {@code true} 表示删除成功，{@code false} 反之。
      */
     public boolean forceDelete() {
-        return isDirectory() ? builtinForceDeleteDirectory() : builtinForceDelete();
+        return isDirectory() ? builtin_force_delete_directory() : builtin_force_delete();
     }
 
     /**
-     * 如果当前 {@link MutableFile} 对象不是一个目录，那么调用该函数则会返回 {@code null}，反之返回目录下的
-     * 所有文件列表信息。如何确定一个 {@link MutableFile} 对象是不是目录可以调用内置的 {@link #isDirectory()}
+     * 如果当前 {@link VagaFile} 对象不是一个目录，那么调用该函数则会返回 {@code null}，反之返回目录下的
+     * 所有文件列表信息。如何确定一个 {@link VagaFile} 对象是不是目录可以调用内置的 {@link #isDirectory()}
      * 函数来判断这个对象它是否是一个目录。
      * <p>
-     * 这个函数可能会返回 {@code null} 值，基于一种情况下会返回 {@code null} 值。当前 {@link MutableFile}
+     * 这个函数可能会返回 {@code null} 值，基于一种情况下会返回 {@code null} 值。当前 {@link VagaFile}
      * 对象 {@link #isDirectory()} 返回 {@code false} 时，它不是目录但是调用了该函数会返回 {@code null}。
      *
      * @return 当前目录下在所有子文件列表信息，如果当前对象不是一个目录或者目录下说时
      *         会返回 {@code null}。
      */
-    public MutableDirectory openDirectory() {
-        return new MutableDirectory(this);
+    public VagaDirectory openDirectory() {
+        return new VagaDirectory(this);
     }
 
-    private static void checkMutableFile(MutableFile mutableFile) {
+    private static void checkMutableFile(VagaFile mutableFile) {
         throwIfTrue(mutableFile.isDirectory(), "VortexFile 对象类型必须是文件，不能是目录");
     }
 
@@ -373,10 +378,10 @@ public class MutableFile extends File {
      *
      * @return 文件的输入流对象实例
      */
-    public MutableFileReader openReader() {
+    public VagaFileReader openReader() {
         try {
             checkMutableFile(this);
-            return new MutableFileReader(this);
+            return new VagaFileReader(this);
         } catch (Throwable e) {
             throw new OpenException(e);
         }
@@ -391,19 +396,19 @@ public class MutableFile extends File {
      * @return 文件的输出流对象实例
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public MutableFileWriter openWriter() {
+    public VagaFileWriter openWriter() {
         try {
             if (!exists())
                 createNewFile();
             checkMutableFile(this);
-            return new MutableFileWriter(this);
+            return new VagaFileWriter(this);
         } catch (Throwable e) {
             throw new OpenException(e);
         }
     }
 
     public void copyTo(String path) {
-        IOUtils.write(openReader(), new MutableFile(path));
+        IOUtils.write(openReader(), new VagaFile(path));
     }
 
     /**

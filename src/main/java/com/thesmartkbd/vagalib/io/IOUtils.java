@@ -1,22 +1,27 @@
 package com.thesmartkbd.vagalib.io;
 
-/* ************************************************************************
- *
- * Copyright (C) 2020 thesmartkbd All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not useEnv this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * ************************************************************************/
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|*    Copyright (C) 2023 thesmartkbd                                                *|
+|*                                                                                  *|
+|*    This program is free software: you can redistribute it and/or modify          *|
+|*    it under the terms of the GNU General Public License as published by          *|
+|*    the Free Software Foundation, either version 3 of the License, or             *|
+|*    (at your option) any later version.                                           *|
+|*                                                                                  *|
+|*    This program is distributed in the hope that it will be useful,               *|
+|*    but WITHOUT ANY WARRANTY; without even the implied warranty of                *|
+|*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                 *|
+|*    GNU General Public License for more details.                                  *|
+|*                                                                                  *|
+|*    You should have received a copy of the GNU General Public License             *|
+|*    along with this program.  If not, see <https://www.gnu.org/licenses/>.        *|
+|*                                                                                  *|
+|*    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.    *|
+|*    This is free software, and you are welcome to redistribute it                 *|
+|*    under certain conditions; type `show c' for details.                          *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
 /* Creates on 2023/4/29. */
 
@@ -71,13 +76,13 @@ public class IOUtils {
     /**
      * 标准错误流
      */
-    public static final BuiltinPrintStream stderr
-            = new BuiltinPrintStream(System.err);
+    public static final VagaPrintStream stderr
+            = new VagaPrintStream(System.err);
     /**
      * 标准输出流
      */
-    public static final BuiltinPrintStream stdout
-            = new BuiltinPrintStream(System.out);
+    public static final VagaPrintStream stdout
+            = new VagaPrintStream(System.out);
 
     /**
      * 关闭所有实现了 {@link Closeable} 的对象实例，并且不需要捕获
@@ -211,9 +216,9 @@ public class IOUtils {
      *        输入流
      *
      * @param file
-     *        {@link MutableFile} 文件对象实例（如果文件不存在，则会创建）
+     *        {@link VagaFile} 文件对象实例（如果文件不存在，则会创建）
      */
-    public static void write(InputStream input, MutableFile file) {
+    public static void write(InputStream input, VagaFile file) {
         try (var stream = file.openWriter()) {
             write(input, stream);
         } catch (Throwable e) {
@@ -232,9 +237,9 @@ public class IOUtils {
      *        字符串
      *
      * @param file
-     *        {@link MutableFile} 文件对象实例（如果文件不存在，则会创建）
+     *        {@link VagaFile} 文件对象实例（如果文件不存在，则会创建）
      */
-    public static void write(String input, MutableFile file) {
+    public static void write(String input, VagaFile file) {
         try (var stream = file.openWriter()) {
             write(input, stream);
         } catch (Throwable e) {
@@ -254,7 +259,7 @@ public class IOUtils {
      * @param file
      *        指定输出流
      */
-    public static void write(byte[] b, MutableFile file) {
+    public static void write(byte[] b, VagaFile file) {
         try (var stream = file.openWriter()) {
             write(b, stream);
         } catch (Throwable e) {

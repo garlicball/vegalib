@@ -1,4 +1,4 @@
-package com.thesmartkbd.vagalib.logging;
+package com.thesmartkbd.vagalib.test.io;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,69 +23,27 @@ package com.thesmartkbd.vagalib.logging;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2019/11/05. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           VagaFileTest.java                                                *|
+|* Create Time:    2023/6/7                                                         *|
+|* Author:         thesmartkbd                                                      *|
+|* EMail:          thesmartkbd@hotmail.com                                          *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
+
+import com.thesmartkbd.vagalib.io.VagaFile;
 
 /**
- * 可以适配多种日志框架的日志接口对象。
+ * 拷贝大（2GB）文件测试
  *
  * @author thesmartkbd
  */
-public interface Logger {
+public class VagaFileTest {
 
-    /**
-     * @return 是否开启了【Debug】级别的日志调试模式，如果开启了则会打印【Debug】日志。
-     *         相对应的，这个函数也会返回 {@code true}。反之则表示【Debug】模式关闭不会
-     *         打印【Debug】级别的日志。
-     */
-    boolean isDebugEnabled();
-
-    /**
-     * 打印 【info】 级别的日志信息到控制台，如果有使用日志框架，那么会
-     * 根据日志框架的配置输出到日志文件中。
-     *
-     * @param message
-     *        日志信息
-     *
-     * @param args
-     *        格式化参数
-     */
-    void info(String message, Object... args);
-
-    /**
-     * 打印 【warn】 级别的日志信息到控制台，如果有使用日志框架，那么会
-     * 根据日志框架的配置输出到日志文件中。
-     *
-     * @param message
-     *        日志信息
-     *
-     * @param args
-     *        格式化参数
-     */
-    void warn(String message, Object... args);
-
-    /**
-     * 打印 【debug】 级别的日志信息到控制台，如果有使用日志框架，那么会
-     * 根据日志框架的配置输出到日志文件中。
-     *
-     * @param message
-     *        日志信息
-     *
-     * @param args
-     *        格式化参数
-     */
-    void debug(String message, Object... args);
-
-    /**
-     * 打印 【error】 级别的日志信息到控制台，如果有使用日志框架，那么会
-     * 根据日志框架的配置输出到日志文件中。
-     *
-     * @param message
-     *        日志信息
-     *
-     * @param args
-     *        格式化参数
-     */
-    void error(String message, Object... args);
+    public static void main(String[] args) {
+        var file = new VagaFile("C:\\Users\\Lenovo\\Desktop\\ccc.rar");
+        file.copyTo("C:\\Users\\Lenovo\\Desktop\\ddd.rar");
+    }
 
 }
-
