@@ -28,7 +28,6 @@ package com.thesmartkbd.vagalib;
 import com.thesmartkbd.vagalib.collection.Collections;
 import com.thesmartkbd.vagalib.exception.InvalidArgumentException;
 import com.thesmartkbd.vagalib.io.ByteBuf;
-import com.thesmartkbd.vagalib.io.VagaFile;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -319,7 +318,7 @@ public class Objects {
      *
      * @see String#valueOf(Object)
      */
-    public static String atos(Object obj, ObjectMapper<String, String> mapper) {
+    public static String atos(Object obj, VagaObjectMapper<String, String> mapper) {
         return mapper.apply(atos(obj));
     }
 

@@ -29,7 +29,7 @@ package com.thesmartkbd.vagalib;
  * @author luotiansheng
  */
 @FunctionalInterface
-public interface ObjectMapper<T, R> {
+public interface VagaObjectMapper<T, R> {
     /**
      * 将泛型 T 的数据通过 Lambda 函数映射成为泛型 R
      *

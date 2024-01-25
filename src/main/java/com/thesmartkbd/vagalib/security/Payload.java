@@ -25,7 +25,7 @@ package com.thesmartkbd.vagalib.security;
 
 /* Creates on 2023/5/15. */
 
-import com.thesmartkbd.vagalib.ObjectMapper;
+import com.thesmartkbd.vagalib.VagaObjectMapper;
 import com.thesmartkbd.vagalib.Objects;
 
 import java.util.HashMap;
@@ -51,7 +51,7 @@ public class Payload extends HashMap<String, Object> {
      * @return 将 Payload 中的 Value 转换为字符串返回。
      */
     @SuppressWarnings("unchecked")
-    public <T, R> R getAttribute(String key, ObjectMapper<T, R> mapper) {
+    public <T, R> R getAttribute(String key, VagaObjectMapper<T, R> mapper) {
         return mapper.apply((T) get(key));
     }
 
