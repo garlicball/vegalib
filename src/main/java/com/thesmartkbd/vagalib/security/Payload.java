@@ -44,7 +44,7 @@ public class Payload extends HashMap<String, Object> {
      * @return 将 Payload 中的 Value 转换为字符串返回。
      */
     public String getAttribute(String key) {
-        return getAttribute(key, Objects::stringOf);
+        return getAttribute(key, Objects::atos);
     }
 
     /**

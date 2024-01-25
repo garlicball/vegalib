@@ -154,12 +154,12 @@ public class Objects {
      *
      * @return 转换后的 int 类型数据。
      */
-    public static int intOf(Object obj) {
+    public static int atoi(Object obj) {
         if (obj instanceof Integer l)
             return l;
         if (obj instanceof byte[] b)
-            return intOf(b);
-        return Integer.parseInt(stringOf(obj));
+            return atoi(b);
+        return Integer.parseInt(atos(obj));
     }
 
     /**
@@ -173,8 +173,8 @@ public class Objects {
      *
      * @return 转换后的 int 类型数据。
      */
-    public static int intOf(byte[] b) {
-        return intOf(b, 0);
+    public static int atoi(byte[] b) {
+        return atoi(b, 0);
     }
 
     /**
@@ -192,7 +192,7 @@ public class Objects {
      *
      * @return 转换后的 int 类型数据。
      */
-    public static int intOf(byte[] b, int off) {
+    public static int atoi(byte[] b, int off) {
         return ByteBuf.wrap(b, off, Integer.BYTES)
                 .seek(SEEK_SET, 0).readInt();
     }
@@ -213,14 +213,14 @@ public class Objects {
      *
      * @return 转换后的 long 类型数据。
      */
-    public static long longOf(Object obj) {
+    public static long atol(Object obj) {
         if (obj instanceof Long l)
             return l;
         if (obj instanceof Number n)
             return n.longValue();
         if (obj instanceof byte[] b)
-            return longOf(b);
-        return Long.parseLong(stringOf(obj));
+            return atol(b);
+        return Long.parseLong(atos(obj));
     }
 
     /**
@@ -234,8 +234,8 @@ public class Objects {
      *
      * @return 转换后的 long 类型数据。
      */
-    public static long longOf(byte[] b) {
-        return longOf(b, 0);
+    public static long atol(byte[] b) {
+        return atol(b, 0);
     }
 
     /**
@@ -253,7 +253,7 @@ public class Objects {
      *
      * @return 转换后的 long 类型数据。
      */
-    public static long longOf(byte[] b, int off) {
+    public static long atol(byte[] b, int off) {
         return ByteBuf.wrap(b, off, Long.BYTES)
                 .seek(SEEK_SET, 0).readLong();
     }
@@ -274,12 +274,12 @@ public class Objects {
      *
      * @see String#valueOf(Object)
      */
-    public static boolean boolof(Object obj) {
+    public static boolean atobool(Object obj) {
         if (obj instanceof Boolean ret)
             return ret;
         if (obj instanceof Number num)
             return num.intValue() > 0;
-        String bool = stringOf(obj, Objects::strlower);
+        String bool = atos(obj, Objects::strlower);
         return strxmatch(bool, "true|on|y|yes");
     }
 
@@ -306,7 +306,7 @@ public class Objects {
      * 这个函数提供数据处理 Lambda 函数，可通过 Lambda 处理返回数据。示例：
      * <pre>
      *     // 将字符串转为小写
-     *     var str = stringOf("0xABCDEF", Objects::strlower);
+     *     var str = atos("0xABCDEF", Objects::strlower);
      * </pre>
      *
      * @param obj
@@ -319,8 +319,8 @@ public class Objects {
      *
      * @see String#valueOf(Object)
      */
-    public static String stringOf(Object obj, ObjectMapper<String, String> mapper) {
-        return mapper.apply(stringOf(obj));
+    public static String atos(Object obj, ObjectMapper<String, String> mapper) {
+        return mapper.apply(atos(obj));
     }
 
     /**
@@ -335,17 +335,17 @@ public class Objects {
      *
      * @see String#valueOf(Object)
      */
-    public static String stringOf(Object obj) {
+    public static String atos(Object obj) {
         if (obj == null)
             return "";
         if (obj instanceof String ret)
             return ret;
         /* 字节数组转字符串 */
         if (obj instanceof byte[] b)
-            return stringOf(b, 0, b.length);
+            return atos(b, 0, b.length);
         /* 字符数组转字符串 */
         if (obj instanceof char[] c)
-            return stringOf(c, 0, c.length);
+            return atos(c, 0, c.length);
         return String.valueOf(obj);
     }
 
@@ -371,10 +371,10 @@ public class Objects {
      * @throws ArrayIndexOutOfBoundsException
      *          如果参数 {@code len} 超出整个子字符串的大小后会抛出数组越界异常。
      *
-     * @see #stringOf(String, int, int)
+     * @see #atos(String, int, int)
      */
-    public static String stringOf(Object obj, int off, int len) {
-        return stringOf(stringOf(obj), off, len);
+    public static String atos(Object obj, int off, int len) {
+        return atos(atos(obj), off, len);
     }
 
     /**
@@ -400,10 +400,10 @@ public class Objects {
      * @throws ArrayIndexOutOfBoundsException
      *          如果参数 {@code len} 超出整个子字符串的大小后会抛出数组越界异常。
      *
-     * @see #stringOf(char[], int, int)
+     * @see #atos(char[], int, int)
      */
-    public static String stringOf(String sub, int off, int len) {
-        return stringOf(sub.toCharArray(), off, len);
+    public static String atos(String sub, int off, int len) {
+        return atos(sub.toCharArray(), off, len);
     }
 
     /**
@@ -418,8 +418,8 @@ public class Objects {
      *
      * @see String#String(byte[])
      */
-    public static String stringOf(byte[] b) {
-        return stringOf(b, 0, b.length);
+    public static String atos(byte[] b) {
+        return atos(b, 0, b.length);
     }
 
     /**
@@ -445,7 +445,7 @@ public class Objects {
      *
      * @see String#String(byte[], int, int)
      */
-    public static String stringOf(byte[] b, int off, int len) {
+    public static String atos(byte[] b, int off, int len) {
         return new String(Arrays.copyOf(b, off, len));
     }
 
@@ -472,7 +472,7 @@ public class Objects {
      *
      * @see String#String(char[], int, int)
      */
-    public static String stringOf(char[] a, int off, int len) {
+    public static String atos(char[] a, int off, int len) {
         return new String(Arrays.copyOf(a, off, len));
     }
 
@@ -483,7 +483,7 @@ public class Objects {
             new WeakHashMap<>();
 
     private static String __(Object obj) {
-        return stringOf(obj);
+        return atos(obj);
     }
 
     /**
@@ -498,7 +498,7 @@ public class Objects {
      * @return 字符串长度
      */
     public static int strlen(Object source) {
-        return stringOf(source).length();
+        return atos(source).length();
     }
 
     /**
@@ -579,7 +579,7 @@ public class Objects {
      * @see Objects#anyeq(Object, Object)
      */
     public static boolean strieq(Object a, Object b) {
-        return streq(stringOf(a, Objects::strlower), stringOf(b, Objects::strlower));
+        return streq(atos(a, Objects::strlower), atos(b, Objects::strlower));
     }
 
     /**
@@ -731,7 +731,7 @@ public class Objects {
         char[] fmtChars = __(fmt).toCharArray();
         for (int i = 0; i < fmtChars.length; i++) {
             if (fmtChars[i] == markerBegin && (fmtChars.length - i) >= markerLength
-                    && streq(stringOf(fmtChars, i, markerLength), markerCharacter)) {
+                    && streq(atos(fmtChars, i, markerLength), markerCharacter)) {
                 markerCoordinates.add(i);
                 i += markerLength - 1;
             }
@@ -786,7 +786,7 @@ public class Objects {
      * @return 返回截取好的字符串
      */
     public static String strcut(Object obj, int off, int len) {
-        return stringOf(obj, off, len);
+        return atos(obj, off, len);
     }
 
     /**

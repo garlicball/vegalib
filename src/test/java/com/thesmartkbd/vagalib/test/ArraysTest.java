@@ -31,7 +31,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static com.thesmartkbd.vagalib.Objects.stringOf;
+import static com.thesmartkbd.vagalib.Objects.atos;
 import static com.thesmartkbd.vagalib.collection.Collections.listOf;
 
 /**
@@ -89,7 +89,7 @@ public class ArraysTest {
 
     @Test
     public void copyof_type_string() {
-        System.out.println(stringOf("Hello, Wolrd!", 7, 0));
+        System.out.println(atos("Hello, Wolrd!", 7, 0));
     }
 
 }

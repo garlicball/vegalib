@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.thesmartkbd.vagalib.Objects.sprintf;
-import static com.thesmartkbd.vagalib.Objects.stringOf;
+import static com.thesmartkbd.vagalib.Objects.atos;
 
 /**
  * @author thesmartkbd
@@ -45,7 +45,7 @@ public class RequestQueryParams extends HashMap<String, String> {
 
         for (Map.Entry<String, String> entry : entrySet())
             builder.append(sprintf("%s=%s&", entry.getKey(), entry.getValue()));
-        String finalArguments = stringOf(builder, 0, -1); /* 删掉最后一个字符 ‘&’ */
+        String finalArguments = atos(builder, 0, -1); /* 删掉最后一个字符 ‘&’ */
 
         return sprintf("%s?%s", url, finalArguments);
     }

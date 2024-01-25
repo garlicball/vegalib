@@ -43,9 +43,9 @@ public class SeqNoTemplate implements Serializable {
 
     private Serializable seqNo;
 
-    private int intValue() { return intOf(seqNo); }
-    public long longValue() { return longOf(seqNo); }
-    public String stringValue() { return stringOf(seqNo); }
+    private int intValue() { return atoi(seqNo); }
+    public long longValue() { return atol(seqNo); }
+    public String stringValue() { return atos(seqNo); }
 
     public static SeqNoTemplate of(Serializable value) {
         return new SeqNoTemplate(value);

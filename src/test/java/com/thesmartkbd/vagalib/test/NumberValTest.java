@@ -28,8 +28,8 @@ package com.thesmartkbd.vagalib.test;
 import com.thesmartkbd.vagalib.io.ByteBuf;
 import org.junit.Test;
 
-import static com.thesmartkbd.vagalib.Objects.intOf;
-import static com.thesmartkbd.vagalib.Objects.longOf;
+import static com.thesmartkbd.vagalib.Objects.atoi;
+import static com.thesmartkbd.vagalib.Objects.atol;
 
 /**
  * @author thesmartkbd
@@ -40,8 +40,8 @@ public class NumberValTest {
     public void readInt() {
         ByteBuf buffer = ByteBuf.allocate();
         buffer.write(10086);
-        System.out.println(intOf("10085"));
-        System.out.println(intOf(buffer.toByteArray()));
+        System.out.println(atoi("10085"));
+        System.out.println(atoi(buffer.toByteArray()));
     }
 
 
@@ -49,8 +49,8 @@ public class NumberValTest {
     public void readLong() {
         ByteBuf buffer = ByteBuf.allocate();
         buffer.write(10086L);
-        System.out.println(longOf("10085"));
-        System.out.println(longOf(buffer.toByteArray()));
+        System.out.println(atol("10085"));
+        System.out.println(atol(buffer.toByteArray()));
     }
 
 }

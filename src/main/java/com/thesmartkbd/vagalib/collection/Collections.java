@@ -323,7 +323,7 @@ public class Collections {
      *     var numints = listOf(1, 2, 3, 4, 5, 6);
      *
      *     // 根据数字类型，取差集，预期结果为：[1, 2, 3]
-     *     var ret = listInt(numints, numstrs, Objects::intOf); // 通过 intOf 将 string 转为 int 做比较
+     *     var ret = listInt(numints, numstrs, Objects::atoi); // 通过 atoi 将 string 转为 int 做比较
      * </pre>
      *
      * <p>可执行测试用例 'CollectsTest#listIntTest2'（在 test 包下）
@@ -356,7 +356,7 @@ public class Collections {
      *     var numints = listOf(1, 2, 3, 4, 5, 6);
      *
      *     // 根据数字类型，取差集，预期结果为：[1, 2, 3]
-     *     var ret = listInt(numints, Objects::intOf, numstrs, Objects::intOf); // 通过 intOf 将 string 转为 int 做比较
+     *     var ret = listInt(numints, Objects::atoi, numstrs, Objects::atoi); // 通过 atoi 将 string 转为 int 做比较
      * </pre>
      *
      * @param a           完整数据集
@@ -408,7 +408,7 @@ public class Collections {
      *     var numints = listOf(1, 2, 3, 4, 5, 6);
      *
      *     // 根据数字类型，取差集，预期结果为：[4，5，6]
-     *     var ret = listDiff(numints, numstrs, Objects::intOf); // 通过 intOf 将 string 转为 int 做比较
+     *     var ret = listDiff(numints, numstrs, Objects::atoi); // 通过 atoi 将 string 转为 int 做比较
      * </pre>
      *
      * <p>可执行测试用例 'CollectsTest#listDiffMapperTest'（在 test 包下）
@@ -441,7 +441,7 @@ public class Collections {
      *     var numstrs2 = listOf("2", "3", "4");
      *
      *     // 根据数字类型，取差集，预期结果为：["1", "4"]
-     *     var ret = listDiff(numstrs1, Objects::intOf, numstrs2, Objects::intOf); // 通过 intOf 将 string 转为 int 做比较
+     *     var ret = listDiff(numstrs1, Objects::atoi, numstrs2, Objects::atoi); // 通过 atoi 将 string 转为 int 做比较
      * </pre>
      *
      * @param a           完整数据集
@@ -498,7 +498,7 @@ public class Collections {
      *     // 然后创建集合 B
      *     var B = listOf("1", "2", "3");
      *     // 最后取对称差集部分，预期结果：[1，4]
-     *     listSymmDiff(A, B, Objects::intOf); // 通过 intOf 将集合 A 的 String 转为 int 计算对称差集
+     *     listSymmDiff(A, B, Objects::atoi); // 通过 atoi 将集合 A 的 String 转为 int 计算对称差集
      * </pre>
      *
      * <p>可执行测试用例 'CollectsTest#listSymmDiffTest'（在 test 包下）
@@ -529,7 +529,7 @@ public class Collections {
      *     // 然后创建集合 B
      *     var B = listOf("1", "2", "3");
      *     // 最后取对称差集部分，预期结果：[1，4]
-     *     listSymmDiff(A, B, Objects::intOf); // 通过 intOf 将集合 A 的 String 转为 int 计算对称差集
+     *     listSymmDiff(A, B, Objects::atoi); // 通过 atoi 将集合 A 的 String 转为 int 计算对称差集
      * </pre>
      *
      * <p>可执行测试用例 'CollectsTest#listSymmDiffTest'（在 test 包下）

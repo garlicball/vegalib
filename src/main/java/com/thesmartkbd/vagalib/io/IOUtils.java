@@ -35,7 +35,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import static com.thesmartkbd.vagalib.Objects.stringOf;
+import static com.thesmartkbd.vagalib.Objects.atos;
 
 /**
  * IO操作工具包，整合大部分IO操作，使得在Java中更多的IO操作
@@ -196,7 +196,7 @@ public class IOUtils {
      * @return 从输入流中读取到的字符串文本
      */
     public static String strread(InputStream stream) {
-        return Objects.stringOf(read(stream));
+        return Objects.atos(read(stream));
     }
 
     /**

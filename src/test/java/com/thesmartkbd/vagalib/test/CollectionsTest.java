@@ -45,7 +45,7 @@ public class CollectionsTest {
         // 然后我们还有一个整数类型集合，[1, 2, 3, 4, 5, 6]
         var numints = listOf(1, 2, 3, 4, 5, 6);
         // 根据数字类型，取差集，预期结果为：[4，5，6]
-        var ret = listDiff(numints, numstrs, Objects::intOf); // 通过 intOf 将 string 转为 int 做比较
+        var ret = listDiff(numints, numstrs, Objects::atoi); // 通过 atoi 将 string 转为 int 做比较
 
         // 打印输出结果
         stdout.println("预期结果：%s", JSONObject.toJSONString(ret));
@@ -65,7 +65,7 @@ public class CollectionsTest {
         // 然后我们还有一个整数类型集合，[1, 2, 3, 4, 5, 6]
         var numints = listOf(1, 2, 3, 4, 5, 6);
         // 根据数字类型，取差集，预期结果为：[1, 2, 3]
-        var ret = listInt(numints, numstrs, Objects::intOf); // 通过 intOf 将 string 转为 int 做比较
+        var ret = listInt(numints, numstrs, Objects::atoi); // 通过 atoi 将 string 转为 int 做比较
     }
 
     @Test

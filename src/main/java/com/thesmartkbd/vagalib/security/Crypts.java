@@ -37,7 +37,7 @@ import java.util.Base64;
 import java.util.UUID;
 
 import static com.thesmartkbd.vagalib.Assert.throwIfError;
-import static com.thesmartkbd.vagalib.Objects.stringOf;
+import static com.thesmartkbd.vagalib.Objects.atos;
 import static com.thesmartkbd.vagalib.Objects.*;
 
 /**
@@ -114,7 +114,7 @@ public final class Crypts {
      * @return 生成不带符号的UUID
      */
     public static String uuid() {
-        return stringOf(UUID.randomUUID())
+        return atos(UUID.randomUUID())
                 .replace("-", "");
     }
 
@@ -140,7 +140,7 @@ public final class Crypts {
                 builder.append("0");
             builder.append(tmp);
         }
-        return stringOf(builder);
+        return atos(builder);
     }
 
     ////////////////////////////////////////////////////////////
@@ -297,7 +297,7 @@ public final class Crypts {
     public static final CryptDecoder Decoder = new CryptDecoder() {
         @Override
         public String base64(String src) {
-            return stringOf(Base64.getDecoder().decode(src));
+            return atos(Base64.getDecoder().decode(src));
         }
 
         @Override
