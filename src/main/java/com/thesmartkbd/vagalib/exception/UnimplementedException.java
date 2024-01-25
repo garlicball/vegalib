@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package com.thesmartkbd.vagalib.exception;
 
 /* ************************************************************************
  *
@@ -18,13 +18,37 @@ package com.bitfashion.vortextools.test
  *
  * ************************************************************************/
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/5/8. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+/**
+ * 未实现异常
+ *
+ * @author thesmartkbd
+ */
+public class UnimplementedException extends FrameworkRuntimeException {
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+    public UnimplementedException() {
+        super();
+    }
+
+    public UnimplementedException(String message) {
+        super(message);
+    }
+
+    public UnimplementedException(String message, Object... args) {
+        super(message, args);
+    }
+
+    public UnimplementedException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public UnimplementedException(String message, Throwable cause, Object... args) {
+        super(message, args, cause);
+    }
+
+    public UnimplementedException(Throwable cause) {
+        super(cause);
+    }
+
 }

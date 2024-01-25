@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package com.thesmartkbd.vagalib.test;
 
 /* ************************************************************************
  *
@@ -18,13 +18,23 @@ package com.bitfashion.vortextools.test
  *
  * ************************************************************************/
 
-/* Creates on 2023/6/21. */
+/* Create on 2023/9/13 */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import com.thesmartkbd.vagalib.io.MutableFile;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import static com.thesmartkbd.vagalib.Objects.strxtok;
+
+/**
+ * @author thesmartkbd
+ */
+public class FileReadTest {
+
+    @Test
+    public void read() {
+        MutableFile mutableFile = new MutableFile("C:\\Users\\Lenovo\\Desktop\\新建文本文档 (2).txt");
+        String[] text = strxtok(mutableFile.strread(), "\n");
+        System.out.println();
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package com.thesmartkbd.vagalib.logging;
 
 /* ************************************************************************
  *
@@ -18,13 +18,36 @@ package com.bitfashion.vortextools.test
  *
  * ************************************************************************/
 
-/* Creates on 2023/6/21. */
+/* Creates on 2019/11/05. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
+/**
+ * 日志是匹配器
+ *
+ * @author thesmartkbd
+ */
+public interface LoggerAdapter {
+
+    /**
+     * 根据传入的 {@code name} 来指定日志别名，如果是根据类型传入那么打印名称
+     * 则会是类的全路径。
+     *
+     * @param name
+     *        日志别名
+     *
+     * @return 日志记录器
+     */
+    Logger getLogger(String name);
+
+    /**
+     * 根据传入的 {@code aClass} 来指定日志对象路径，打印内容为 {@code aClass} 类
+     * 对象所在包的全路径名称。
+     *
+     * @param aClass
+     *        日志对象
+     *
+     * @return 日志记录器
+     */
+    Logger getLogger(Class<?> aClass);
+
 }
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
-}

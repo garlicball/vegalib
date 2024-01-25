@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package com.thesmartkbd.vagalib.exception;
 
 /* ************************************************************************
  *
@@ -18,13 +18,35 @@ package com.bitfashion.vortextools.test
  *
  * ************************************************************************/
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/4/30. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+/**
+ * @author thesmartkbd
+ */
+public class OpenException extends FrameworkRuntimeException {
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+    public OpenException() {
+        super();
+    }
+
+    public OpenException(String message) {
+        super(message);
+    }
+
+    public OpenException(String message, Object... args) {
+        super(message, args);
+    }
+
+    public OpenException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public OpenException(String message, Throwable cause, Object... args) {
+        super(message, args, cause);
+    }
+
+    public OpenException(Throwable cause) {
+        super(cause);
+    }
+
 }

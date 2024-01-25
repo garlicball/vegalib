@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package com.thesmartkbd.vagalib.logging.standard;
 
 /* ************************************************************************
  *
@@ -18,13 +18,25 @@ package com.bitfashion.vortextools.test
  *
  * ************************************************************************/
 
-/* Creates on 2023/6/21. */
+/* Creates on 2019/11/05. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
+import com.thesmartkbd.vagalib.logging.Logger;
+import com.thesmartkbd.vagalib.logging.LoggerAdapter;
+
+/**
+ * @author thesmartkbd
+ */
+public class StandardLoggerAdapter implements LoggerAdapter {
+
+    @Override
+    public Logger getLogger(String name) {
+        return new StandardLogger(name);
+    }
+
+    @Override
+    public Logger getLogger(Class<?> _class) {
+        return new StandardLogger(_class);
+    }
+
 }
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
-}
