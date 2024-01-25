@@ -25,7 +25,7 @@ package com.thesmartkbd.vagalib.test;
 
 /* Creates on 2023/7/17. */
 
-import com.thesmartkbd.vagalib.time.TimeUnits;
+import com.thesmartkbd.vagalib.time.VagaTimeUnit;
 import com.thesmartkbd.vagalib.time.DateFormatter;
 import org.junit.Test;
 
@@ -48,9 +48,9 @@ public class DateFormatterTest {
     @Test
     public void dateCalc() {
         var date = DateFormatter.parse("2023-09-11 12:00:00");
-        System.out.println(DateFormatter.fmt(TimeUnits.DAYS.minus(date, 1)));
-        System.out.println(DateFormatter.fmt(TimeUnits.MONTHS.minus(date, 2)));
-        System.out.println(DateFormatter.fmt(TimeUnits.YEARS.minus(date, 3)));
+        System.out.println(DateFormatter.fmt(VagaTimeUnit.DAYS.minus(date, 1)));
+        System.out.println(DateFormatter.fmt(VagaTimeUnit.MONTHS.minus(date, 2)));
+        System.out.println(DateFormatter.fmt(VagaTimeUnit.YEARS.minus(date, 3)));
     }
 
 }

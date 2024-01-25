@@ -32,7 +32,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.thesmartkbd.vagalib.Assert;
 import com.thesmartkbd.vagalib.collection.Collections;
-import com.thesmartkbd.vagalib.time.TimeUnits;
+import com.thesmartkbd.vagalib.time.VagaTimeUnit;
 import com.thesmartkbd.vagalib.time.DateFormatter;
 
 import java.util.Date;
@@ -132,7 +132,7 @@ public class JwtProvider {
      *        Token荷载
      */
     public String sign(Map<String, Object> payload) {
-        Date expireTime = TimeUnits.SECONDS.plus(expire);
+        Date expireTime = VagaTimeUnit.SECONDS.plus(expire);
         JWTCreator.Builder jwtCreator = JWT.create()
                 .withIssuer(ISSUER)
                 .withExpiresAt(expireTime);

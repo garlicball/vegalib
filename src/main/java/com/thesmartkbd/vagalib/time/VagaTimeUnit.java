@@ -32,7 +32,7 @@ import java.util.Date;
 /**
  * @author thesmartkbd
  */
-public enum TimeUnits {
+public enum VagaTimeUnit {
 
     /** 毫秒 */
     MILLISECONDS,
