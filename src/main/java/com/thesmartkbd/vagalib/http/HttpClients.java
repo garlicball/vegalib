@@ -213,7 +213,7 @@ public class HttpClients {
         Object retval;
 
         /* 构建参数 */
-        url = arguments.build(url);
+        url = arguments.buildUrlQueryParams(url);
 
         OkHttpClient client = new OkHttpClient()
                 .newBuilder()

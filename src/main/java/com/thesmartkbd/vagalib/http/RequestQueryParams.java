@@ -37,7 +37,7 @@ import static com.thesmartkbd.vagalib.Objects.atos;
 public class RequestQueryParams extends HashMap<String, String> {
 
     /** 参数拼接 */
-    public String build(String url) {
+    public String buildUrlQueryParams(String url) {
         if (isEmpty())
             return url;
 
