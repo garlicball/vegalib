@@ -28,7 +28,7 @@ package com.thesmartkbd.vagalib.exception;
 /**
  * @author thesmartkbd
  */
-public class SystemException extends FrameworkRuntimeException {
+public class SystemException extends VagaRuntimeException {
 
     public SystemException() {
         super();

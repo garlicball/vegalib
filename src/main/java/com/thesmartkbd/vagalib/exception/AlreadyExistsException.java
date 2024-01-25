@@ -28,7 +28,7 @@ package com.thesmartkbd.vagalib.exception;
 /**
  * @author thesmartkbd
  */
-public class AlreadyExistsException extends FrameworkRuntimeException {
+public class AlreadyExistsException extends VagaRuntimeException {
 
     public AlreadyExistsException() {
         super();

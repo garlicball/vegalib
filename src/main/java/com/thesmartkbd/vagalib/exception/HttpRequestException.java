@@ -28,7 +28,7 @@ package com.thesmartkbd.vagalib.exception;
 /**
  * @author thesmartkbd
  */
-public class HttpRequestException extends FrameworkRuntimeException {
+public class HttpRequestException extends VagaRuntimeException {
 
     public HttpRequestException() {
         super();

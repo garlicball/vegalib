@@ -28,7 +28,7 @@ package com.thesmartkbd.vagalib.exception;
 /**
  * @author thesmartkbd
  */
-public class ReadException extends FrameworkRuntimeException {
+public class ReadException extends VagaRuntimeException {
 
     public ReadException() {
         super();

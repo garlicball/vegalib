@@ -28,7 +28,7 @@ package com.thesmartkbd.vagalib.exception;
 /**
  * @author thesmartkbd
  */
-public class OpenException extends FrameworkRuntimeException {
+public class OpenException extends VagaRuntimeException {
 
     public OpenException() {
         super();

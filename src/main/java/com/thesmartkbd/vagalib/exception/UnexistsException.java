@@ -30,7 +30,7 @@ package com.thesmartkbd.vagalib.exception;
  *
  * @author thesmartkbd
  */
-public class UnexistsException extends FrameworkRuntimeException {
+public class UnexistsException extends VagaRuntimeException {
 
     public UnexistsException() {
         super();

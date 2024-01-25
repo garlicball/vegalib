@@ -25,7 +25,7 @@ package com.thesmartkbd.vagalib.security;
 
 /* Creates on 2023/5/16. */
 
-import com.thesmartkbd.vagalib.exception.FrameworkRuntimeException;
+import com.thesmartkbd.vagalib.exception.VagaRuntimeException;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -234,7 +234,7 @@ public final class Crypts {
                 int flag = n > 16 ? 0 : 8;
                 return strcut(chars, flag, (n + flag));
             } catch (NoSuchAlgorithmException e) {
-                throw new FrameworkRuntimeException(e);
+                throw new VagaRuntimeException(e);
             }
         }
 

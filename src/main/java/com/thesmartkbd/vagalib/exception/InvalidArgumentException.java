@@ -28,7 +28,7 @@ package com.thesmartkbd.vagalib.exception;
 /**
  * @author thesmartkbd
  */
-public class InvalidArgumentException extends FrameworkRuntimeException {
+public class InvalidArgumentException extends VagaRuntimeException {
 
     public InvalidArgumentException() {
         super();

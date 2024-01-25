@@ -30,29 +30,29 @@ import static com.thesmartkbd.vagalib.Objects.sprintf;
 /**
  * @author thesmartkbd
  */
-public class FrameworkRuntimeException extends RuntimeException {
+public class VagaRuntimeException extends RuntimeException {
 
-    public FrameworkRuntimeException() {
+    public VagaRuntimeException() {
         super();
     }
 
-    public FrameworkRuntimeException(String message) {
+    public VagaRuntimeException(String message) {
         super(message);
     }
 
-    public FrameworkRuntimeException(String message, Object... args) {
+    public VagaRuntimeException(String message, Object... args) {
         super(sprintf(message, args));
     }
 
-    public FrameworkRuntimeException(String message, Throwable cause) {
+    public VagaRuntimeException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public FrameworkRuntimeException(String message, Throwable cause, Object... args) {
+    public VagaRuntimeException(String message, Throwable cause, Object... args) {
         super(sprintf(message, args), cause);
     }
 
-    public FrameworkRuntimeException(Throwable cause) {
+    public VagaRuntimeException(Throwable cause) {
         super(cause);
     }
 

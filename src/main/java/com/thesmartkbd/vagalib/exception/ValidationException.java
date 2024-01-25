@@ -28,7 +28,7 @@ package com.thesmartkbd.vagalib.exception;
 /**
  * @author thesmartkbd
  */
-public class ValidationException extends FrameworkRuntimeException {
+public class ValidationException extends VagaRuntimeException {
 
     public ValidationException() {
         super();
