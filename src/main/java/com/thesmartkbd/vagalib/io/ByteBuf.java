@@ -20,7 +20,7 @@ package com.thesmartkbd.vagalib.io;
 
 /* Creates on 2023/5/8. */
 
-import java.util.Objects;
+import static com.thesmartkbd.vagalib.Objects.check_index_size;
 
 /**
  * @author thesmartkbd
@@ -192,7 +192,7 @@ public abstract class ByteBuf {
      *        读取的总长度，字节数组结束索引为 {@code b[off + len]}
      */
     public int read(byte[] b, int off, int len) {
-        Objects.checkFromIndexSize(off, len, b.length);
+        check_index_size(off, len, b.length);
         int remcap = capacity - position;
         if (remcap == 0)
             return IOUtils.EOF;
@@ -288,7 +288,7 @@ public abstract class ByteBuf {
      *        写入长度
      */
     public void write(byte[] b, int off, int len) {
-        Objects.checkFromIndexSize(off, len, b.length);
+        check_index_size(off, len, b.length);
         write0(b, off, len);
     }
 

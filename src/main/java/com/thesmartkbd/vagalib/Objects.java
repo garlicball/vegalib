@@ -51,6 +51,10 @@ public class Objects {
     /// Objects
     /////////////////////////////////////////////////////////////////////////////////////////////
 
+    public static void check_index_size(int off, int len, int size) {
+        throwIfTrue((off + len ) > size, "Array offset and size out of index: %s", size);
+    }
+
     /**
      * `any`函数通常用于 Lambda 接口，将任何对象作为`Object`类型
      * 返回出去。
