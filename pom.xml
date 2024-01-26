@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.thesmartkbd</groupId>
-    <artifactId>vagalib</artifactId>
+    <artifactId>vegalib</artifactId>
     <version>v1.0.0</version>
 
     <properties>
@@ -16,7 +16,7 @@
         <ip2region.version>2.6.1</ip2region.version>
         <slf4j.version>1.7.21</slf4j.version>
         <scala.version>2.10.4</scala.version>
-        <kotlin.version>1.8.22</kotlin.version>
+        <kotlin.version>1.9.0</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <apache-poi.version>5.2.3</apache-poi.version>
         <asm.version>9.5</asm.version>
@@ -78,7 +78,7 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
+            <artifactId>kotlin-test-junit</artifactId>
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
