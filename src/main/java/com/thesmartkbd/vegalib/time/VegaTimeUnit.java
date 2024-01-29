@@ -72,15 +72,16 @@ public enum VegaTimeUnit {
      */
     public Date plus(Date date, int unit) {
         DateTime calc = new DateTime(date);
-        var retdate = switch (this) {
-            case MILLISECONDS -> calc.plusMillis(unit);
-            case SECONDS -> calc.plusSeconds(unit);
-            case MINUTES -> calc.plusMinutes(unit);
-            case HOURS -> calc.plusHours(unit);
-            case DAYS -> calc.plusDays(unit);
-            case WEEKS -> calc.plusWeeks(unit);
-            case MONTHS -> calc.plusMonths(unit);
-            case YEARS -> calc.plusYears(unit);
+        DateTime retdate = null;
+        switch (this) {
+            case MILLISECONDS: retdate = calc.plusMillis(unit); break;
+            case SECONDS: retdate = calc.plusSeconds(unit); break;
+            case MINUTES: retdate = calc.plusMinutes(unit); break;
+            case HOURS: retdate = calc.plusHours(unit); break;
+            case DAYS: retdate = calc.plusDays(unit); break;
+            case WEEKS: retdate = calc.plusWeeks(unit); break;
+            case MONTHS: retdate = calc.plusMonths(unit); break;
+            case YEARS: retdate = calc.plusYears(unit); break;
         };
         return retdate.toDate();
     }
@@ -105,15 +106,16 @@ public enum VegaTimeUnit {
      */
     public Date minus(Date date, int unit) {
         DateTime calc = new DateTime(date);
-        var retdate = switch (this) {
-            case MILLISECONDS -> calc.minusMillis(unit);
-            case SECONDS -> calc.minusSeconds(unit);
-            case MINUTES -> calc.minusMinutes(unit);
-            case HOURS -> calc.minusHours(unit);
-            case DAYS -> calc.minusDays(unit);
-            case WEEKS -> calc.minusWeeks(unit);
-            case MONTHS -> calc.minusMonths(unit);
-            case YEARS -> calc.minusYears(unit);
+        DateTime retdate = null;
+        switch (this) {
+            case MILLISECONDS: retdate = calc.minusMillis(unit); break;
+            case SECONDS: retdate = calc.minusSeconds(unit); break;
+            case MINUTES: retdate = calc.minusMinutes(unit); break;
+            case HOURS: retdate = calc.minusHours(unit); break;
+            case DAYS: retdate = calc.minusDays(unit); break;
+            case WEEKS: retdate = calc.minusWeeks(unit); break;
+            case MONTHS: retdate = calc.minusMonths(unit); break;
+            case YEARS: retdate = calc.minusYears(unit); break;
         };
         return retdate.toDate();
     }

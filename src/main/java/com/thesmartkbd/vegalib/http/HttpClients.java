@@ -407,12 +407,12 @@ public class HttpClients {
             throws IOException {
         ResponseBody body = response.body();
         if (body != null) {
-            return switch (responseType) {
-                case BYTE -> body.bytes();
-                case STRING -> body.string();
-                case BYTE_STRING -> body.byteString();
-                case BYTE_STREAM -> body.byteStream();
-                case CHAR_STREAM -> body.charStream();
+            switch (responseType) {
+                case BYTE: return body.bytes();
+                case STRING: return body.string();
+                case BYTE_STRING: return body.byteString();
+                case BYTE_STREAM: return body.byteStream();
+                case CHAR_STREAM: return body.charStream();
             };
         }
         return null;

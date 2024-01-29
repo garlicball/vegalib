@@ -42,8 +42,8 @@ import com.thesmartkbd.vegalib.io.VegaFile;
 public class VegaFileTest {
 
     public static void main(String[] args) {
-        var file = new VegaFile("C:\\Users\\Lenovo\\Desktop\\ccc.rar");
-        file.copyTo("C:\\Users\\Lenovo\\Desktop\\ddd.rar");
+        VegaFile file = new VegaFile("C:\\Users\\Lenovo\\Desktop\\ccc.rar");
+        file.copy("C:\\Users\\Lenovo\\Desktop\\ddd.rar");
     }
 
 }

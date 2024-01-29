@@ -27,7 +27,9 @@ package com.thesmartkbd.vegalib.io;
 
 import com.thesmartkbd.vegalib.Assert;
 import com.thesmartkbd.vegalib.exception.ValidationException;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -118,6 +120,7 @@ public class VegaDirectory implements Iterable<VegaFile> {
         return retval;
     }
 
+    @NotNull
     @Override
     public Iterator<VegaFile> iterator() {
         return openDirectory().iterator();
@@ -128,7 +131,7 @@ public class VegaDirectory implements Iterable<VegaFile> {
      * 并且这个函数不做缓存处理，避免有新的文件增加时刷新不及时导致获取不到文件的问题。
      */
     private List<VegaFile> openDirectory() {
-        var lf = vf.listFiles();
+        File[] lf = vf.listFiles();
         if (lf == null)
             return Collections.emptyList();
         return listMap(lf, VegaFile::new);

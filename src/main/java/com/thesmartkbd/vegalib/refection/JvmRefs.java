@@ -34,7 +34,7 @@ import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.util.List;
 
-import static com.thesmartkbd.vegalib.Objects.sprintf;
+import static com.thesmartkbd.vegalib.Objects.snprintf;
 import static com.thesmartkbd.vegalib.Objects.strrep;
 
 /**
@@ -96,8 +96,8 @@ public class JvmRefs {
             VegaFile file = new VegaFile(resource.getPath());
             for (VegaFile mutableFile : file.openDirectory()) {
                 if (mutableFile.extensionEquals(".class")) {
-                    var clazz = Class.forName(
-                            sprintf("%s.%s", basePackage, mutableFile.cleaname()));
+                    Class<?> clazz = Class.forName(
+                            snprintf("%s.%s", basePackage, mutableFile.cleaname()));
                     primaries.add(new ObjectPrimary(clazz));
                 }
             }

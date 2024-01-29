@@ -62,7 +62,7 @@ public class ObjectProperty {
      */
     public ObjectProperty(Field field) {
         this.property = field;
-        this.property.trySetAccessible();
+        this.property.setAccessible(true);
         this.modifiers = property.getModifiers();
     }
 
@@ -153,7 +153,7 @@ public class ObjectProperty {
      * 存在 {@code name} 属性则返回该属性 Field 对象。不存在则抛出异常。
      */
     static Field findPrimaryProperty(String name, Class<?> primary) {
-        var property = optionalIfError(() -> primary.getDeclaredField(name),
+        Field property = optionalIfError(() -> primary.getDeclaredField(name),
                 findPrimaryProperty0(name, primary));
         return throwIfNull(property, "属性`%s`在`%s`类中不存在", name, primary.getName());
     }
@@ -161,7 +161,7 @@ public class ObjectProperty {
     /** 递归从 {@code primary} 的父类查找 {@code name} 属性 */
     static Field findPrimaryProperty0(String name, Class<?> primary) {
         Field rfield;
-        var superclass = primary.getSuperclass();
+        Class<?> superclass = primary.getSuperclass();
 
         /* 如果没有父类直接跳出该方法 */
         if (superclass == null)
@@ -267,7 +267,7 @@ public class ObjectProperty {
      *         返回注解对象。如果不存在则返回 {@code null}。
      */
     public <T extends Annotation> T getAnnotation(Class<T> annotation) {
-        var a = property.getDeclaredAnnotation(annotation);
+        T a = property.getDeclaredAnnotation(annotation);
         if (a == null)
             a = property.getAnnotation(annotation);
         return a;

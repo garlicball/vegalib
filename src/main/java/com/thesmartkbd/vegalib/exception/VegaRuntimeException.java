@@ -25,7 +25,7 @@ package com.thesmartkbd.vegalib.exception;
 
 /* Creates on 2023/4/30. */
 
-import static com.thesmartkbd.vegalib.Objects.sprintf;
+import static com.thesmartkbd.vegalib.Objects.snprintf;
 
 /**
  * @author thesmartkbd
@@ -41,7 +41,7 @@ public class VegaRuntimeException extends RuntimeException {
     }
 
     public VegaRuntimeException(String message, Object... args) {
-        super(sprintf(message, args));
+        super(snprintf(message, args));
     }
 
     public VegaRuntimeException(String message, Throwable cause) {
@@ -49,7 +49,7 @@ public class VegaRuntimeException extends RuntimeException {
     }
 
     public VegaRuntimeException(String message, Throwable cause, Object... args) {
-        super(sprintf(message, args), cause);
+        super(snprintf(message, args), cause);
     }
 
     public VegaRuntimeException(Throwable cause) {

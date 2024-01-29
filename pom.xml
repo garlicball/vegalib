@@ -7,6 +7,7 @@
     <groupId>com.thesmartkbd</groupId>
     <artifactId>vegalib</artifactId>
     <version>v1.0.0</version>
+    <packaging>pom</packaging>
 
     <properties>
         <fastjson.version>2.0.26</fastjson.version>
@@ -21,7 +22,7 @@
         <apache-poi.version>5.2.3</apache-poi.version>
         <asm.version>9.5</asm.version>
         <lombok.version>1.18.26</lombok.version>
-        <java.compiler.version>21</java.compiler.version>
+        <java.compiler.version>1.8</java.compiler.version>
     </properties>
 
     <dependencies>

@@ -147,13 +147,13 @@ public final class Crypts {
     /// 加密
     ////////////////////////////////////////////////////////////
 
-    public static final CryptEncoder Encoder = new CryptEncoder() {
-        /** 十六进制字符集 */
-        static final char[] hexDigits = {
-                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                'a', 'b', 'c', 'd', 'e', 'f'
-        };
+    /** 十六进制字符集 */
+    static final char[] hexDigits = {
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            'a', 'b', 'c', 'd', 'e', 'f'
+    };
 
+    public static final CryptEncoder Encoder = new CryptEncoder() {
         @Override
         public String sha256(String source) {
             try {
@@ -161,9 +161,8 @@ public final class Crypts {
                 messageDigest.update(source.getBytes(StandardCharsets.UTF_8));
                 return toByteHex(messageDigest.digest());
             } catch (Exception e) {
-                e.printStackTrace();
+                throw new VegaRuntimeException(e);
             }
-            return null;
         }
 
         @Override
@@ -254,7 +253,7 @@ public final class Crypts {
                     source = strcut(source, strlen(CRYPT_PREFIX_HTTP), 0);
                     temporary = CRYPT_PREFIX_HTTP;
                 }
-                return sprintf("%s%s", temporary, URLEncoder.encode(source, enc));
+                return snprintf("%s%s", temporary, URLEncoder.encode(source, enc));
             } catch (UnsupportedEncodingException e) {
                 throw new RuntimeException(e);
             }

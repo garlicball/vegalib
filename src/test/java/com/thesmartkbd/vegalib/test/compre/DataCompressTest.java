@@ -28,6 +28,7 @@ package com.thesmartkbd.vegalib.test.compre;
 import com.thesmartkbd.vegalib.io.ByteBuf;
 import com.thesmartkbd.vegalib.io.VegaFile;
 import com.thesmartkbd.vegalib.io.IOUtils;
+import com.thesmartkbd.vegalib.io.VegaFileReader;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
@@ -42,7 +43,7 @@ public class DataCompressTest {
 
     @Test
     public void encode() throws IOException {
-        var freader = new VegaFile("C:\\Users\\Lenovo\\Desktop\\cad绘制demo.rar")
+        VegaFileReader freader = new VegaFile("C:\\Users\\Lenovo\\Desktop\\cad绘制demo.rar")
                 .openReader();
 
         byte[] buf = IOUtils.read(freader);
@@ -72,7 +73,7 @@ public class DataCompressTest {
 
     @Test
     public void decode() throws IOException {
-        var fimg = new VegaFile("C:\\Users\\Lenovo\\Desktop\\text.txt.data.png");
+        VegaFile fimg = new VegaFile("C:\\Users\\Lenovo\\Desktop\\text.txt.data.png");
         BufferedImage image = ImageIO.read(fimg);
 
         ByteBuf buffer = ByteBuf.allocate();
@@ -96,7 +97,7 @@ public class DataCompressTest {
             buffer.write(a);
         }
 
-        var ftxt = new VegaFile("C:\\Users\\Lenovo\\Desktop\\text.txt.data.png.txt");
+        VegaFile ftxt = new VegaFile("C:\\Users\\Lenovo\\Desktop\\text.txt.data.png.txt");
         IOUtils.write(buffer.toByteArray(), ftxt.openWriter());
     }
 

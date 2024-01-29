@@ -28,11 +28,17 @@ package com.thesmartkbd.vegalib;
 import com.thesmartkbd.vegalib.collection.Collections;
 import com.thesmartkbd.vegalib.exception.InvalidArgumentException;
 import com.thesmartkbd.vegalib.io.ByteBuf;
+import com.thesmartkbd.vegalib.io.IOUtils;
+import com.thesmartkbd.vegalib.io.VegaPrintStream;
 
+import java.io.OutputStream;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.regex.Pattern;
 
+import static com.thesmartkbd.vegalib.Assert.throwIfNull;
 import static com.thesmartkbd.vegalib.Assert.throwIfTrue;
 import static com.thesmartkbd.vegalib.Bits.bithas;
 import static com.thesmartkbd.vegalib.Optional.optionalIfError;
@@ -76,8 +82,8 @@ public class Objects {
      *
      * @see Object#equals(Object)
      */
-    public static boolean anyeq(Object a, Object b) {
-        return java.util.Objects.equals(a, b);
+    public static boolean anyeq(Object x, Object y) {
+        return (x == y) || (x != null && x.equals(y));
     }
 
     /**
@@ -88,8 +94,8 @@ public class Objects {
      *
      * @see #anyeq(Object, Object)
      */
-    public static boolean anyne(Object a, Object b) {
-        return !anyeq(a, b);
+    public static boolean anyne(Object x, Object y) {
+        return !anyeq(x, y);
     }
 
     /**
@@ -137,6 +143,35 @@ public class Objects {
         return bithas(flags, ACMP_GT);
     }
 
+    /**
+     * #brief: 向控制台格式化打印输出<p>
+     *
+     * @param fmt
+     *        格式化字符串
+     *
+     * @param args
+     *        参数
+     */
+    public static void fprintf(String fmt, Object... args) {
+        IOUtils.stdout.print(snprintf(fmt, args));
+    }
+
+    /**
+     * #brief: 向指定的输出流格式化打印输出<p>
+     *
+     * @param stream
+     *        输出流
+     *
+     * @param fmt
+     *        格式化字符串
+     *
+     * @param args
+     *        参数
+     */
+    public static void fprintf(OutputStream stream, String fmt, Object... args) {
+        new VegaPrintStream(stream).print(snprintf(fmt, args));
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// int
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -154,10 +189,10 @@ public class Objects {
      * @return 转换后的 int 类型数据。
      */
     public static int atoi(Object obj) {
-        if (obj instanceof Integer l)
-            return l;
-        if (obj instanceof byte[] b)
-            return atoi(b);
+        if (obj instanceof Integer)
+            return (Integer) obj;
+        if (obj instanceof byte[])
+            return atoi((byte[]) obj);
         return Integer.parseInt(atos(obj));
     }
 
@@ -213,12 +248,12 @@ public class Objects {
      * @return 转换后的 long 类型数据。
      */
     public static long atol(Object obj) {
-        if (obj instanceof Long l)
-            return l;
-        if (obj instanceof Number n)
-            return n.longValue();
-        if (obj instanceof byte[] b)
-            return atol(b);
+        if (obj instanceof Long)
+            return (Long) obj;
+        if (obj instanceof Number)
+            return ((Number) obj).longValue();
+        if (obj instanceof byte[])
+            return atol((byte[]) obj);
         return Long.parseLong(atos(obj));
     }
 
@@ -274,10 +309,10 @@ public class Objects {
      * @see String#valueOf(Object)
      */
     public static boolean atobool(Object obj) {
-        if (obj instanceof Boolean ret)
-            return ret;
-        if (obj instanceof Number num)
-            return num.intValue() > 0;
+        if (obj instanceof Boolean)
+            return (Boolean) obj;
+        if (obj instanceof Number)
+            return ((Number) obj).intValue() > 0;
         String bool = atos(obj, Objects::strlower);
         return strxmatch(bool, "true|on|y|yes");
     }
@@ -337,14 +372,14 @@ public class Objects {
     public static String atos(Object obj) {
         if (obj == null)
             return "";
-        if (obj instanceof String ret)
-            return ret;
+        if (obj instanceof String)
+            return (String) obj;
         /* 字节数组转字符串 */
-        if (obj instanceof byte[] b)
-            return atos(b, 0, b.length);
+        if (obj instanceof byte[])
+            return atos((byte[]) obj, 0, ((byte[]) obj).length);
         /* 字符数组转字符串 */
-        if (obj instanceof char[] c)
-            return atos(c, 0, c.length);
+        if (obj instanceof char[])
+            return atos((char[]) obj, 0, ((char[]) obj).length);
         return String.valueOf(obj);
     }
 
@@ -481,10 +516,6 @@ public class Objects {
     private static final Map<String, Pattern> compiled =
             new WeakHashMap<>();
 
-    private static String __(Object obj) {
-        return atos(obj);
-    }
-
     /**
      * #brief: 获取字符串长度<p>
      *
@@ -511,7 +542,7 @@ public class Objects {
      * @return {@code true} 表示字符串为空，反之 {@code false}
      */
     public static boolean strempty(Object obj) {
-        return obj == null || "".equals(__(obj).trim());
+        return obj == null || "".equals(atos(obj).trim());
     }
 
     /**
@@ -541,7 +572,7 @@ public class Objects {
      * @return {@code true} 表示 {@code input} 字符串种包含了 {@code has} 字符。
      */
     public static boolean strhas(Object obj, Object has) {
-        return __(obj).contains(__(has));
+        return atos(obj).contains(atos(has));
     }
 
     /**
@@ -553,7 +584,7 @@ public class Objects {
      * @return 转换后的全小写字符串
      */
     public static String strlower(Object obj) {
-        return __(obj).toLowerCase();
+        return atos(obj).toLowerCase();
     }
 
     /**
@@ -565,7 +596,7 @@ public class Objects {
      * @return 转换后的全大写字符串
      */
     public static String strupper(Object obj) {
-        return __(obj).toUpperCase();
+        return atos(obj).toUpperCase();
     }
 
     /**
@@ -605,7 +636,7 @@ public class Objects {
      * @see Objects#anyeq(Object, Object)
      */
     public static boolean streq(Object a, Object b) {
-        return anyeq(__(a), __(b));
+        return anyeq(atos(a), atos(b));
     }
 
     /**
@@ -678,7 +709,7 @@ public class Objects {
      * 伪代码示例（格式化 Hello World）：
      * <pre>
      *      var text = "Hello %s";
-     *      println(Objects.sprintf(text, "World"));
+     *      println(Objects.snprintf(text, "World"));
      * </pre>
      *
      * @param fmt 未被格式化的原字符串。字符串中需要携带占位符 %s，如果没有这个符号
@@ -688,8 +719,8 @@ public class Objects {
      *
      * @return 返回被格式化后的字符串
      */
-    public static String sprintf(Object fmt, Object... args) {
-        return String.format(__(fmt), args);
+    public static String snprintf(Object fmt, Object... args) {
+        return String.format(atos(fmt), args);
     }
 
     /**
@@ -703,7 +734,7 @@ public class Objects {
      * 伪代码示例（格式化 Hello World）：
      * <pre>
      *      var text = "Hello {}";
-     *      println(Objects.sprintf_marker_character(text, "{}", "World"));
+     *      println(Objects.snprintf_marker_character(text, "{}", "World"));
      * </pre>
      *
      * 由于这个格式化函数只处理 {@code markerCharacter} 并不处理其他的任何内容。所以它经过测试大约比 JDK 自带的
@@ -720,14 +751,14 @@ public class Objects {
      *
      * @return 返回被格式化后的字符串
      */
-    public static String xsprintf(Object fmt, String markerCharacter, Object... args) {
+    public static String xsnprintf(Object fmt, String markerCharacter, Object... args) {
         // markerCharacter 属性定义
         int markerLength = markerCharacter.length();
         char markerBegin = markerCharacter.charAt(0);
-        var markerCoordinates = Collections.<Integer>listOf();
+        List<Integer> markerCoordinates = Collections.<Integer>listOf();
 
         // 遍历字符串，获取占位符位置
-        char[] fmtChars = __(fmt).toCharArray();
+        char[] fmtChars = atos(fmt).toCharArray();
         for (int i = 0; i < fmtChars.length; i++) {
             if (fmtChars[i] == markerBegin && (fmtChars.length - i) >= markerLength
                     && streq(atos(fmtChars, i, markerLength), markerCharacter)) {
@@ -740,12 +771,12 @@ public class Objects {
             throw new InvalidArgumentException("占位符和目标参数个数不匹配，占位符个数：%s，参数个数：%s",
                     markerCoordinates.size(), args.length);
 
-        var builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         // 上一个占位符的位置
         int lcoord = 0;
         for (int i = 0; i < markerCoordinates.size(); i++) {
             int skipCount = 0;
-            var markerCoordinate = markerCoordinates.get(i);
+            int markerCoordinate = markerCoordinates.get(i);
             // 添加解析后的字符到builder
             if (markerCoordinate == 0) {
                 builder.append(args[i]);
@@ -825,7 +856,7 @@ public class Objects {
      * @return 分割后的多个子字符串
      */
     public static String[] strtok(Object obj, String regexp) {
-        return __(obj).split(regexp);
+        return atos(obj).split(regexp);
     }
 
     /**
@@ -867,7 +898,7 @@ public class Objects {
      * @return 替换后的字符串
      */
     public static String strrep(Object obj, String regexp, Object replacement) {
-        return __(obj).replaceAll(regexp, __(replacement));
+        return atos(obj).replaceAll(regexp, atos(replacement));
     }
 
     /**
@@ -945,7 +976,7 @@ public class Objects {
         Pattern pattern = enablePatternCache ?
                 _patternCacheComputeIfAbsent(regexp) : Pattern.compile(regexp);
         assert pattern != null;
-        return pattern.matcher(__(obj)).find();
+        return pattern.matcher(atos(obj)).find();
     }
 
     /**
@@ -955,13 +986,13 @@ public class Objects {
      * {@code false}。
      *
      * @param obj
-     *        任意对象类型，通过 {@code __()} 转换成 String
+     *        任意对象类型，通过 {@code atos()} 转换成 String
      *
      * @return {@code true} 表示当前字符串是一个数字，反之返回 {@code false}.
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static boolean strdig(Object obj) {
-        return optionalIfError(() -> Double.parseDouble(__(obj)), true, false);
+        return optionalIfError(() -> Double.parseDouble(atos(obj)), true, false);
     }
 
 }

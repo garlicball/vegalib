@@ -28,6 +28,7 @@ package com.thesmartkbd.vegalib.io;
 import com.thesmartkbd.vegalib.Objects;
 import com.thesmartkbd.vegalib.Assert;
 import com.thesmartkbd.vegalib.exception.ReadException;
+import com.thesmartkbd.vegalib.exception.VegaIOException;
 import com.thesmartkbd.vegalib.exception.WriteException;
 
 import java.io.Closeable;
@@ -35,6 +36,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import static com.thesmartkbd.vegalib.Assert.throwIfError;
 import static com.thesmartkbd.vegalib.Objects.atos;
 
 /**
@@ -94,7 +96,7 @@ public class IOUtils {
      */
     public static void closeQuietly(Closeable closeable) {
         if (closeable != null)
-            Assert.throwIfError(closeable::close);
+            throwIfError(closeable::close);
     }
 
     /**
@@ -113,15 +115,17 @@ public class IOUtils {
      * @return 读取写入到 {@code b} 字节缓冲区的总字节数。如果读到末尾则返回 {@link #EOF}
      */
     public static byte[] read(InputStream stream) {
-        try (stream) {
+        try {
             ByteBuf buffer = ByteBuf.allocate();
             byte[] tmp = new byte[DEFAULT_BYTE_BUFFER_SIZE];
             int len;
             while ((len = read(tmp, stream)) != EOF)
                 buffer.write(tmp, 0, len);
             return buffer.toByteArray();
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new ReadException(e);
+        } finally {
+            IOUtils.closeQuietly(stream);
         }
     }
 
@@ -219,10 +223,14 @@ public class IOUtils {
      *        {@link VegaFile} 文件对象实例（如果文件不存在，则会创建）
      */
     public static void write(InputStream input, VegaFile file) {
-        try (var stream = file.openWriter()) {
-            write(input, stream);
-        } catch (Throwable e) {
-            e.printStackTrace();
+        VegaFileWriter writer = null;
+        try {
+            writer = file.openWriter();
+            write(input, writer);
+        } catch (Exception e) {
+            throw new VegaIOException(e);
+        } finally {
+            closeQuietly(writer);
         }
     }
 
@@ -240,11 +248,7 @@ public class IOUtils {
      *        {@link VegaFile} 文件对象实例（如果文件不存在，则会创建）
      */
     public static void write(String input, VegaFile file) {
-        try (var stream = file.openWriter()) {
-            write(input, stream);
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
+        write(input.getBytes(), file);
     }
 
     /**
@@ -260,10 +264,14 @@ public class IOUtils {
      *        指定输出流
      */
     public static void write(byte[] b, VegaFile file) {
-        try (var stream = file.openWriter()) {
-            write(b, stream);
+        VegaFileWriter writer = null;
+        try {
+            writer = file.openWriter();
+            write(b, writer);
         } catch (Throwable e) {
-            e.printStackTrace();
+            throw new VegaIOException(e);
+        } finally {
+            closeQuietly(writer);
         }
     }
 
@@ -285,12 +293,12 @@ public class IOUtils {
      */
     public static void write(InputStream input, OutputStream stream) {
         try {
-            var buf = new byte[DEFAULT_BYTE_BUFFER_SIZE];
+            byte[] buf = new byte[DEFAULT_BYTE_BUFFER_SIZE];
             int len;
             while ((len = read(buf, input)) != EOF)
                 write(buf, 0, len, stream);
         } catch (Throwable e) {
-            e.printStackTrace();
+            throw new VegaIOException(e);
         } finally {
             /* 如果出现异常关闭输入流，因为输入流中的数据已经被读取，所以
              * 这个函数可以替开发者将输入流关闭。 */

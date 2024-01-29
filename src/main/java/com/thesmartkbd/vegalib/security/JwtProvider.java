@@ -148,7 +148,7 @@ public class JwtProvider {
      */
     public Payload payload(String token) {
         Assert.throwIfFalse(verifier(token));
-        var m = JWT.decode(token)
+        Map<String, Object> m = JWT.decode(token)
                 .getClaim(PAYLOAD)
                 .asMap();
         return new Payload(readPayload.apply(m));

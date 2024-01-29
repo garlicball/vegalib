@@ -29,6 +29,8 @@ import com.thesmartkbd.vegalib.time.VegaTimeUnit;
 import com.thesmartkbd.vegalib.time.DateFormatter;
 import org.junit.Test;
 
+import java.util.Date;
+
 /**
  * @author thesmartkbd
  */
@@ -47,7 +49,7 @@ public class DateFormatterTest {
 
     @Test
     public void dateCalc() {
-        var date = DateFormatter.parse("2023-09-11 12:00:00");
+        Date date = DateFormatter.parse("2023-09-11 12:00:00");
         System.out.println(DateFormatter.fmt(VegaTimeUnit.DAYS.minus(date, 1)));
         System.out.println(DateFormatter.fmt(VegaTimeUnit.MONTHS.minus(date, 2)));
         System.out.println(DateFormatter.fmt(VegaTimeUnit.YEARS.minus(date, 3)));

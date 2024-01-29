@@ -57,8 +57,8 @@ public class ObjectPropertyTest {
      */
     @Test
     public void diffObjectCopy() {
-        var a = new A();
-        var b = new B();
+        A a = new A();
+        B b = new B();
         ObjectProperty.copy(a, b, "data");
         stdout.println("拷贝 A 数据到 B：\n    a: %s\n    b: %s", a, b);
     }

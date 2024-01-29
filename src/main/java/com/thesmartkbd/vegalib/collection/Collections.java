@@ -224,7 +224,7 @@ public class Collections {
      */
     @SuppressWarnings("unchecked")
     public static <E> List<E> listOf(Collection<? extends E> a, Collection<? extends E> b) {
-        var ret = listOf();
+        List<E> ret = listOf();
         ret.addAll(a);
         ret.addAll(b);
         return (ArrayList<E>) ret;
@@ -301,7 +301,7 @@ public class Collections {
      * @return 计算后返回：两个集合之间的交集
      */
     public static <E> List<E> listInt(Collection<E> a, Collection<E> b) {
-        var lcopy = listCopy(a);
+        List<E> lcopy = listCopy(a);
         lcopy.retainAll(b);
         return lcopy;
     }
@@ -386,7 +386,7 @@ public class Collections {
      * @return 计算后返回：两个集合之间的差集
      */
     public static <E> List<E> listDiff(Collection<E> a, Collection<E> b) {
-        var lcopy = listCopy(a);
+        List<E> lcopy = listCopy(a);
         lcopy.removeAll(b);
         return lcopy;
     }
@@ -472,12 +472,12 @@ public class Collections {
      */
     @SuppressWarnings({"unchecked", "SlowAbstractSetRemoveAll"})
     public static <E> List<E> listSymmDiff(Collection<E> a, Collection<E> b) {
-        var symmdiff = setOf();
+        Set<E> symmdiff = setOf();
         symmdiff.addAll(a);
         symmdiff.addAll(b);
 
         /* 计算交集 */
-        var inter = listInt(a, b);
+        List<E> inter = listInt(a, b);
 
         symmdiff.removeAll(inter);
         return (List<E>) listOf(symmdiff);
@@ -656,7 +656,7 @@ public class Collections {
      */
     @SuppressWarnings("unchecked")
     public static <E> HashSet<E> setOf(Collection<? extends E> a, Collection<? extends E> b) {
-        var ret = setOf();
+        HashSet<E> ret = setOf();
         ret.addAll(a);
         ret.addAll(b);
         return (HashSet<E>) ret;

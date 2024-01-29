@@ -56,9 +56,9 @@ public class ObjectsTest {
 
     @Test
     public void dateAnycmpTest() throws InterruptedException {
-        var d1 = new Date();
+        Date d1 = new Date();
         Thread.sleep(100);
-        var d2 = new Date();
+        Date d2 = new Date();
 
         stdout.println("d1 > d2=%s", anycmp(d1, d2, ACMP_GT));
         stdout.println("d1 < d2=%s", anycmp(d1, d2, ACMP_LT));

@@ -28,7 +28,8 @@ package com.thesmartkbd.vegalib.io;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-import static com.thesmartkbd.vegalib.Objects.sprintf;
+import static com.thesmartkbd.vegalib.Assert.throwIfNull;
+import static com.thesmartkbd.vegalib.Objects.snprintf;
 
 /**
  * 可格式化的 {@link PrintStream} 封装类
@@ -41,7 +42,7 @@ public class VegaPrintStream extends PrintStream {
         // TODO 添加彩色打印
     }
 
-    VegaPrintStream(OutputStream out) {
+    public VegaPrintStream(OutputStream out) {
         super(out);
     }
 
@@ -54,7 +55,7 @@ public class VegaPrintStream extends PrintStream {
      * @see #println(Object, Object...)
      */
     public void print(Object input, Object... args) {
-        super.print(sprintf(input, args));
+        super.print(snprintf(input, args));
     }
 
     /**
@@ -69,7 +70,7 @@ public class VegaPrintStream extends PrintStream {
      * @see System#out
      */
     public void println(Object input, Object... args) {
-        super.println(sprintf(input, args));
+        super.println(snprintf(input, args));
     }
 
 }

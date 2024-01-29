@@ -29,6 +29,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.thesmartkbd.vegalib.Objects;
 import org.junit.Test;
 
+import java.util.List;
+
 import static com.thesmartkbd.vegalib.collection.Collections.*;
 import static com.thesmartkbd.vegalib.io.IOUtils.stdout;
 
@@ -41,11 +43,11 @@ public class CollectionsTest {
     @Test
     public void listDiffMapperTest() {
         // 首先我们有一个包含 ["1", "2", "3"] 的整数集合，但它是字符串类型
-        var numstrs = listOf("1", "2", "3");
+        List<String> numstrs = listOf("1", "2", "3");
         // 然后我们还有一个整数类型集合，[1, 2, 3, 4, 5, 6]
-        var numints = listOf(1, 2, 3, 4, 5, 6);
+        List<Integer> numints = listOf(1, 2, 3, 4, 5, 6);
         // 根据数字类型，取差集，预期结果为：[4，5，6]
-        var ret = listDiff(numints, numstrs, Objects::atoi); // 通过 atoi 将 string 转为 int 做比较
+        List<Integer> ret = listDiff(numints, numstrs, Objects::atoi); // 通过 atoi 将 string 转为 int 做比较
 
         // 打印输出结果
         stdout.println("预期结果：%s", JSONObject.toJSONString(ret));
@@ -53,25 +55,25 @@ public class CollectionsTest {
 
     @Test
     public void listIntTest() {
-        var a = listOf("a", "b", "c");
-        var b = listOf("b", "c", "d");
+        List<String> a = listOf("a", "b", "c");
+        List<String> b = listOf("b", "c", "d");
         stdout.println(listInt(a, b));
     }
 
     @Test
     public void listIntTest2() {
         // 首先我们有一个包含 ["1", "2", "3"] 的整数集合，但它是字符串类型
-        var numstrs = listOf("1", "2", "3");
+        List<String> numstrs = listOf("1", "2", "3");
         // 然后我们还有一个整数类型集合，[1, 2, 3, 4, 5, 6]
-        var numints = listOf(1, 2, 3, 4, 5, 6);
+        List<Integer> numints = listOf(1, 2, 3, 4, 5, 6);
         // 根据数字类型，取差集，预期结果为：[1, 2, 3]
-        var ret = listInt(numints, numstrs, Objects::atoi); // 通过 atoi 将 string 转为 int 做比较
+        List<Integer> ret = listInt(numints, numstrs, Objects::atoi); // 通过 atoi 将 string 转为 int 做比较
     }
 
     @Test
     public void listSymmDiffTest() {
-        var nums1 = listOf(1, 2, 3, 4);
-        var nums2 = listOf(3, 4, 5, 6);
+        List<Integer> nums1 = listOf(1, 2, 3, 4);
+        List<Integer> nums2 = listOf(3, 4, 5, 6);
         stdout.println(listSymmDiff(nums1, nums2));
     }
 

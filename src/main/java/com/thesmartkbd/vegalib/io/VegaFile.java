@@ -33,7 +33,7 @@ import java.net.URL;
 import java.util.Objects;
 
 import static com.thesmartkbd.vegalib.Assert.throwIfTrue;
-import static com.thesmartkbd.vegalib.Objects.sprintf;
+import static com.thesmartkbd.vegalib.Objects.snprintf;
 
 /**
  * Java标准库文件增强版封装
@@ -87,7 +87,7 @@ public class VegaFile extends File {
      * @throws NullPointerException 如果 {@code pathname} 为 null
      */
     public VegaFile(String pathname, Object... args) {
-        this(sprintf(pathname, args));
+        this(snprintf(pathname, args));
     }
 
     /**
@@ -242,7 +242,7 @@ public class VegaFile extends File {
      * @return 返回一个不带后缀的文件名称
      */
     public String cleaname() {
-        var name = name();
+        String name = name();
         return name.substring(0, name.lastIndexOf("."));
     }
 
@@ -250,7 +250,7 @@ public class VegaFile extends File {
      * @return 返回文件的后缀名称
      */
     public String extension() {
-        var name = name();
+        String name = name();
         return name.substring(name.lastIndexOf("."));
     }
 
@@ -407,7 +407,7 @@ public class VegaFile extends File {
         }
     }
 
-    public void copyTo(String path) {
+    public void copy(String path) {
         IOUtils.write(openReader(), new VegaFile(path));
     }
 

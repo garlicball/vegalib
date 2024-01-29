@@ -1,4 +1,4 @@
-package com.thesmartkbd.vegalib.test;
+package com.thesmartkbd.vegalib.exception;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,58 +23,37 @@ package com.thesmartkbd.vegalib.test;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/20. */
+/* Creates on 2023/4/30. */
 
-import com.thesmartkbd.vegalib.ApiTemplateResult;
-import lombok.Getter;
-import lombok.ToString;
-import com.thesmartkbd.vegalib.BeanUtils;
-import org.junit.Test;
-
-import java.util.List;
-
-import static com.thesmartkbd.vegalib.collection.Collections.listOf;
-import static com.thesmartkbd.vegalib.io.IOUtils.stdout;
+import static com.thesmartkbd.vegalib.Objects.snprintf;
 
 /**
  * @author thesmartkbd
  */
-@SuppressWarnings("all")
-public class BeanUtilsTest {
+public class VegaIOException extends VegaRuntimeException {
 
-    @Test
-    public void copyForNewInstance() {
-        ApiTemplateResult ret = ApiTemplateResult.ok("what the fuck?");
-        System.out.println(BeanUtils.copyProperties(ret, ApiTemplateResult.class));
+    public VegaIOException() {
+        super();
     }
 
-    @Test
-    public void copyForList() {
-        List<ApiTemplateResult> uncopy = listOf(ApiTemplateResult.ok("a"),
-                            ApiTemplateResult.ok("b"),
-                            ApiTemplateResult.ok("c"),
-                            ApiTemplateResult.ok("d"));
-        List<ApiTemplateResult> rets = BeanUtils.copyProperties(uncopy, ApiTemplateResult.class);
-        stdout.println(rets);
+    public VegaIOException(String message) {
+        super(message);
     }
 
-    /* Instance of A */
-    @Getter
-    @ToString
-    public static class A {
-        private String data = "i am A instance.";
+    public VegaIOException(String message, Object... args) {
+        super(snprintf(message, args));
     }
 
-    /* Instance of B */
-    @Getter
-    @ToString
-    public static class B {
-        private String data = "i am B instance.";
+    public VegaIOException(String message, Throwable cause) {
+        super(message, cause);
     }
 
-    @Test
-    public void notDifferenceObjectCopy() {
-        stdout.println(BeanUtils.copyProperties(new A(), B.class));
+    public VegaIOException(String message, Throwable cause, Object... args) {
+        super(snprintf(message, args), cause);
+    }
+
+    public VegaIOException(Throwable cause) {
+        super(cause);
     }
 
 }

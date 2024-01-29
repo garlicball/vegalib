@@ -31,7 +31,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 import static com.thesmartkbd.vegalib.Assert.throwIfTrue;
-import static com.thesmartkbd.vegalib.Objects.sprintf;
+import static com.thesmartkbd.vegalib.Objects.snprintf;
 import static com.thesmartkbd.vegalib.Objects.streq;
 
 /**
@@ -63,7 +63,7 @@ public class ApiTemplateResult<T> implements Serializable {
     public ApiTemplateResult(String code, T data, String message, Object... args) {
         this.code = code;
         this.data = data;
-        this.message = sprintf(message, args);
+        this.message = snprintf(message, args);
     }
 
     /////////////////////////////////////////////////////////////////////////////////

@@ -53,19 +53,19 @@ public class ArraysTest {
 
     @Test
     public void arraycopy_type_object() {
-        var   h = listOf('h');
-        var   e = listOf('e');
-        var  l0 = listOf('l');
-        var  l1 = listOf('l');
-        var   o = listOf('o');
-        var dot = listOf(',');
-        var emp = listOf(' ');
-        var   w = listOf('w');
-        var  o1 = listOf('o');
-        var   l = listOf('l');
-        var   r = listOf('r');
-        var   d = listOf('d');
-        var end = listOf('!');
+        List<Character>   h = listOf('h');
+        List<Character>   e = listOf('e');
+        List<Character>  l0 = listOf('l');
+        List<Character>  l1 = listOf('l');
+        List<Character>   o = listOf('o');
+        List<Character> dot = listOf(',');
+        List<Character> emp = listOf(' ');
+        List<Character>   w = listOf('w');
+        List<Character>  o1 = listOf('o');
+        List<Character>   l = listOf('l');
+        List<Character>   r = listOf('r');
+        List<Character>   d = listOf('d');
+        List<Character> end = listOf('!');
 
         List[] original = new List[] {
                 h,
