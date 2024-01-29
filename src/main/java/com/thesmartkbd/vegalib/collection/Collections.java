@@ -32,7 +32,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static com.thesmartkbd.vegalib.Arrays.array_as_list;
-import static com.thesmartkbd.vegalib.Arrays.array_copy_of;
 
 /**
  * 容器工具类
