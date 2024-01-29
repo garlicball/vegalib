@@ -28,6 +28,7 @@ package com.thesmartkbd.vegalib.http;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.thesmartkbd.vegalib.Assert;
+import com.thesmartkbd.vegalib.annotations.Upgradable;
 import com.thesmartkbd.vegalib.exception.HttpRequestException;
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
@@ -403,6 +404,7 @@ public class HttpClients {
      * @param responseType
      *        响应数据类型
      */
+    @Upgradable(version = "11", features = {"switch"})
     private static Object parseResponseObject(Response response, ResponseType responseType)
             throws IOException {
         ResponseBody body = response.body();

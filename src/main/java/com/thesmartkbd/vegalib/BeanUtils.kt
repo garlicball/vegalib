@@ -25,6 +25,7 @@ package com.thesmartkbd.vegalib
 
 /* Creates on 2023/4/29. */
 
+import com.thesmartkbd.vegalib.annotations.Favorite
 import com.thesmartkbd.vegalib.collection.Collections.listOf
 import com.thesmartkbd.vegalib.refection.ClassUtils
 import com.thesmartkbd.vegalib.refection.ObjectPrimary
@@ -39,6 +40,7 @@ import com.thesmartkbd.vegalib.refection.ObjectProperty
  *
  * @author thesmartkbd
  */
+@Favorite
 object BeanUtils {
 
     /**

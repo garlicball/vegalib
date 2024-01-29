@@ -26,6 +26,7 @@ package com.thesmartkbd.vegalib.io;
 /* Creates on 2023/5/11. */
 
 import com.thesmartkbd.vegalib.Assert;
+import com.thesmartkbd.vegalib.annotations.Favorite;
 import com.thesmartkbd.vegalib.exception.ValidationException;
 import org.jetbrains.annotations.NotNull;
 
@@ -45,6 +46,7 @@ import static com.thesmartkbd.vegalib.collection.Collections.listOf;
  *
  * @author thesmartkbd
  */
+@Favorite
 public class VegaDirectory implements Iterable<VegaFile> {
 
     private final VegaFile vf;

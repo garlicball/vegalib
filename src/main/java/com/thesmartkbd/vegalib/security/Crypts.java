@@ -25,6 +25,7 @@ package com.thesmartkbd.vegalib.security;
 
 /* Creates on 2023/5/16. */
 
+import com.thesmartkbd.vegalib.annotations.Favorite;
 import com.thesmartkbd.vegalib.exception.VegaRuntimeException;
 
 import java.io.UnsupportedEncodingException;
@@ -46,6 +47,7 @@ import static com.thesmartkbd.vegalib.Objects.*;
  *
  * @author thesmartkbd
  */
+@Favorite
 public final class Crypts {
 
     private static final String CRYPT_PREFIX_HTTP = "http://";

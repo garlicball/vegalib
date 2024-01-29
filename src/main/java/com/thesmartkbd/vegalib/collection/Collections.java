@@ -26,6 +26,7 @@ package com.thesmartkbd.vegalib.collection;
 /* Creates on 2023/5/6. */
 
 import com.thesmartkbd.vegalib.VegaObjectMapper;
+import com.thesmartkbd.vegalib.annotations.Favorite;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -38,6 +39,7 @@ import static com.thesmartkbd.vegalib.Arrays.array_as_list;
  *
  * @author thesmartkbd
  */
+@Favorite
 @SuppressWarnings("DuplicatedCode")
 public class Collections {
 

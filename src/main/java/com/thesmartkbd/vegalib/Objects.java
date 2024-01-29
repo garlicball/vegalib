@@ -25,6 +25,7 @@ package com.thesmartkbd.vegalib;
 
 /* Creates on 2023/4/30. */
 
+import com.thesmartkbd.vegalib.annotations.Favorite;
 import com.thesmartkbd.vegalib.collection.Collections;
 import com.thesmartkbd.vegalib.exception.InvalidArgumentException;
 import com.thesmartkbd.vegalib.exception.VegaRuntimeException;
@@ -369,6 +370,7 @@ public class Objects {
      *
      * @see String#valueOf(Object)
      */
+    @Favorite
     public static String atos(Object obj) {
         if (obj == null)
             return "";
@@ -909,6 +911,9 @@ public class Objects {
      *
      * @return 返回截取好的字符串
      */
+    @Favorite(keyword = {
+            "api_sample_strcut"
+    })
     public static String strcut(Object obj, String regex_off, String regex_end) {
         return strcut(obj, stridxof(obj, regex_off), stridxof(obj, regex_end));
     }

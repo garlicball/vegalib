@@ -25,6 +25,7 @@ package com.thesmartkbd.vegalib.io;
 
 /* Creates on 2023/4/29. */
 
+import com.thesmartkbd.vegalib.annotations.Favorite;
 import com.thesmartkbd.vegalib.exception.OpenException;
 
 import java.io.File;
@@ -40,6 +41,7 @@ import static com.thesmartkbd.vegalib.Objects.snprintf;
  *
  * @author thesmartkbd
  */
+@Favorite
 public class VegaFile extends File {
 
     /**
@@ -263,7 +265,7 @@ public class VegaFile extends File {
      *
      * @return {@code true} 表示后缀匹配成功，反之匹配不成功。
      */
-    public boolean extensionEquals(String extension) {
+    public boolean typeEquals(String extension) {
         return name().endsWith(extension);
     }
 
@@ -347,6 +349,7 @@ public class VegaFile extends File {
      *
      * @return {@code true} 表示删除成功，{@code false} 反之。
      */
+    @Favorite
     public boolean forceDelete() {
         return isDirectory() ? builtin_force_delete_directory() : builtin_force_delete();
     }

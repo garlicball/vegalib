@@ -1,4 +1,4 @@
-package com.thesmartkbd.vegalib.ipv4;
+package com.thesmartkbd.vegalib.annotations;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,46 +23,29 @@ package com.thesmartkbd.vegalib.ipv4;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/5/18. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           Upgradable.java                                                  *|
+|* Create Time:    2024/1/29 20:09                                                  *|
+|* Author:         thesmartkbd                                                      *|
+|* EMail:          thesmartkbd@hotmail.com                                          *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
-import com.thesmartkbd.vegalib.annotations.Upgradable;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import static com.thesmartkbd.vegalib.Objects.snprintf;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
+ * 表示作者个人最满意、最喜欢使用函数或类
+ *
  * @author thesmartkbd
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Upgradable(version = "11", features = {"record"})
-public class Region {
-
+@Retention(RetentionPolicy.SOURCE)
+@Documented
+public @interface Favorite {
     /**
-     * 国家/地区
+     * #brief：全局搜索可以查询到更详细的信息
      */
-    private String country;
-    /**
-     * 省
-     */
-    private String province;
-    /**
-     * 市
-     */
-    private String city;
-
-    /**
-     * 未知地区
-     */
-    public static final Region UNKNOWN_REGION =
-            new Region("0", "0", "0");
-
-    @Override
-    public String toString() {
-        return snprintf("%s/%s/%s", country, province, city);
-    }
-
+    String[] keyword() default "";
 }

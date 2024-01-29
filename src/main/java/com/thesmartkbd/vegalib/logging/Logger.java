@@ -25,11 +25,14 @@ package com.thesmartkbd.vegalib.logging;
 
 /* Creates on 2019/11/05. */
 
+import com.thesmartkbd.vegalib.annotations.Favorite;
+
 /**
  * 可以适配多种日志框架的日志接口对象。
  *
  * @author thesmartkbd
  */
+@Favorite
 public interface Logger {
 
     /**

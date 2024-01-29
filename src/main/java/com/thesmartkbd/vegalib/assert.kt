@@ -26,6 +26,7 @@ package com.thesmartkbd.vegalib
 /* Creates on 2023/4/29. */
 
 import com.thesmartkbd.vegalib.Objects.*
+import com.thesmartkbd.vegalib.annotations.Favorite
 import com.thesmartkbd.vegalib.exception.ValidationException
 import com.thesmartkbd.vegalib.io.IOUtils
 import com.thesmartkbd.vegalib.logging.LoggerFactory
@@ -69,6 +70,7 @@ fun interface GenericFunction<T> {
  *
  * @author thesmartkbd
  */
+@Favorite
 @Suppress("MemberVisibilityCanBePrivate")
 object Assert {
     /**

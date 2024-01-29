@@ -25,6 +25,8 @@ package com.thesmartkbd.vegalib.time;
 
 /* Creates on 2022/3/30. */
 
+import com.thesmartkbd.vegalib.annotations.Favorite;
+import com.thesmartkbd.vegalib.annotations.Upgradable;
 import org.joda.time.DateTime;
 
 import java.util.Date;
@@ -70,6 +72,8 @@ public enum VegaTimeUnit {
      *
      * @return 加上对应 TimeUnits + unit 后的日期
      */
+    @Favorite
+    @Upgradable(version = "11", features = {"switch"})
     public Date plus(Date date, int unit) {
         DateTime calc = new DateTime(date);
         DateTime retdate = null;
@@ -104,6 +108,8 @@ public enum VegaTimeUnit {
      *
      * @return 减去对应 TimeUnits - unit 后的日期
      */
+    @Favorite
+    @Upgradable(version = "11", features = {"switch"})
     public Date minus(Date date, int unit) {
         DateTime calc = new DateTime(date);
         DateTime retdate = null;
