@@ -621,7 +621,7 @@ public class Objects {
      *
      * @see Objects#anyeq(Object, Object)
      */
-    public static boolean strnieq(Object a, Object b) {
+    public static boolean strineq(Object a, Object b) {
         return !strieq(a, b);
     }
 
