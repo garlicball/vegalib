@@ -37,6 +37,7 @@ import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.regex.Pattern;
 
+import static com.thesmartkbd.vegalib.Arrays.array_copy_of;
 import static com.thesmartkbd.vegalib.Assert.throwIfTrue;
 import static com.thesmartkbd.vegalib.Bits.bithas;
 import static com.thesmartkbd.vegalib.Optional.optionalIfError;
@@ -479,7 +480,7 @@ public class Objects {
      * @see String#String(byte[], int, int)
      */
     public static String atos(byte[] b, int off, int len) {
-        return new String(Arrays.copyOf(b, off, len));
+        return new String(array_copy_of(b, off, len));
     }
 
     /**
@@ -506,7 +507,7 @@ public class Objects {
      * @see String#String(char[], int, int)
      */
     public static String atos(char[] a, int off, int len) {
-        return new String(Arrays.copyOf(a, off, len));
+        return new String(array_copy_of(a, off, len));
     }
 
     /**

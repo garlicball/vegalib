@@ -31,6 +31,7 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static com.thesmartkbd.vegalib.Arrays.array_copy_of;
 import static com.thesmartkbd.vegalib.Objects.atos;
 import static com.thesmartkbd.vegalib.collection.Collections.listOf;
 
@@ -48,7 +49,7 @@ public class ArraysTest {
                 ' ',
                 'w', 'o', 'l', 'r', 'd', '!'
         };
-        System.out.println(new String(Arrays.copyOf(a, 7, -1)));
+        System.out.println(new String(array_copy_of(a, 7, -1)));
     }
 
     @Test
@@ -83,7 +84,7 @@ public class ArraysTest {
                 end
         };
 
-        List<Character>[] sliced = Arrays.copyOf(original, 7, -1);
+        List<Character>[] sliced = array_copy_of(original, 7, -1);
         System.out.println(JSON.toJSONString(sliced));
     }
 

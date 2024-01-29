@@ -31,8 +31,8 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static com.thesmartkbd.vegalib.Arrays.asList;
-import static com.thesmartkbd.vegalib.Arrays.copyOf;
+import static com.thesmartkbd.vegalib.Arrays.array_as_list;
+import static com.thesmartkbd.vegalib.Arrays.array_copy_of;
 
 /**
  * 容器工具类
@@ -154,7 +154,7 @@ public class Collections {
      */
     @SafeVarargs
     public static <E> ArrayList<E> listOf(E... a) {
-        return listOf(asList(a));
+        return listOf(array_as_list(a));
     }
 
     /**
@@ -182,7 +182,7 @@ public class Collections {
      * @see #listOf(Collection)
      */
     public static <E> ArrayList<E> listOf(E[] a, int off, int len) {
-        return listOf(asList(copyOf(a, off, len)));
+        return listOf(array_as_list(a, off, len));
     }
 
     /**
@@ -586,7 +586,7 @@ public class Collections {
      */
     @SafeVarargs
     public static <E> HashSet<E> setOf(E... a) {
-        return setOf(asList(a));
+        return setOf(array_as_list(a));
     }
 
     /**
@@ -614,7 +614,7 @@ public class Collections {
      * @see #setOf(Collection)
      */
     public static <E> HashSet<E> setOf(E[] a, int off, int len) {
-        return setOf(asList(copyOf(a, off, len)));
+        return setOf(array_as_list(a, off, len));
     }
 
     /**

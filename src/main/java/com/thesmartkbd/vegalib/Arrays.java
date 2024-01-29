@@ -99,7 +99,7 @@ public class Arrays {
      *
      * @return 拷贝后的新数组对象。
      */
-    public static byte[] copyOf(byte[] original, int off, int len) {
+    public static byte[] array_copy_of(byte[] original, int off, int len) {
         len = array_slice_length(original.length, off, len);
         byte[] ret = new byte[len];
         heapcopy(original, off, ret, 0, len);
@@ -130,7 +130,7 @@ public class Arrays {
      *
      * @return 拷贝后的新数组对象。
      */
-    public static boolean[] copyOf(boolean[] original, int off, int len) {
+    public static boolean[] array_copy_of(boolean[] original, int off, int len) {
         len = array_slice_length(original.length, off, len);
         boolean[] ret = new boolean[len];
         heapcopy(original, off, ret, 0, len);
@@ -161,7 +161,7 @@ public class Arrays {
      *
      * @return 拷贝后的新数组对象。
      */
-    public static char[] copyOf(char[] original, int off, int len) {
+    public static char[] array_copy_of(char[] original, int off, int len) {
         len = array_slice_length(original.length, off, len);
         char[] ret = new char[len];
         heapcopy(original, off, ret, 0, len);
@@ -192,7 +192,7 @@ public class Arrays {
      *
      * @return 拷贝后的新数组对象。
      */
-    public static short[] copyOf(short[] original, int off, int len) {
+    public static short[] array_copy_of(short[] original, int off, int len) {
         len = array_slice_length(original.length, off, len);
         short[] ret = new short[len];
         heapcopy(original, off, ret, 0, len);
@@ -223,7 +223,7 @@ public class Arrays {
      *
      * @return 拷贝后的新数组对象。
      */
-    public static int[] copyOf(int[] original, int off, int len) {
+    public static int[] array_copy_of(int[] original, int off, int len) {
         len = array_slice_length(original.length, off, len);
         int[] ret = new int[len];
         heapcopy(original, off, ret, 0, len);
@@ -254,7 +254,7 @@ public class Arrays {
      *
      * @return 拷贝后的新数组对象。
      */
-    public static long[] copyOf(long[] original, int off, int len) {
+    public static long[] array_copy_of(long[] original, int off, int len) {
         len = array_slice_length(original.length, off, len);
         long[] ret = new long[len];
         heapcopy(original, off, ret, 0, len);
@@ -285,7 +285,7 @@ public class Arrays {
      *
      * @return 拷贝后的新数组对象。
      */
-    public static float[] copyOf(float[] original, int off, int len) {
+    public static float[] array_copy_of(float[] original, int off, int len) {
         len = array_slice_length(original.length, off, len);
         float[] ret = new float[len];
         heapcopy(original, off, ret, 0, len);
@@ -316,7 +316,7 @@ public class Arrays {
      *
      * @return 拷贝后的新数组对象。
      */
-    public static double[] copyOf(double[] original, int off, int len) {
+    public static double[] array_copy_of(double[] original, int off, int len) {
         len = array_slice_length(original.length, off, len);
         double[] ret = new double[len];
         heapcopy(original, off, ret, 0, len);
@@ -348,7 +348,7 @@ public class Arrays {
      * @return 拷贝后的新数组对象。
      */
     @SuppressWarnings("unchecked")
-    public static <T> T[] copyOf(T[] original, int off, int len) {
+    public static <T> T[] array_copy_of(T[] original, int off, int len) {
         len = array_slice_length(original.length, off, len);
         Class<? extends T[]> newType = (Class<? extends T[]>) original.getClass();
         T[] ret = ((Object) newType == (Object) Object[].class)
@@ -356,6 +356,10 @@ public class Arrays {
                 : (T[]) Array.newInstance(newType.getComponentType(), len);
         heapcopy(original, off, ret, 0, len);
         return ret;
+    }
+
+    public static <T> List<T> array_as_list(T[] original, int off, int len) {
+        return array_as_list(array_copy_of(original, off, len));
     }
 
     /**
@@ -396,7 +400,7 @@ public class Arrays {
      * @throws NullPointerException if the specified array is {@code null}
      */
     @SafeVarargs
-    public static <T> List<T> asList(T... a) {
+    public static <T> List<T> array_as_list(T... a) {
         return java.util.Arrays.asList(a);
     }
 
