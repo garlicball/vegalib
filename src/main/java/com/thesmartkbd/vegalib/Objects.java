@@ -27,23 +27,22 @@ package com.thesmartkbd.vegalib;
 
 import com.thesmartkbd.vegalib.collection.Collections;
 import com.thesmartkbd.vegalib.exception.InvalidArgumentException;
+import com.thesmartkbd.vegalib.exception.VegaRuntimeException;
 import com.thesmartkbd.vegalib.io.ByteBuf;
-import com.thesmartkbd.vegalib.io.IOUtils;
 import com.thesmartkbd.vegalib.io.VegaPrintStream;
 
 import java.io.OutputStream;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.regex.Pattern;
 
-import static com.thesmartkbd.vegalib.Assert.throwIfNull;
 import static com.thesmartkbd.vegalib.Assert.throwIfTrue;
 import static com.thesmartkbd.vegalib.Bits.bithas;
 import static com.thesmartkbd.vegalib.Optional.optionalIfError;
 import static com.thesmartkbd.vegalib.collection.Collections.collectionEnd;
 import static com.thesmartkbd.vegalib.io.ByteBuf.SEEK_SET;
+import static com.thesmartkbd.vegalib.io.IOUtils.stdout;
 
 /**
  * @author thesmartkbd
@@ -152,8 +151,8 @@ public class Objects {
      * @param args
      *        参数
      */
-    public static void fprintf(String fmt, Object... args) {
-        IOUtils.stdout.print(snprintf(fmt, args));
+    public static void fprintlnf(Object fmt, Object... args) {
+        fprintlnf(stdout, fmt, args);
     }
 
     /**
@@ -168,8 +167,8 @@ public class Objects {
      * @param args
      *        参数
      */
-    public static void fprintf(OutputStream stream, String fmt, Object... args) {
-        new VegaPrintStream(stream).print(snprintf(fmt, args));
+    public static void fprintlnf(OutputStream stream, Object fmt, Object... args) {
+        new VegaPrintStream(stream).println(snprintf(fmt, args));
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -800,6 +799,40 @@ public class Objects {
     }
 
     /**
+     * #brief: 根据指定规则获取子字符串开始索引下标。<p>
+     *
+     * 根据指定规则获取子字符串开始索引下标，通过 idx 和 edx 判断是从前往后查询还是从后
+     * 往前查询字符串索引下表。<p>
+     *
+     * 假设我们当前需要截取一个文件后缀，我们可以这样使用：
+     * <code>
+     *     // edx: 表示从后往前查找索引，也就是 lastIndexOf()，idx: 表示从前往后查找，也就是 indexOf()
+     *     strcut("Hello World.txt", 0, "edx:.");
+     * </code>
+     *
+     * @param obj
+     *        字符串对象或任意可被 toString() 的对象
+     *
+     * @param regex
+     *        索引查找规则，idx: 表示从前往后查询，edx: 表示从后往前查询。
+     *
+     * @return 返回字符串索引
+     */
+    public static int stridxof(Object obj, String regex) {
+        String substr = strcut(regex, "idx:".length(), 0);
+        /* index of */
+        if (regex.startsWith("idx:"))
+            return atos(obj).indexOf(substr);
+
+        /* last index of */
+        if (regex.startsWith("edx:"))
+            return atos(obj).lastIndexOf(substr);
+
+        /* err */
+        throw new VegaRuntimeException("Error stridxof regex err!, Please use idx: or edx: prefix, example: idx:< edx:>!");
+    }
+
+    /**
      * 字符串裁剪，它和 {@link String#substring(int, int)} 的功能是一样的，因为这个
      * 函数只是做了个一个 {@code substring} 的调用，它的出现是为了让代码更简洁。
      *
@@ -823,7 +856,25 @@ public class Objects {
      * 字符串裁剪，它和 {@link String#substring(int, int)} 的功能是一样的，因为这个
      * 函数只是做了个一个 {@code substring} 的调用，它的出现是为了让代码更简洁。
      *
-     * <p> X: 截取后会移除前后空格
+     * @param obj
+     *        一个 {@link Object} 对象，通过 {@code toString()} 转换成 {@code String}
+     *        类型。
+     *
+     * @param regex_off
+     *        开始索引，使用 stridxof 规则，详情请查看 {@link #stridxof} 函数使用规则。
+     *
+     * @param len
+     *        结束索引
+     *
+     * @return 返回截取好的字符串
+     */
+    public static String strcut(Object obj, String regex_off, int len) {
+        return strcut(obj, stridxof(obj, regex_off), len);
+    }
+
+    /**
+     * 字符串裁剪，它和 {@link String#substring(int, int)} 的功能是一样的，因为这个
+     * 函数只是做了个一个 {@code substring} 的调用，它的出现是为了让代码更简洁。
      *
      * @param obj
      *        一个 {@link Object} 对象，通过 {@code toString()} 转换成 {@code String}
@@ -832,13 +883,33 @@ public class Objects {
      * @param off
      *        开始索引
      *
-     * @param len
-     *        结束索引
+     * @param regex_end
+     *        结束索引，使用 stridxof 规则，详情请查看 {@link #stridxof} 函数使用规则。
      *
      * @return 返回截取好的字符串
      */
-    public static String strxcut(Object obj, int off, int len) {
-        return strcut(obj, off, len).trim();
+    public static String strcut(Object obj, int off, String regex_end) {
+        return strcut(obj, off, stridxof(obj, regex_end));
+    }
+
+    /**
+     * 字符串裁剪，它和 {@link String#substring(int, int)} 的功能是一样的，因为这个
+     * 函数只是做了个一个 {@code substring} 的调用，它的出现是为了让代码更简洁。
+     *
+     * @param obj
+     *        一个 {@link Object} 对象，通过 {@code toString()} 转换成 {@code String}
+     *        类型。
+     *
+     * @param regex_off
+     *        开始索引，使用 stridxof 规则，详情请查看 {@link #stridxof} 函数使用规则。
+     *
+     * @param regex_end
+     *        结束索引，使用 stridxof 规则，详情请查看 {@link #stridxof} 函数使用规则。
+     *
+     * @return 返回截取好的字符串
+     */
+    public static String strcut(Object obj, String regex_off, String regex_end) {
+        return strcut(obj, stridxof(obj, regex_off), stridxof(obj, regex_end));
     }
 
     /**
