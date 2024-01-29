@@ -26,7 +26,7 @@ package com.thesmartkbd.vegalib
 /* Creates on 2023/4/29. */
 
 import com.thesmartkbd.vegalib.collection.Collections.listOf
-import com.thesmartkbd.vegalib.refection.JvmRefs
+import com.thesmartkbd.vegalib.refection.ClassUtils
 import com.thesmartkbd.vegalib.refection.ObjectPrimary
 import com.thesmartkbd.vegalib.refection.ObjectProperty
 
@@ -84,7 +84,7 @@ object BeanUtils {
      */
     @JvmStatic
     fun <T> copyProperties(src: Any, destClass: Class<T>, vararg ignores: String): T {
-        val instance = JvmRefs.newInstance(destClass)
+        val instance = ClassUtils.newInstance(destClass)
         copyProperties(src, instance!!, *ignores)
         return instance
     }
@@ -112,7 +112,7 @@ object BeanUtils {
             val name = property.name
             if (ignores.isNotEmpty() && (name in ignores))
                 continue
-            ObjectProperty.copyIgnoreNotExist(src, dest, property.name)
+            ObjectProperty.copyIgnoreError(src, dest, property.name)
         }
     }
 

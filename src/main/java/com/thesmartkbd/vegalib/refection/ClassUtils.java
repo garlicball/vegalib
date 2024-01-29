@@ -27,6 +27,7 @@ package com.thesmartkbd.vegalib.refection;
 
 import com.thesmartkbd.vegalib.collection.Collections;
 import com.thesmartkbd.vegalib.exception.UnexistsException;
+import com.thesmartkbd.vegalib.exception.VegaRuntimeException;
 import com.thesmartkbd.vegalib.io.VegaFile;
 
 import java.io.InputStream;
@@ -42,7 +43,7 @@ import static com.thesmartkbd.vegalib.Objects.strrep;
  *
  * @author thesmartkbd
  */
-public class JvmRefs {
+public class ClassUtils {
     /**
      * @return 根据当前线程的上下文，获取 {@link BytecodeClassLoader} 对象实例。
      */
@@ -72,7 +73,7 @@ public class JvmRefs {
      *
      * @return 资源输入流
      */
-    public static InputStream getStream(String path) {
+    public static InputStream getResourceStream(String path) {
         return getContextClassLoader().getResourceAsStream(path);
     }
 
@@ -102,7 +103,7 @@ public class JvmRefs {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new VegaRuntimeException(e);
         }
         return primaries;
     }

@@ -234,7 +234,7 @@ public class ObjectProperty {
      * @param dest
      *        目标对象实例
      */
-    public static void copyIgnoreNotExist(Object src, Object dest, String name) {
+    public static void copyIgnoreError(Object src, Object dest, String name) {
         ignoreIfError(() -> copy(src, dest, name));
     }
 

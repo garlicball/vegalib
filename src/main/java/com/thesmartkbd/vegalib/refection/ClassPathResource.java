@@ -1,4 +1,4 @@
-package com.thesmartkbd.vegalib.ipv4;
+package com.thesmartkbd.vegalib.refection;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,43 +23,54 @@ package com.thesmartkbd.vegalib.ipv4;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/5/18. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           ClassPathResource.java                                           *|
+|* Create Time:    2024/1/29 19:35                                                  *|
+|* Author:         thesmartkbd                                                      *|
+|* EMail:          thesmartkbd@hotmail.com                                          *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
 import com.thesmartkbd.vegalib.io.IOUtils;
-import com.thesmartkbd.vegalib.logging.Logger;
-import com.thesmartkbd.vegalib.logging.LoggerFactory;
-import com.thesmartkbd.vegalib.refection.ClassPathResource;
-import org.lionsoul.ip2region.xdb.Searcher;
 
-import static com.thesmartkbd.vegalib.Objects.strtok;
+import java.io.InputStream;
 
 /**
- * 获取IP所在区域
+ * ClassPath 目录下的资源文件
  *
  * @author thesmartkbd
  */
-public class IP2Region {
-
-    private static final Logger logger = LoggerFactory.getLogger(IP2Region.class);
-
-    public static Searcher searcher = null;
+public class ClassPathResource {
 
     /**
-     * 检索 ip 地址
+     * 输入流
      */
-    public static Region search(String ip) {
-        try {
-            if (searcher == null) {
-                byte[] buf = new ClassPathResource("ip2region.xdb").read();
-                logger.info("ip table buffer size: %s", buf.length);
-                searcher = Searcher.newWithBuffer(buf);
-            }
-            String search = searcher.searchByStr(ip);
-            String[] split = strtok(search, "\\|");
-            return new Region(split[0], split[2], split[3]);
-        } catch (Exception e) {
-            return Region.UNKNOWN_REGION;
-        }
+    private final InputStream stream;
+
+    public ClassPathResource(String path) {
+        this.stream = ClassUtils.getResourceStream(path);
+    }
+
+    /**
+     * #brief: 使用字符串流读取文件中的所有数据作为字符串返回
+     */
+    public byte[] read() {
+        return IOUtils.read(stream);
+    }
+
+    /**
+     * #brief: 使用字符串流读取文件中的所有数据作为字符串返回
+     */
+    public String strread() {
+        return IOUtils.strread(stream);
+    }
+
+    /**
+     * #brief: 获取输入流
+     */
+    public InputStream getInputStream() {
+        return stream;
     }
 
 }

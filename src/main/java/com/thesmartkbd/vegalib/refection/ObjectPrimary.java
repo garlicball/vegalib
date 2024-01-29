@@ -81,7 +81,7 @@ public class ObjectPrimary {
      */
     @SuppressWarnings("unchecked")
     public <T> T newInstance(Object... args) {
-        return (T) JvmRefs.newInstance(primary, args);
+        return (T) ClassUtils.newInstance(primary, args);
     }
 
     /**
@@ -136,7 +136,7 @@ public class ObjectPrimary {
     public Object staticInvoke(String name, Object... args) {
         return throwIfError(() -> {
             Method method = args == null ? primary.getDeclaredMethod(name) :
-                    primary.getDeclaredMethod(name, JvmRefs.toClassArray(args));
+                    primary.getDeclaredMethod(name, ClassUtils.toClassArray(args));
             return method.invoke(null, args);
         }, "invoke failed.");
     }

@@ -1,4 +1,4 @@
-package com.thesmartkbd.vegalib.test;
+package com.thesmartkbd.vegalib.samples;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,73 +23,43 @@ package com.thesmartkbd.vegalib.test;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/9/6. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           IPv4LocationQuerySamples.java                                                *|
+|* Create Time:    2024/1/29 19:17                                                   *|
+|* Author:         thesmartkbd                                                      *|
+|* EMail:          thesmartkbd@hotmail.com                                          *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
-import com.alibaba.fastjson.JSON;
+import com.thesmartkbd.vegalib.ipv4.IP2Region;
 import org.junit.Test;
 
-import java.util.List;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
-import static com.thesmartkbd.vegalib.Arrays.array_copy_of;
-import static com.thesmartkbd.vegalib.Objects.atos;
-import static com.thesmartkbd.vegalib.collection.Collections.listOf;
+import static com.thesmartkbd.vegalib.Objects.fprintlnf;
 
 /**
+ * IP地址查询
+ *
  * @author thesmartkbd
  */
-@SuppressWarnings("all")
-public class ArraysTest {
+public class IPv4LocationQuerySamples {
 
+    /**
+     * 通过 IP2Region#search 函数查询 IP 所属区域
+     */
     @Test
-    public void arraycopy_type_char() {
-        char[] a = new char[] {
-                'h', 'e', 'l', 'l', 'o',
-                ',',
-                ' ',
-                'w', 'o', 'l', 'r', 'd', '!'
-        };
-        System.out.println(new String(array_copy_of(a, 7, -1)));
-    }
-
-    @Test
-    public void arraycopy_type_object() {
-        List<Character>   h = listOf('h');
-        List<Character>   e = listOf('e');
-        List<Character>  l0 = listOf('l');
-        List<Character>  l1 = listOf('l');
-        List<Character>   o = listOf('o');
-        List<Character> dot = listOf(',');
-        List<Character> emp = listOf(' ');
-        List<Character>   w = listOf('w');
-        List<Character>  o1 = listOf('o');
-        List<Character>   l = listOf('l');
-        List<Character>   r = listOf('r');
-        List<Character>   d = listOf('d');
-        List<Character> end = listOf('!');
-
-        List[] original = new List[] {
-                h,
-                e,
-                l0,
-                l1,
-                o,
-                dot,
-                emp,
-                w,
-                o1,
-                l,
-                r,
-                d,
-                end
-        };
-
-        List<Character>[] sliced = array_copy_of(original, 7, -1);
-        System.out.println(JSON.toJSONString(sliced));
-    }
-
-    @Test
-    public void copyof_type_string() {
-        System.out.println(atos("Hello, Wolrd!", 7, 0));
+    public void api_sample_ip2region_search() throws UnknownHostException {
+        InetAddress ip_google_com = InetAddress.getByName("www.google.com"); /* www.google.com */
+        fprintlnf("host %s, location: %s", ip_google_com, IP2Region.search(ip_google_com.getHostAddress()));
+        InetAddress ip_baidu_com = InetAddress.getByName("www.baidu.com"); /* www.baidu.com */
+        fprintlnf("host %s, location: %s", ip_baidu_com, IP2Region.search(ip_baidu_com.getHostAddress()));
+        InetAddress ip_bilibili_com = InetAddress.getByName("www.bilibili.com"); /* www.bilibili.com */
+        fprintlnf("host %s, location: %s", ip_bilibili_com, IP2Region.search(ip_bilibili_com.getHostAddress()));
+        InetAddress ip_steampower_com = InetAddress.getByName("www.steampower.com"); /* www.steampower.com */
+        fprintlnf("host %s, location: %s", ip_steampower_com, IP2Region.search(ip_steampower_com.getHostAddress()));
     }
 
 }

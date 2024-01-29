@@ -26,7 +26,7 @@ package com.thesmartkbd.vegalib.logging;
 /* Creates on 2019/11/05. */
 
 import com.thesmartkbd.vegalib.logging.slf4j.Slf4jLoggerAdapter;
-import com.thesmartkbd.vegalib.refection.JvmRefs;
+import com.thesmartkbd.vegalib.refection.ClassUtils;
 
 import static com.thesmartkbd.vegalib.Objects.snprintf;
 
@@ -83,7 +83,7 @@ public class LoggerFactory {
 
     private static void slf4j() {
         try {
-            Slf4jLoggerAdapter adapter = JvmRefs.newInstance(Slf4jLoggerAdapter.class);
+            Slf4jLoggerAdapter adapter = ClassUtils.newInstance(Slf4jLoggerAdapter.class);
             adapter.getLogger(LoggerFactory.class).info(formatBestChoice("slf4j"));
             loggerAdapterInstance = adapter;
         } catch (Throwable ignoreException) {
@@ -93,7 +93,7 @@ public class LoggerFactory {
 
     private static void standard() {
         try {
-            Slf4jLoggerAdapter adapter = JvmRefs.newInstance(Slf4jLoggerAdapter.class);
+            Slf4jLoggerAdapter adapter = ClassUtils.newInstance(Slf4jLoggerAdapter.class);
             adapter.getLogger(LoggerFactory.class).info(formatBestChoice("vortextools standard"));
             loggerAdapterInstance = adapter;
         } catch (Throwable ignoreException) {
