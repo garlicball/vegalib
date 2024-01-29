@@ -34,7 +34,7 @@ import java.net.URL;
 import java.util.Objects;
 
 import static com.thesmartkbd.vegalib.Assert.throwIfTrue;
-import static com.thesmartkbd.vegalib.Objects.snprintf;
+import static com.thesmartkbd.vegalib.Objects.*;
 
 /**
  * Java标准库文件增强版封装
@@ -43,6 +43,22 @@ import static com.thesmartkbd.vegalib.Objects.snprintf;
  */
 @Favorite
 public class VegaFile extends File {
+
+    private static final String PLACEHOLDER_USER_DIR_VALUE = "%user.dir%";
+    private static final String PLACEHOLDER_USER_HOME_VALUE = "%user.home%";
+
+    /**
+     * 解析占位符
+     */
+    static String _placeholder(String pathname) {
+        if (strhas(pathname, PLACEHOLDER_USER_DIR_VALUE))
+            pathname = pathname.replace(PLACEHOLDER_USER_DIR_VALUE, System.getProperty("user.dir"));
+
+        if (strhas(pathname, PLACEHOLDER_USER_HOME_VALUE))
+            pathname = pathname.replace(PLACEHOLDER_USER_HOME_VALUE, System.getProperty("user.home"));
+
+        return pathname.replaceAll("\\\\", "/");
+    }
 
     /**
      * 通过 {@link File} 对象创建一个新的 {@link #VegaFile} 实例对象。将
@@ -70,7 +86,7 @@ public class VegaFile extends File {
      * @throws NullPointerException 如果 {@code pathname} 为 null
      */
     public VegaFile(String pathname) {
-        super(pathname);
+        super(_placeholder(pathname));
     }
 
     /**
@@ -89,7 +105,7 @@ public class VegaFile extends File {
      * @throws NullPointerException 如果 {@code pathname} 为 null
      */
     public VegaFile(String pathname, Object... args) {
-        this(snprintf(pathname, args));
+        this(snprintf(_placeholder(pathname), args));
     }
 
     /**
@@ -392,6 +408,19 @@ public class VegaFile extends File {
 
     /**
      * 打开文件输出流并且不强制抛出异常，如果这个函数的异常信息需要处理。可以使用 try/catch
+     * 捕获异常信息。如果不需要特殊处理，那么则无需使用 try/catch。默认以覆盖方式写入数据。当
+     * 写入新数据后已有的数据会被删除。
+     * <p>
+     * 安静的打开输出流对象，避免代码过于沉余。
+     *
+     * @return 文件的输出流对象实例
+     */
+    public VegaFileWriter openWriter() {
+        return openWriter(false);
+    }
+
+    /**
+     * 打开文件输出流并且不强制抛出异常，如果这个函数的异常信息需要处理。可以使用 try/catch
      * 捕获异常信息。如果不需要特殊处理，那么则无需使用 try/catch。
      * <p>
      * 安静的打开输出流对象，避免代码过于沉余。
@@ -399,12 +428,14 @@ public class VegaFile extends File {
      * @return 文件的输出流对象实例
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public VegaFileWriter openWriter() {
+    public VegaFileWriter openWriter(boolean append) {
         try {
-            if (!exists())
+            if (!exists()) {
+                parentVegaFile().mkdirs();
                 createNewFile();
+            }
             checkMutableFile(this);
-            return new VegaFileWriter(this);
+            return new VegaFileWriter(this, append);
         } catch (Throwable e) {
             throw new OpenException(e);
         }
@@ -434,6 +465,32 @@ public class VegaFile extends File {
      */
     public String strread() {
         return IOUtils.strread(openReader());
+    }
+
+    /**
+     * #brief：将字节数据写入到文件中<p>
+     *
+     * 将字节数据写入到文件中，默认以追加方式写入数据不会覆盖写入，且如果文件不存在则会自动创建。
+     * 如果希望不追加数据写入，可以使用 {@link #write} 函数。
+     *
+     * @param buffer
+     *        写入字节数组数据
+     */
+    public void awrite(byte[] buffer) {
+        IOUtils.write(buffer, openWriter(true));
+    }
+
+    /**
+     * #brief：将字节数据写入到文件中<p>
+     *
+     * 将字节数据写入到文件中，默认以覆盖方式写入数据不会追加写入，且如果文件不存在则会自动创建。
+     * 如果希望不覆盖数据写入，可以使用 {@link #awrite} 函数。
+     *
+     * @param buffer
+     *        写入字节数组数据
+     */
+    public void write(byte[] buffer) {
+        IOUtils.write(buffer, openWriter());
     }
 
 }
