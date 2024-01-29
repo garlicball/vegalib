@@ -96,7 +96,7 @@ public class ClassUtils {
                 throw new UnexistsException("路径不存在：%s", basePackage);
             VegaFile file = new VegaFile(resource.getPath());
             for (VegaFile mutableFile : file.openDirectory()) {
-                if (mutableFile.extensionEquals(".class")) {
+                if (mutableFile.typeEquals(".class")) {
                     Class<?> clazz = Class.forName(
                             snprintf("%s.%s", basePackage, mutableFile.cleaname()));
                     primaries.add(new ObjectPrimary(clazz));
