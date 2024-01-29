@@ -25,7 +25,7 @@ package com.thesmartkbd.vegalib.annotations;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|* File:           Upgradable.java                                                  *|
+|* File:           Favorite.java                                                    *|
 |* Create Time:    2024/1/29 20:09                                                  *|
 |* Author:         thesmartkbd                                                      *|
 |* EMail:          thesmartkbd@hotmail.com                                          *|
