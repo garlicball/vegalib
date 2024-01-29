@@ -43,11 +43,31 @@ import org.junit.Test;
  */
 public class VegaFileSamples {
 
+    /**
+     * 通过 VegaFile#copy 函数对文件进行拷贝
+     */
     @Test
     public void api_sample_file_copy() {
         VegaFile source = new VegaFile("%user.dir%/copy/source.vegalib");
-        source.write("Hello World");
+        source.write("Hello World".getBytes());
         source.copy("%user.dir%/copy/target.vegalib");
+    }
+
+    /**
+     * 通过 VegaFile#move 函数对文件进行移动
+     */
+    @Test
+    public void api_sample_file_move() {
+        VegaFile source = new VegaFile("%user.dir%/copy/source.vegalib");
+        source = source.move("%user.dir%/copy/source.move.vegalib");
+    }
+
+    /**
+     * 通过 VegaFile#forceDelete 函数强制删除文件或目录
+     */
+    @Test
+    public void api_sample_file_force_delete() {
+        new VegaFile("%user.dir%/copy").forceDelete();
     }
 
 }

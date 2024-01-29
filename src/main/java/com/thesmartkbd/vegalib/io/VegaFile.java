@@ -27,10 +27,14 @@ package com.thesmartkbd.vegalib.io;
 
 import com.thesmartkbd.vegalib.annotations.Favorite;
 import com.thesmartkbd.vegalib.exception.OpenException;
+import com.thesmartkbd.vegalib.exception.VegaRuntimeException;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 import static com.thesmartkbd.vegalib.Assert.throwIfTrue;
@@ -365,7 +369,9 @@ public class VegaFile extends File {
      *
      * @return {@code true} 表示删除成功，{@code false} 反之。
      */
-    @Favorite
+    @Favorite(keyword = {
+            "api_sample_file_force_delete"
+    })
     public boolean forceDelete() {
         return isDirectory() ? builtin_force_delete_directory() : builtin_force_delete();
     }
@@ -441,8 +447,29 @@ public class VegaFile extends File {
         }
     }
 
+    /**
+     * 拷贝文件到指定目录
+     */
+    @Favorite(keyword = {
+            "api_sample_file_copy"
+    })
     public void copy(String path) {
         IOUtils.write(openReader(), new VegaFile(path));
+    }
+
+    /**
+     * 移动文件到指定目录
+     */
+    @Favorite(keyword = {
+            "api_sample_file_move"
+    })
+    public VegaFile move(String path) {
+        try {
+            Files.move(toPath(), Paths.get(_placeholder(path)));
+            return new VegaFile(path);
+        } catch (IOException e) {
+            throw new VegaRuntimeException(e);
+        }
     }
 
     /**
