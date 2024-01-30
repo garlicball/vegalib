@@ -34,6 +34,8 @@ package com.thesmartkbd.vegalib.refection;
 
 import com.thesmartkbd.vegalib.io.IOUtils;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**

@@ -390,7 +390,7 @@ object Optional {
     fun <T> optionalIfNull(function: GenericFunction<T>, orElse: T, message: String, vararg args: Any): T {
         val ret = function.apply()
         if (ret == null) {
-            if (strnempty(message))
+            if (strnemp(message))
                 log.error("%s - 异常信息：%s", message, *args)
             return orElse
         }
@@ -446,7 +446,7 @@ object Optional {
         return try {
             function.apply()
         } catch (e: Throwable) {
-            if (strnempty(message)) {
+            if (strnemp(message)) {
                 val tmp = snprintf(message, *args)
                 log.error("%s - 异常信息：%s", tmp, e.message)
             }
@@ -507,7 +507,7 @@ object Optional {
             function.apply()
             return orSuccess
         } catch (e: Throwable) {
-            if (strnempty(message)) {
+            if (strnemp(message)) {
                 val tmp = snprintf(message, *args)
                 log.error("%s - 异常信息：%s", tmp, e.message)
             }

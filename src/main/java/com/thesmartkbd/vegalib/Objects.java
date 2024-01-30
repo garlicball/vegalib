@@ -38,7 +38,7 @@ import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.regex.Pattern;
 
-import static com.thesmartkbd.vegalib.Arrays.array_copy_of;
+import static com.thesmartkbd.vegalib.Arrays.*;
 import static com.thesmartkbd.vegalib.Assert.throwIfTrue;
 import static com.thesmartkbd.vegalib.Bits.bithas;
 import static com.thesmartkbd.vegalib.Optional.optionalIfError;
@@ -543,7 +543,7 @@ public class Objects {
      *
      * @return {@code true} 表示字符串为空，反之 {@code false}
      */
-    public static boolean strempty(Object obj) {
+    public static boolean stremp(Object obj) {
         return obj == null || "".equals(atos(obj).trim());
     }
 
@@ -557,8 +557,8 @@ public class Objects {
      *
      * @return {@code true} 表示字符串不为空，反之 {@code false}
      */
-    public static boolean strnempty(Object obj) {
-        return !strempty(obj);
+    public static boolean strnemp(Object obj) {
+        return !stremp(obj);
     }
 
     /**
@@ -826,7 +826,7 @@ public class Objects {
         /* index of */
         if (regex.startsWith("idx:"))
             return atos(obj).indexOf(substr);
-
+        
         /* last index of */
         if (regex.startsWith("edx:"))
             return atos(obj).lastIndexOf(substr);

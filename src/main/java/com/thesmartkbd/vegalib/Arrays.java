@@ -404,4 +404,161 @@ public class Arrays {
         return java.util.Arrays.asList(a);
     }
 
+
+    /**
+     * Returns a string representation of the contents of the specified array.
+     * The string representation consists of a list of the array's elements,
+     * enclosed in square brackets (<tt>"[]"</tt>).  Adjacent elements are
+     * separated by the characters <tt>", "</tt> (a comma followed by a
+     * space).  Elements are converted to strings as by
+     * <tt>String.valueOf(long)</tt>.  Returns <tt>"null"</tt> if <tt>a</tt>
+     * is <tt>null</tt>.
+     *
+     * @param a the array whose string representation to return
+     * @return a string representation of <tt>a</tt>
+     * @since 1.5
+     */
+    public static String array_format(long[] a) {
+        return java.util.Arrays.toString(a);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array.
+     * The string representation consists of a list of the array's elements,
+     * enclosed in square brackets (<tt>"[]"</tt>).  Adjacent elements are
+     * separated by the characters <tt>", "</tt> (a comma followed by a
+     * space).  Elements are converted to strings as by
+     * <tt>String.valueOf(int)</tt>.  Returns <tt>"null"</tt> if <tt>a</tt> is
+     * <tt>null</tt>.
+     *
+     * @param a the array whose string representation to return
+     * @return a string representation of <tt>a</tt>
+     * @since 1.5
+     */
+    public static String array_format(int[] a) {
+        return java.util.Arrays.toString(a);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array.
+     * The string representation consists of a list of the array's elements,
+     * enclosed in square brackets (<tt>"[]"</tt>).  Adjacent elements are
+     * separated by the characters <tt>", "</tt> (a comma followed by a
+     * space).  Elements are converted to strings as by
+     * <tt>String.valueOf(short)</tt>.  Returns <tt>"null"</tt> if <tt>a</tt>
+     * is <tt>null</tt>.
+     *
+     * @param a the array whose string representation to return
+     * @return a string representation of <tt>a</tt>
+     * @since 1.5
+     */
+    public static String array_format(short[] a) {
+        return java.util.Arrays.toString(a);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array.
+     * The string representation consists of a list of the array's elements,
+     * enclosed in square brackets (<tt>"[]"</tt>).  Adjacent elements are
+     * separated by the characters <tt>", "</tt> (a comma followed by a
+     * space).  Elements are converted to strings as by
+     * <tt>String.valueOf(char)</tt>.  Returns <tt>"null"</tt> if <tt>a</tt>
+     * is <tt>null</tt>.
+     *
+     * @param a the array whose string representation to return
+     * @return a string representation of <tt>a</tt>
+     * @since 1.5
+     */
+    public static String array_format(char[] a) {
+        return java.util.Arrays.toString(a);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array.
+     * The string representation consists of a list of the array's elements,
+     * enclosed in square brackets (<tt>"[]"</tt>).  Adjacent elements
+     * are separated by the characters <tt>", "</tt> (a comma followed
+     * by a space).  Elements are converted to strings as by
+     * <tt>String.valueOf(byte)</tt>.  Returns <tt>"null"</tt> if
+     * <tt>a</tt> is <tt>null</tt>.
+     *
+     * @param a the array whose string representation to return
+     * @return a string representation of <tt>a</tt>
+     * @since 1.5
+     */
+    public static String array_format(byte[] a) {
+        return java.util.Arrays.toString(a);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array.
+     * The string representation consists of a list of the array's elements,
+     * enclosed in square brackets (<tt>"[]"</tt>).  Adjacent elements are
+     * separated by the characters <tt>", "</tt> (a comma followed by a
+     * space).  Elements are converted to strings as by
+     * <tt>String.valueOf(boolean)</tt>.  Returns <tt>"null"</tt> if
+     * <tt>a</tt> is <tt>null</tt>.
+     *
+     * @param a the array whose string representation to return
+     * @return a string representation of <tt>a</tt>
+     * @since 1.5
+     */
+    public static String array_format(boolean[] a) {
+        return java.util.Arrays.toString(a);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array.
+     * The string representation consists of a list of the array's elements,
+     * enclosed in square brackets (<tt>"[]"</tt>).  Adjacent elements are
+     * separated by the characters <tt>", "</tt> (a comma followed by a
+     * space).  Elements are converted to strings as by
+     * <tt>String.valueOf(float)</tt>.  Returns <tt>"null"</tt> if <tt>a</tt>
+     * is <tt>null</tt>.
+     *
+     * @param a the array whose string representation to return
+     * @return a string representation of <tt>a</tt>
+     * @since 1.5
+     */
+    public static String array_format(float[] a) {
+        return java.util.Arrays.toString(a);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array.
+     * The string representation consists of a list of the array's elements,
+     * enclosed in square brackets (<tt>"[]"</tt>).  Adjacent elements are
+     * separated by the characters <tt>", "</tt> (a comma followed by a
+     * space).  Elements are converted to strings as by
+     * <tt>String.valueOf(double)</tt>.  Returns <tt>"null"</tt> if <tt>a</tt>
+     * is <tt>null</tt>.
+     *
+     * @param a the array whose string representation to return
+     * @return a string representation of <tt>a</tt>
+     * @since 1.5
+     */
+    public static String array_format(double[] a) {
+        return java.util.Arrays.toString(a);
+    }
+
+    /**
+     * Returns a string representation of the contents of the specified array.
+     * If the array contains other arrays as elements, they are converted to
+     * strings by the {@link Object#toString} method inherited from
+     * <tt>Object</tt>, which describes their <i>identities</i> rather than
+     * their contents.
+     *
+     * <p>The value returned by this method is equal to the value that would
+     * be returned by <tt>Arrays.asList(a).toString()</tt>, unless <tt>a</tt>
+     * is <tt>null</tt>, in which case <tt>"null"</tt> is returned.
+     *
+     * @param a the array whose string representation to return
+     * @return a string representation of <tt>a</tt>
+     * @see #deepToString(Object[])
+     * @since 1.5
+     */
+    public static String array_format(Object[] a) {
+        return java.util.Arrays.toString(a);
+    }
+
 }
