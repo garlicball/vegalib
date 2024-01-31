@@ -255,7 +255,7 @@ public final class Crypts {
                     source = strcut(source, strlen(CRYPT_PREFIX_HTTP), 0);
                     temporary = CRYPT_PREFIX_HTTP;
                 }
-                return snprintf("%s%s", temporary, URLEncoder.encode(source, enc));
+                return strfmt("%s%s", temporary, URLEncoder.encode(source, enc));
             } catch (UnsupportedEncodingException e) {
                 throw new RuntimeException(e);
             }

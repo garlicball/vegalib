@@ -418,7 +418,7 @@ public class Arrays {
      * @return a string representation of <tt>a</tt>
      * @since 1.5
      */
-    public static String array_format(long[] a) {
+    public static String array_to_string(long[] a) {
         return java.util.Arrays.toString(a);
     }
 
@@ -435,7 +435,7 @@ public class Arrays {
      * @return a string representation of <tt>a</tt>
      * @since 1.5
      */
-    public static String array_format(int[] a) {
+    public static String array_to_string(int[] a) {
         return java.util.Arrays.toString(a);
     }
 
@@ -452,7 +452,7 @@ public class Arrays {
      * @return a string representation of <tt>a</tt>
      * @since 1.5
      */
-    public static String array_format(short[] a) {
+    public static String array_to_string(short[] a) {
         return java.util.Arrays.toString(a);
     }
 
@@ -469,7 +469,7 @@ public class Arrays {
      * @return a string representation of <tt>a</tt>
      * @since 1.5
      */
-    public static String array_format(char[] a) {
+    public static String array_to_string(char[] a) {
         return java.util.Arrays.toString(a);
     }
 
@@ -486,7 +486,7 @@ public class Arrays {
      * @return a string representation of <tt>a</tt>
      * @since 1.5
      */
-    public static String array_format(byte[] a) {
+    public static String array_to_string(byte[] a) {
         return java.util.Arrays.toString(a);
     }
 
@@ -503,7 +503,7 @@ public class Arrays {
      * @return a string representation of <tt>a</tt>
      * @since 1.5
      */
-    public static String array_format(boolean[] a) {
+    public static String array_to_string(boolean[] a) {
         return java.util.Arrays.toString(a);
     }
 
@@ -520,7 +520,7 @@ public class Arrays {
      * @return a string representation of <tt>a</tt>
      * @since 1.5
      */
-    public static String array_format(float[] a) {
+    public static String array_to_string(float[] a) {
         return java.util.Arrays.toString(a);
     }
 
@@ -537,7 +537,7 @@ public class Arrays {
      * @return a string representation of <tt>a</tt>
      * @since 1.5
      */
-    public static String array_format(double[] a) {
+    public static String array_to_string(double[] a) {
         return java.util.Arrays.toString(a);
     }
 
@@ -557,7 +557,7 @@ public class Arrays {
      * @see #deepToString(Object[])
      * @since 1.5
      */
-    public static String array_format(Object[] a) {
+    public static String array_to_string(Object[] a) {
         return java.util.Arrays.toString(a);
     }
 

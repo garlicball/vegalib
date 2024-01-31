@@ -29,7 +29,7 @@ import com.thesmartkbd.vegalib.io.IOUtils;
 import com.thesmartkbd.vegalib.logging.Logger;
 import com.thesmartkbd.vegalib.time.DateFormatter;
 
-import static com.thesmartkbd.vegalib.Objects.snprintf;
+import static com.thesmartkbd.vegalib.Objects.strfmt;
 
 /**
  * @author thesmartkbd
@@ -79,7 +79,7 @@ public class StandardLogger implements Logger {
                 level,
                 stackTraceElement.getMethodName(),
                 classpath,
-                snprintf(message, args));
+                strfmt(message, args));
     }
 
 }

@@ -35,7 +35,7 @@ import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.util.List;
 
-import static com.thesmartkbd.vegalib.Objects.snprintf;
+import static com.thesmartkbd.vegalib.Objects.strfmt;
 import static com.thesmartkbd.vegalib.Objects.strrep;
 
 /**
@@ -98,7 +98,7 @@ public class ClassUtils {
             for (VegaFile mutableFile : file.openDirectory()) {
                 if (mutableFile.typeEquals(".class")) {
                     Class<?> clazz = Class.forName(
-                            snprintf("%s.%s", basePackage, mutableFile.cleaname()));
+                            strfmt("%s.%s", basePackage, mutableFile.cleaname()));
                     primaries.add(new ObjectPrimary(clazz));
                 }
             }

@@ -27,7 +27,7 @@ package com.thesmartkbd.vegalib.logging.slf4j;
 
 import com.thesmartkbd.vegalib.logging.Logger;
 
-import static com.thesmartkbd.vegalib.Objects.snprintf;
+import static com.thesmartkbd.vegalib.Objects.strfmt;
 
 /**
  * @author thesmartkbd
@@ -47,22 +47,22 @@ public class Slf4jLogger implements Logger {
 
     @Override
     public void info(String message, Object... args) {
-        logger.info(snprintf(message, args));
+        logger.info(strfmt(message, args));
     }
 
     @Override
     public void warn(String message, Object... args) {
-        logger.warn(snprintf(message, args));
+        logger.warn(strfmt(message, args));
     }
 
     @Override
     public void debug(String message, Object... args) {
-        logger.debug(snprintf(message, args));
+        logger.debug(strfmt(message, args));
     }
 
     @Override
     public void error(String message, Object... args) {
-        logger.error(snprintf(message, args));
+        logger.error(strfmt(message, args));
     }
 
 }

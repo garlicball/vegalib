@@ -28,7 +28,7 @@ package com.thesmartkbd.vegalib.http;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.thesmartkbd.vegalib.Objects.snprintf;
+import static com.thesmartkbd.vegalib.Objects.strfmt;
 import static com.thesmartkbd.vegalib.Objects.atos;
 
 /**
@@ -44,10 +44,10 @@ public class RequestQueryParams extends HashMap<String, String> {
         StringBuilder builder = new StringBuilder();
 
         for (Map.Entry<String, String> entry : entrySet())
-            builder.append(snprintf("%s=%s&", entry.getKey(), entry.getValue()));
+            builder.append(strfmt("%s=%s&", entry.getKey(), entry.getValue()));
         String finalArguments = atos(builder, 0, -1); /* 删掉最后一个字符 ‘&’ */
 
-        return snprintf("%s?%s", url, finalArguments);
+        return strfmt("%s?%s", url, finalArguments);
     }
 
 }

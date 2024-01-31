@@ -25,10 +25,9 @@ package com.thesmartkbd.vegalib.ipv4;
 
 /* Creates on 2023/5/18. */
 
-import com.thesmartkbd.vegalib.io.IOUtils;
 import com.thesmartkbd.vegalib.logging.Logger;
 import com.thesmartkbd.vegalib.logging.LoggerFactory;
-import com.thesmartkbd.vegalib.refection.ClassPathResource;
+import com.thesmartkbd.vegalib.refection.ClassPathResourceReader;
 import org.lionsoul.ip2region.xdb.Searcher;
 
 import static com.thesmartkbd.vegalib.Objects.strtok;
@@ -50,7 +49,7 @@ public class IP2Region {
     public static Region search(String ip) {
         try {
             if (searcher == null) {
-                byte[] buf = new ClassPathResource("ip2region.xdb").read();
+                byte[] buf = ClassPathResourceReader.read("ip2region.xdb");
                 logger.info("ip table buffer size: %s", buf.length);
                 searcher = Searcher.newWithBuffer(buf);
             }

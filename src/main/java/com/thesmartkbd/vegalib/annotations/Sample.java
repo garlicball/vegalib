@@ -1,4 +1,4 @@
-package com.thesmartkbd.vegalib.refection;
+package com.thesmartkbd.vegalib.annotations;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -25,54 +25,31 @@ package com.thesmartkbd.vegalib.refection;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|* File:           ClassPathResource.java                                           *|
-|* Create Time:    2024/1/29 19:35                                                  *|
+|* File:           Upgradable.java                                                  *|
+|* Create Time:    2024/1/29 20:09                                                  *|
 |* Author:         thesmartkbd                                                      *|
 |* EMail:          thesmartkbd@hotmail.com                                          *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import com.thesmartkbd.vegalib.io.IOUtils;
-
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.InputStream;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
- * ClassPath 目录下的资源文件
+ * 被注解的代码表示可升级
  *
  * @author thesmartkbd
  */
-public class ClassPathResource {
-
+@Retention(RetentionPolicy.SOURCE)
+@Documented
+public @interface Sample {
     /**
-     * 输入流
+     * #brief: 表示可升级到哪个版本的 JDK 代码
      */
-    private final InputStream stream;
-
-    public ClassPathResource(String path) {
-        this.stream = ClassUtils.getResourceStream(path);
-    }
-
+    String version() default "";
     /**
-     * #brief: 使用字符串流读取文件中的所有数据作为字符串返回
+     * #brief: 可用版本特性列表
      */
-    public byte[] read() {
-        return IOUtils.read(stream);
-    }
-
-    /**
-     * #brief: 使用字符串流读取文件中的所有数据作为字符串返回
-     */
-    public String strread() {
-        return IOUtils.strread(stream);
-    }
-
-    /**
-     * #brief: 获取输入流
-     */
-    public InputStream getInputStream() {
-        return stream;
-    }
-
+    String[] features() default "";
 }

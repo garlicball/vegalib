@@ -29,7 +29,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import static com.thesmartkbd.vegalib.Assert.throwIfNull;
-import static com.thesmartkbd.vegalib.Objects.snprintf;
+import static com.thesmartkbd.vegalib.Objects.strfmt;
 
 /**
  * 可格式化的 {@link PrintStream} 封装类
@@ -55,7 +55,7 @@ public class VegaPrintStream extends PrintStream {
      * @see #println(Object, Object...)
      */
     public void print(Object input, Object... args) {
-        super.print(snprintf(input, args));
+        super.print(strfmt(input, args));
     }
 
     /**
@@ -70,7 +70,7 @@ public class VegaPrintStream extends PrintStream {
      * @see System#out
      */
     public void println(Object input, Object... args) {
-        super.println(snprintf(input, args));
+        super.println(strfmt(input, args));
     }
 
 }

@@ -28,7 +28,7 @@ package com.thesmartkbd.vegalib.logging;
 import com.thesmartkbd.vegalib.logging.slf4j.Slf4jLoggerAdapter;
 import com.thesmartkbd.vegalib.refection.ClassUtils;
 
-import static com.thesmartkbd.vegalib.Objects.snprintf;
+import static com.thesmartkbd.vegalib.Objects.strfmt;
 
 /**
  * @author thesmartkbd
@@ -103,7 +103,7 @@ public class LoggerFactory {
 
     /** 打印当前日志框架初始化使用的适配器 */
     private static String formatBestChoice(String adapter) {
-        return snprintf("Try find best choice logger adapter, current use %s adapter.", adapter);
+        return strfmt("Try find best choice logger adapter, current use %s adapter.", adapter);
     }
 
 }

@@ -30,7 +30,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import static com.thesmartkbd.vegalib.Objects.snprintf;
+import static com.thesmartkbd.vegalib.Objects.strfmt;
 
 /**
  * @author thesmartkbd
@@ -62,7 +62,7 @@ public class Region {
 
     @Override
     public String toString() {
-        return snprintf("%s/%s/%s", country, province, city);
+        return strfmt("%s/%s/%s", country, province, city);
     }
 
 }

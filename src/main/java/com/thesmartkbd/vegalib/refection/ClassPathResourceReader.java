@@ -1,4 +1,4 @@
-package com.thesmartkbd.vegalib.samples;
+package com.thesmartkbd.vegalib.refection;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -25,91 +25,34 @@ package com.thesmartkbd.vegalib.samples;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|* File:           StringSamples.java                                               *|
-|* Create Time:    2024/1/29 17:59                                                  *|
+|* File:           ClassPathResourceReader.java                                     *|
+|* Create Time:    2024/1/29 19:35                                                  *|
 |* Author:         thesmartkbd                                                      *|
 |* EMail:          thesmartkbd@hotmail.com                                          *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.junit.Test;
-
-import static com.thesmartkbd.vegalib.Objects.*;
+import com.thesmartkbd.vegalib.io.IOUtils;
 
 /**
- * 字符串样例
+ * ClassPath 目录下的资源文件
  *
  * @author thesmartkbd
  */
-@SuppressWarnings("ALL")
-public class StringSamples {
+public class ClassPathResourceReader {
 
     /**
-     * 使用 atos 函数将任意对象转换为成 String 对象。
+     * #brief: 使用字符串流读取文件中的所有数据作为字符串返回
      */
-    @Test
-    public void api_sample_atos() {
-        /* byte array */
-        byte[] hello_word_bytes = { 72, 101, 108, 108, 111, 87, 111, 114, 108, 100 };
-        fprintlnf("atos(byte[]):  %s", atos(hello_word_bytes));
-
-        /* object */
-        Object byte_array_object = hello_word_bytes;
-        fprintlnf("atos(Object):  %s", atos(byte_array_object));
-
-        /* long */
-        Long long_value = Long.MAX_VALUE;
-        fprintlnf("atos(Long):    %s", atos(long_value));
-
-        /* int */
-        Integer integer_value = Integer.MAX_VALUE;
-        fprintlnf("atos(Integer): %s", atos(long_value));
-
-        /* double */
-        Double double_valaue = Double.MAX_VALUE;
-        fprintlnf("atos(Double):  %s", atos(double_valaue));
-
-        /* number */
-        Number number = (Number) integer_value;
-        fprintlnf("atos(Number):  %s", atos(long_value));
+    public static byte[] read(String path) {
+        return IOUtils.read(ClassUtils.getResourceStream(path));
     }
 
     /**
-     * 使用 strfmt 函数对字符串进行格式化操作
+     * #brief: 使用字符串流读取文件中的所有数据作为字符串返回
      */
-    @Test
-    public void api_sample_strfmt() {
-        fprintlnf(strfmt("Hello %s", "Word"));
-    }
-
-    /**
-     * 使用 strcut 函数并配合截取规则 edx:* 截取文件后缀名
-     */
-    @Test
-    public void api_sample_strcut() {
-        fprintlnf("the file extension name: %s", strcut("Hello World.txt", "edx:.", 0));
-    }
-
-    /**
-     * 使用 streq | strneq 函数判断两个字符串是否相等，使用 strieq | strineq 忽略大小写判断两个字符串
-     * 是否相等。
-     */
-    @Test
-    public void api_sample_streq_strieq() {
-        Object x = "x", y = "y", z = "L", w = "l";
-
-        fprintlnf("Variable define:");
-        fprintlnf("  X = \"%s\"\n  Y = \"%s\"\n  Z = \"%s\"\n  W = \"%s\"", x, y, z, w);
-
-        /* streq | strneq */
-        fprintlnf("\nstreq | strneq");
-        fprintlnf("  X equals Y:                 %b", streq(x, y));
-        fprintlnf("  X not equals Y:             %b", strneq(x, y));
-
-        /* streq | strneq */
-        fprintlnf("\nstrieq | strineq");
-        fprintlnf("  Z ignore case equals W:     %b", strieq(z, w));
-        fprintlnf("  Z not ignore case equals W: %b", strineq(z, w));
+    public static String strread(String path) {
+        return IOUtils.strread(ClassUtils.getResourceStream(path));
     }
 
 }
