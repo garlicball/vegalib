@@ -27,8 +27,8 @@ package com.thesmartkbd.vegalib.samples;
 |*                                                                                  *|
 |* File:           VegaFileSamples.java                                             *|
 |* Create Time:    2024/1/29 20:44                                                  *|
-|* Author:         thesmartkbd                                                      *|
-|* EMail:          thesmartkbd@hotmail.com                                          *|
+|* Author:         fsilverflower                                                    *|
+|* EMail:          fsilverflower@hotmail.com                                        *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 

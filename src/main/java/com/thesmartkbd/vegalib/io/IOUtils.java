@@ -66,7 +66,7 @@ public class IOUtils {
     /**
      * 推荐缓冲区默认大小
      */
-    public static final int DEFAULT_BYTE_BUFFER_SIZE = KB * 8;
+    public static final int DEFAULT_BYTE_BUFFER_SIZE = KB * 4;
     /**
      * 基于当前操作系统下的换行符字符串
      */

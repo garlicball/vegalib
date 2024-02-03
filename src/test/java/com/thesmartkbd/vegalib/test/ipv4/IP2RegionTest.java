@@ -27,8 +27,8 @@ package com.thesmartkbd.vegalib.test.ipv4;
 |*                                                                                  *|
 |* File:           IP2RegionTest.java                                                *|
 |* Create Time:    2024/1/29 19:41                                                   *|
-|* Author:         thesmartkbd                                                      *|
-|* EMail:          thesmartkbd@hotmail.com                                          *|
+|* Author:         fsilverflower                                                    *|
+|* EMail:          fsilverflower@hotmail.com                                        *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 

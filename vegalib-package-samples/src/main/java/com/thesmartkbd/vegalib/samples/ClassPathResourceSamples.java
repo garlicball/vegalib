@@ -27,8 +27,8 @@ package com.thesmartkbd.vegalib.samples;
 |*                                                                                  *|
 |* File:           ClassPathResourceSamples.java                                    *|
 |* Create Time:    2024/1/30 18:12                                                  *|
-|* Author:         thesmartkbd                                                      *|
-|* EMail:          thesmartkbd@hotmail.com                                          *|
+|* Author:         fsilverflower                                                    *|
+|* EMail:          fsilverflower@hotmail.com                                        *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 

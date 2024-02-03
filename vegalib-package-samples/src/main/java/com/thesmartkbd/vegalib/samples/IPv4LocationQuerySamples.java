@@ -27,8 +27,8 @@ package com.thesmartkbd.vegalib.samples;
 |*                                                                                  *|
 |* File:           IPv4LocationQuerySamples.java                                    *|
 |* Create Time:    2024/1/29 19:17                                                  *|
-|* Author:         thesmartkbd                                                      *|
-|* EMail:          thesmartkbd@hotmail.com                                          *|
+|* Author:         fsilverflower                                                    *|
+|* EMail:          fsilverflower@hotmail.com                                        *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 

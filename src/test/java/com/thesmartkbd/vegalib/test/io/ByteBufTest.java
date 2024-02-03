@@ -27,8 +27,8 @@ package com.thesmartkbd.vegalib.test.io;
 |*                                                                                  *|
 |* File:           ByteBufTest.java                                                 *|
 |* Create Time:    2023/6/19                                                        *|
-|* Author:         thesmartkbd                                                      *|
-|* EMail:          thesmartkbd@hotmail.com                                          *|
+|* Author:         fsilverflower                                                    *|
+|* EMail:          fsilverflower@hotmail.com                                        *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 

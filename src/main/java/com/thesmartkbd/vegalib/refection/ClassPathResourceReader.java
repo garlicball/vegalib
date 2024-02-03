@@ -27,8 +27,8 @@ package com.thesmartkbd.vegalib.refection;
 |*                                                                                  *|
 |* File:           ClassPathResourceReader.java                                     *|
 |* Create Time:    2024/1/29 19:35                                                  *|
-|* Author:         thesmartkbd                                                      *|
-|* EMail:          thesmartkbd@hotmail.com                                          *|
+|* Author:         fsilverflower                                                    *|
+|* EMail:          fsilverflower@hotmail.com                                        *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 

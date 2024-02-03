@@ -27,8 +27,8 @@ package com.thesmartkbd.vegalib.test.security;
 |*                                                                                  *|
 |* File:           CryptsTest.java                                                *|
 |* Create Time:    2024/1/29 17:45                                                   *|
-|* Author:         thesmartkbd                                                      *|
-|* EMail:          thesmartkbd@hotmail.com                                          *|
+|* Author:         fsilverflower                                                    *|
+|* EMail:          fsilverflower@hotmail.com                                        *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
