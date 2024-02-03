@@ -6,7 +6,7 @@
 
     <groupId>org.forironflower</groupId>
     <artifactId>vegalib</artifactId>
-    <version>season.winter.2024</version>
+    <version>season.winter.2023</version>
     <packaging>jar</packaging>
 
     <properties>

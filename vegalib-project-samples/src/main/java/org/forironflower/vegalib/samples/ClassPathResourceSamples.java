@@ -32,7 +32,7 @@ package org.forironflower.vegalib.samples;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.forironflower.vegalib.refection.ClassPathResourceReader;
+import org.forironflower.vegalib.refection.ClassPathResource;
 import org.junit.Test;
 
 import static org.forironflower.vegalib.Arrays.array_to_string;
@@ -47,8 +47,8 @@ public class ClassPathResourceSamples {
 
     @Test
     public void api_sample_classpath_resource() {
-        fprintlnf("ClassPathResourceReader Text:  %s", ClassPathResourceReader.strread("classpath.resource.vegalib"));
-        fprintlnf("ClassPathResourceReader Bytes: %s", array_to_string(ClassPathResourceReader.read("classpath.resource.vegalib")));
+        fprintlnf("ClassPathResource Text:  %s", new ClassPathResource("classpath.resource.vegalib").strread());
+        fprintlnf("ClassPathResource Bytes: %s", array_to_string(new ClassPathResource("classpath.resource.vegalib").read()));
     }
 
 }

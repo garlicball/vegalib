@@ -27,7 +27,7 @@ package org.forironflower.vegalib.ipv4;
 
 import org.forironflower.vegalib.logging.Logger;
 import org.forironflower.vegalib.logging.LoggerFactory;
-import org.forironflower.vegalib.refection.ClassPathResourceReader;
+import org.forironflower.vegalib.refection.ClassPathResource;
 import org.forironflower.vegalib.Objects;
 import org.lionsoul.ip2region.xdb.Searcher;
 
@@ -48,7 +48,7 @@ public class IP2Region {
     public static Region search(String ip) {
         try {
             if (searcher == null) {
-                byte[] buf = ClassPathResourceReader.read("ip2region.xdb");
+                byte[] buf = new ClassPathResource("ip2region.xdb").read();
                 logger.info("ip table buffer size: %s", buf.length);
                 searcher = Searcher.newWithBuffer(buf);
             }

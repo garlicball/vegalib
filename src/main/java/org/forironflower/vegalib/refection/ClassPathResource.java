@@ -25,7 +25,7 @@ package org.forironflower.vegalib.refection;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|* File:           ClassPathResourceReader.java                                     *|
+|* File:           ClassPathResource.java                                           *|
 |* Create Time:    2024/1/29 19:35                                                  *|
 |* Author:         forironflower                                                    *|
 |* EMail:          forironflower@hotmail.com                                        *|
@@ -33,26 +33,57 @@ package org.forironflower.vegalib.refection;
 \* -------------------------------------------------------------------------------- */
 
 import org.forironflower.vegalib.io.IOUtils;
+import org.forironflower.vegalib.io.VegaFile;
+
+import java.io.InputStream;
 
 /**
  * ClassPath 目录下的资源文件
  *
  * @author forironflower
  */
-public class ClassPathResourceReader {
+public class ClassPathResource {
 
-    /**
-     * #brief: 使用字符串流读取文件中的所有数据作为字符串返回
-     */
-    public static byte[] read(String path) {
-        return IOUtils.read(ClassUtils.getResourceStream(path));
+    private final ClassLoader classLoader;
+
+    private final VegaFile fd;
+
+    public ClassPathResource(String name) {
+        this.fd = new VegaFile(name);
+        this.classLoader = this.getClass().getClassLoader();
     }
 
     /**
-     * #brief: 使用字符串流读取文件中的所有数据作为字符串返回
+     * #brief: 获取 classpath 下文件的输入数据流<p>
+     *
+     * 获取 classpath 下输入数据流，可以自定义数据读取方式。方便支持更多的功能。
+     * 数据读取可以使用 {@link IOUtils} 下的函数进行处理。
+     *
      */
-    public static String strread(String path) {
-        return IOUtils.strread(ClassUtils.getResourceStream(path));
+    public InputStream getInputStream() {
+        return classLoader.getResourceAsStream(fd.name());
+    }
+
+    /**
+     * #brief: 读取文件 classpath 下文件所有字节数据<p>
+     *
+     * 读取 classpath 下指定文件所有数据，以字节形式返回。resource 下的文件通常来说
+     * 打包在 jar 文件内部。所以一般不会太大。可以一次性读取数据
+     *
+     */
+    public byte[] read() {
+        return IOUtils.read(getInputStream());
+    }
+
+    /**
+     * #brief: 读取文件 classpath 下文件所有字符串数据<p>
+     *
+     * 读取 classpath 下指定文件所有数据，以字符串形式返回。resource 下的文件通常来说
+     * 打包在 jar 文件内部。所以一般不会太大。可以一次性读取数据
+     *
+     */
+    public String strread() {
+        return IOUtils.strread(getInputStream());
     }
 
 }

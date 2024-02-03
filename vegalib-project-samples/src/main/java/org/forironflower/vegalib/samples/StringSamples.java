@@ -34,6 +34,8 @@ package org.forironflower.vegalib.samples;
 
 import org.junit.Test;
 
+import static org.forironflower.vegalib.Objects.*;
+
 /**
  * 字符串样例
  *
