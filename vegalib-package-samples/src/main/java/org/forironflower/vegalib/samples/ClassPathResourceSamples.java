@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib.samples;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,32 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           ClassPathResourceSamples.java                                    *|
+|* Create Time:    2024/1/30 18:12                                                  *|
+|* Author:         forironflower                                                    *|
+|* EMail:          forironflower@hotmail.com                                        *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.forironflower.vegalib.refection.ClassPathResourceReader;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import static org.forironflower.vegalib.Arrays.array_to_string;
+import static org.forironflower.vegalib.Objects.fprintlnf;
+
+/**
+ * ClassPathResourceSamples 演示
+ *
+ * @author forironflower
+ */
+public class ClassPathResourceSamples {
+
+    @Test
+    public void api_sample_classpath_resource() {
+        fprintlnf("ClassPathResourceReader Text:  %s", ClassPathResourceReader.strread("classpath.resource.vegalib"));
+        fprintlnf("ClassPathResourceReader Bytes: %s", array_to_string(ClassPathResourceReader.read("classpath.resource.vegalib")));
+    }
+
 }

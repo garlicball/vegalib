@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,30 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Create on 2023/9/12 */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import java.io.Serializable;
+
+/**
+ * @author forironflower
+ */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class SeqNoTemplate implements Serializable {
+
+    private Serializable seqNo;
+
+    private int intValue() { return Objects.atoi(seqNo); }
+    public long longValue() { return Objects.atol(seqNo); }
+    public String stringValue() { return Objects.atos(seqNo); }
+
+    public static SeqNoTemplate of(Serializable value) {
+        return new SeqNoTemplate(value);
+    }
+
 }

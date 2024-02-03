@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib.security;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,16 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/5/23. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+/**
+ * @author forironflower
+ */
+public interface SignatoriesService {
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+    /**
+     * @return 返回 token 生成器
+     */
+    JwtProvider signatories();
+
 }

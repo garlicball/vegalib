@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib.logging.slf4j;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,26 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2019/11/05. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
+import org.forironflower.vegalib.logging.Logger;
+import org.forironflower.vegalib.logging.LoggerAdapter;
+import org.slf4j.LoggerFactory;
+
+/**
+ * @author forironflower
+ */
+public class Slf4jLoggerAdapter implements LoggerAdapter {
+
+    @Override
+    public Logger getLogger(String name) {
+        return new Slf4jLogger(LoggerFactory.getLogger(name));
+    }
+
+    @Override
+    public Logger getLogger(Class<?> aClass) {
+        return new Slf4jLogger(LoggerFactory.getLogger(aClass));
+    }
+
 }
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
-}

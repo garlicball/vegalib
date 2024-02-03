@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib.logging.slf4j;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,46 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2019/11/05. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
+import org.forironflower.vegalib.logging.Logger;
+import org.forironflower.vegalib.Objects;
+
+/**
+ * @author forironflower
+ */
+public class Slf4jLogger implements Logger {
+
+    private final org.slf4j.Logger logger;
+
+    public Slf4jLogger(org.slf4j.Logger logger) {
+        this.logger = logger;
+    }
+
+    @Override
+    public boolean isDebugEnabled() {
+        return logger.isDebugEnabled();
+    }
+
+    @Override
+    public void info(String message, Object... args) {
+        logger.info(Objects.strfmt(message, args));
+    }
+
+    @Override
+    public void warn(String message, Object... args) {
+        logger.warn(Objects.strfmt(message, args));
+    }
+
+    @Override
+    public void debug(String message, Object... args) {
+        logger.debug(Objects.strfmt(message, args));
+    }
+
+    @Override
+    public void error(String message, Object... args) {
+        logger.error(Objects.strfmt(message, args));
+    }
+
 }
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
-}

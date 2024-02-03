@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib.test.refection;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,27 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/6/20. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.forironflower.vegalib.refection.ClassModifier;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import java.util.Arrays;
+
+/**
+ * @author forironflower
+ */
+@SuppressWarnings("all")
+public class ClassModifierTest {
+
+    public void visitor0() {}
+    public void visitor1() {}
+    public void visitor2() {}
+
+    @Test
+    public void editClass() {
+        ClassModifier editor = new ClassModifier(ClassModifierTest.class);
+        System.out.println(Arrays.toString(editor.toBytecode()));
+    }
+
 }

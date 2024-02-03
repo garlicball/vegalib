@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib.test;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,36 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/7/17. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.forironflower.vegalib.time.VegaTimeUnit;
+import org.forironflower.vegalib.time.DateFormatter;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import java.util.Date;
+
+/**
+ * @author forironflower
+ */
+@SuppressWarnings("all")
+public class DateFormatterTest {
+
+    @Test
+    public void formatTest() {
+        System.out.println("formatTest：" + DateFormatter.fmt());
+    }
+
+    @Test
+    public void parseTest() {
+        System.out.println("parseTest：" + DateFormatter.fmt(DateFormatter.parse("2022-09-11 12:00:00")));
+    }
+
+    @Test
+    public void dateCalc() {
+        Date date = DateFormatter.parse("2023-09-11 12:00:00");
+        System.out.println(DateFormatter.fmt(VegaTimeUnit.DAYS.minus(date, 1)));
+        System.out.println(DateFormatter.fmt(VegaTimeUnit.MONTHS.minus(date, 2)));
+        System.out.println(DateFormatter.fmt(VegaTimeUnit.YEARS.minus(date, 3)));
+    }
+
 }

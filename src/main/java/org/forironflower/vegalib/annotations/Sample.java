@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib.annotations;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,33 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           Upgradable.java                                                  *|
+|* Create Time:    2024/1/29 20:09                                                  *|
+|* Author:         forironflower                                                    *|
+|* EMail:          forironflower@hotmail.com                                        *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * 被注解的代码表示可升级
+ *
+ * @author forironflower
+ */
+@Retention(RetentionPolicy.SOURCE)
+@Documented
+public @interface Sample {
+    /**
+     * #brief: 表示可升级到哪个版本的 JDK 代码
+     */
+    String version() default "";
+    /**
+     * #brief: 可用版本特性列表
+     */
+    String[] features() default "";
 }

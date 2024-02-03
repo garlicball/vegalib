@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib.refection;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,36 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           ClassPathResourceReader.java                                     *|
+|* Create Time:    2024/1/29 19:35                                                  *|
+|* Author:         forironflower                                                    *|
+|* EMail:          forironflower@hotmail.com                                        *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.forironflower.vegalib.io.IOUtils;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * ClassPath 目录下的资源文件
+ *
+ * @author forironflower
+ */
+public class ClassPathResourceReader {
+
+    /**
+     * #brief: 使用字符串流读取文件中的所有数据作为字符串返回
+     */
+    public static byte[] read(String path) {
+        return IOUtils.read(ClassUtils.getResourceStream(path));
+    }
+
+    /**
+     * #brief: 使用字符串流读取文件中的所有数据作为字符串返回
+     */
+    public static String strread(String path) {
+        return IOUtils.strread(ClassUtils.getResourceStream(path));
+    }
+
 }

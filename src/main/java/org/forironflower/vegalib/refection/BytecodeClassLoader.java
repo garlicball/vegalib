@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib.refection;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,32 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2019/5/16. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+/**
+ * 自定义类加载器，用于加载内存中的 Class 字节码数据。该类不支持从文件
+ * 中加载类。
+ *
+ * @author luotiansheng
+ */
+public class BytecodeClassLoader extends ClassLoader {
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+    /**
+     * 从内存中加载类
+     *
+     * @param bytecode
+     *        字节码数组
+     *
+     * @param off
+     *        起始偏移量
+     *
+     * @param len
+     *        字节码长度
+     *
+     * @return 从字节码数组加载类到 JVM 内存。
+     */
+    public Class<?> forMemory(byte[] bytecode, int off, int len) {
+        return null;
+    }
+
 }

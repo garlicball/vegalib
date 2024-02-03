@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib.test;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,35 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/6/19. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.forironflower.vegalib.io.ByteBuf;
+import org.forironflower.vegalib.Objects;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import static org.forironflower.vegalib.Objects.atoi;
+import static org.forironflower.vegalib.Objects.atol;
+
+/**
+ * @author forironflower
+ */
+public class NumberValTest {
+
+    @Test
+    public void readInt() {
+        ByteBuf buffer = ByteBuf.allocate();
+        buffer.write(10086);
+        System.out.println(Objects.atoi("10085"));
+        System.out.println(Objects.atoi(buffer.toByteArray()));
+    }
+
+
+    @Test
+    public void readLong() {
+        ByteBuf buffer = ByteBuf.allocate();
+        buffer.write(10086L);
+        System.out.println(Objects.atol("10085"));
+        System.out.println(Objects.atol(buffer.toByteArray()));
+    }
+
 }

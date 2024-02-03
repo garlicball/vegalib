@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib.enums;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,29 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Create on 2023/9/14 */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.forironflower.vegalib.exception.InvalidArgumentException;
+import org.forironflower.vegalib.refection.ObjectPrimary;
+import org.forironflower.vegalib.Objects;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * @author forironflower
+ */
+public class Enumerates {
+
+    @SuppressWarnings("unchecked")
+    private static <E extends Enum<E>> E[] values(Class<? extends Enum<E>> enumClass) {
+        return (E[]) new ObjectPrimary(enumClass).staticInvoke("values");
+    }
+
+    @SuppressWarnings({"unchecked", "UnusedReturnValue"})
+    public static <E extends Enum<E>> E checkout(Class<? extends Enum<E>> enumClass, String name) {
+        Enum<E>[] values = values(enumClass);
+        for (Enum<E> value : values)
+            if (Objects.strieq(value.name(), name))
+                return (E) value;
+        throw new InvalidArgumentException("参数错误【%s】常量不存在！", name);
+    }
+
 }

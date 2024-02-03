@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.forironflower.vegalib.test;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,22 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/6/26. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.forironflower.vegalib.http.HttpClients;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import java.io.IOException;
+
+/**
+ * @author forironflower
+ */
+@SuppressWarnings("all")
+public class HttpClientsTest {
+
+    @Test
+    public void request() throws IOException {
+        System.out.println(HttpClients.get("http://127.0.0.1:2018/kaiheiloft/admin/profile"));
+    }
+
 }
