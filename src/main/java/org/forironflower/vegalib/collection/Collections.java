@@ -25,7 +25,7 @@ package org.forironflower.vegalib.collection;
 
 /* Creates on 2023/5/6. */
 
-import org.forironflower.vegalib.VegaObjectMapper;
+import org.forironflower.vegalib.LambdaObjectMapper;
 import org.forironflower.vegalib.annotations.Favorite;
 import org.forironflower.vegalib.Arrays;
 
@@ -233,36 +233,36 @@ public class Collections {
     }
 
     /**
-     * 通过实现 {@link VegaObjectMapper} 的 Lambda 接口，将一个对象转换成另一个对象实例，并
+     * 通过实现 {@link LambdaObjectMapper} 的 Lambda 接口，将一个对象转换成另一个对象实例，并
      * 批量添加到新的 {@link List} 集合中。
      *
      * @param builder
-     *        Lambda 函数实现接口，或者也可以通过实现 {@link VegaObjectMapper} 接口的方式
+     *        Lambda 函数实现接口，或者也可以通过实现 {@link LambdaObjectMapper} 接口的方式
      *        完成这个参数。
      *
      * @param a
      *        输入数组
      *
-     * @return 返回通过 {@link VegaObjectMapper} 转换后的集合实例。
+     * @return 返回通过 {@link LambdaObjectMapper} 转换后的集合实例。
      */
-    public static <T, R> List<R> listMap(T[] a, VegaObjectMapper<T, R> builder) {
+    public static <T, R> List<R> listMap(T[] a, LambdaObjectMapper<T, R> builder) {
         return listMap(listOf(a), builder);
     }
 
     /**
-     * 通过实现 {@link VegaObjectMapper} 的 Lambda 接口，将一个对象转换成另一个对象实例，并
+     * 通过实现 {@link LambdaObjectMapper} 的 Lambda 接口，将一个对象转换成另一个对象实例，并
      * 批量添加到新的 {@link List} 集合中。
      *
      * @param builder
-     *        Lambda 函数实现接口，或者也可以通过实现 {@link VegaObjectMapper} 接口的方式
+     *        Lambda 函数实现接口，或者也可以通过实现 {@link LambdaObjectMapper} 接口的方式
      *        完成这个参数。
      *
      * @param collection
      *        实现了 {@link Collection} 接口的对象实例
      *
-     * @return 返回通过 {@link VegaObjectMapper} 转换后的集合实例。
+     * @return 返回通过 {@link LambdaObjectMapper} 转换后的集合实例。
      */
-    public static <T, R> List<R> listMap(Collection<T> collection, VegaObjectMapper<T, R> builder) {
+    public static <T, R> List<R> listMap(Collection<T> collection, LambdaObjectMapper<T, R> builder) {
         List<R> retval = null;
         if (collection != null) {
             retval = listOf();
@@ -337,7 +337,7 @@ public class Collections {
      *
      * @return 计算后返回：两个集合之间的交集
      */
-    public static <E, M> List<E> listInt(Collection<E> a, Collection<M> b, VegaObjectMapper<M, E> bMapper) {
+    public static <E, M> List<E> listInt(Collection<E> a, Collection<M> b, LambdaObjectMapper<M, E> bMapper) {
         return listInt(a, listMap(b, bMapper));
     }
 
@@ -370,8 +370,8 @@ public class Collections {
      *
      * @return 计算后返回：两个集合之间的差集
      */
-    public static <M1, M2, E> List<E> listInt(Collection<M1> a, VegaObjectMapper<M1, E> aMapper,
-                                              Collection<M2> b, VegaObjectMapper<M2, E> bMapper) {
+    public static <M1, M2, E> List<E> listInt(Collection<M1> a, LambdaObjectMapper<M1, E> aMapper,
+                                              Collection<M2> b, LambdaObjectMapper<M2, E> bMapper) {
         return listInt(listMap(a, aMapper), listMap(b, bMapper));
     }
 
@@ -422,7 +422,7 @@ public class Collections {
      *
      * @return 计算后返回：两个集合之间的差集
      */
-    public static <E, M> List<E> listDiff(Collection<E> a, Collection<M> b, VegaObjectMapper<M, E> bMapper) {
+    public static <E, M> List<E> listDiff(Collection<E> a, Collection<M> b, LambdaObjectMapper<M, E> bMapper) {
         return listDiff(a, listMap(b, bMapper));
     }
 
@@ -455,8 +455,8 @@ public class Collections {
      *
      * @return 计算后返回：两个集合之间的差集
      */
-    public static <M1, M2, E> List<E> listDiff(Collection<M1> a, VegaObjectMapper<M1, E> aMapper,
-                                               Collection<M2> b, VegaObjectMapper<M2, E> bMapper) {
+    public static <M1, M2, E> List<E> listDiff(Collection<M1> a, LambdaObjectMapper<M1, E> aMapper,
+                                               Collection<M2> b, LambdaObjectMapper<M2, E> bMapper) {
         return listDiff(listMap(a, aMapper), listMap(b, bMapper));
     }
 
@@ -512,7 +512,7 @@ public class Collections {
      *
      * @return 计算后返回：两个集合之间的差集
      */
-    public static <E, M> List<E> listSymmDiff(Collection<E> a, Collection<M> b, VegaObjectMapper<M, E> bMapper) {
+    public static <E, M> List<E> listSymmDiff(Collection<E> a, Collection<M> b, LambdaObjectMapper<M, E> bMapper) {
         return listSymmDiff(a, listMap(b, bMapper));
     }
 
@@ -545,8 +545,8 @@ public class Collections {
      *
      * @return 计算后返回：两个集合之间的差集
      */
-    public static <M1, M2, E> List<E> listSymmDiff(Collection<M1> a, VegaObjectMapper<M1, E> aMapper,
-                                                   Collection<M2> b, VegaObjectMapper<M2, E> bMapper) {
+    public static <M1, M2, E> List<E> listSymmDiff(Collection<M1> a, LambdaObjectMapper<M1, E> aMapper,
+                                                   Collection<M2> b, LambdaObjectMapper<M2, E> bMapper) {
         return listSymmDiff(listMap(a, aMapper), listMap(b, bMapper));
     }
 

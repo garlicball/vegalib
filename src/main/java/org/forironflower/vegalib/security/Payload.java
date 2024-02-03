@@ -25,7 +25,7 @@ package org.forironflower.vegalib.security;
 
 /* Creates on 2023/5/15. */
 
-import org.forironflower.vegalib.VegaObjectMapper;
+import org.forironflower.vegalib.LambdaObjectMapper;
 import org.forironflower.vegalib.Objects;
 
 import java.util.HashMap;
@@ -51,7 +51,7 @@ public class Payload extends HashMap<String, Object> {
      * @return 将 Payload 中的 Value 转换为字符串返回。
      */
     @SuppressWarnings("unchecked")
-    public <T, R> R getAttribute(String key, VegaObjectMapper<T, R> mapper) {
+    public <T, R> R getAttribute(String key, LambdaObjectMapper<T, R> mapper) {
         return mapper.apply((T) get(key));
     }
 

@@ -354,7 +354,7 @@ public class Objects {
      *
      * @see String#valueOf(Object)
      */
-    public static String atos(Object obj, VegaObjectMapper<String, String> mapper) {
+    public static String atos(Object obj, LambdaObjectMapper<String, String> mapper) {
         return mapper.apply(atos(obj));
     }
 

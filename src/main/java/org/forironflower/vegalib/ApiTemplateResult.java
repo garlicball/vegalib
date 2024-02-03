@@ -49,7 +49,7 @@ public class ApiTemplateResult<T> implements Serializable {
     /**
      * 错误信息
      */
-    private String message;
+    private String err;
     /**
      * 时间戳
      */
@@ -58,10 +58,10 @@ public class ApiTemplateResult<T> implements Serializable {
     public ApiTemplateResult() {
     }
 
-    public ApiTemplateResult(String code, T data, String message, Object... args) {
+    public ApiTemplateResult(String code, T data, String err, Object... args) {
         this.code = code;
         this.data = data;
-        this.message = Objects.strfmt(message, args);
+        this.err = Objects.strfmt(err, args);
     }
 
     /////////////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,7 @@ public class ApiTemplateResult<T> implements Serializable {
     }
 
     public void throwIfError() {
-        Assert.throwIfTrue(isError(), "%x[code: %s] %s", code, message);
+        Assert.throwIfTrue(isError(), "%x[code: %s] %s", code, err);
     }
 
     public T as() {

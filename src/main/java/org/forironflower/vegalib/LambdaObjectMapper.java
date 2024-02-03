@@ -29,7 +29,7 @@ package org.forironflower.vegalib;
  * @author luotiansheng
  */
 @FunctionalInterface
-public interface VegaObjectMapper<T, R> {
+public interface LambdaObjectMapper<T, R> {
     /**
      * 将泛型 T 的数据通过 Lambda 函数映射成为泛型 R
      *
