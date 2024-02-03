@@ -302,6 +302,9 @@ public class Collections {
      *
      * @return 计算后返回：两个集合之间的交集
      */
+    @Favorite(keyword = {
+            "api_sample_collection_list_int"
+    })
     public static <E> List<E> listInt(Collection<E> a, Collection<E> b) {
         List<E> lcopy = listCopy(a);
         lcopy.retainAll(b);
@@ -387,6 +390,9 @@ public class Collections {
      *
      * @return 计算后返回：两个集合之间的差集
      */
+    @Favorite(keyword = {
+            "api_sample_collection_list_diff"
+    })
     public static <E> List<E> listDiff(Collection<E> a, Collection<E> b) {
         List<E> lcopy = listCopy(a);
         lcopy.removeAll(b);
@@ -472,7 +478,10 @@ public class Collections {
      *
      * @return 计算后返回：两个集合之间的`对称差集`
      */
-    @SuppressWarnings({"unchecked", "SlowAbstractSetRemoveAll"})
+    @Favorite(keyword = {
+            "api_sample_collection_list_symm_diff"
+    })
+    @SuppressWarnings({"SlowAbstractSetRemoveAll"})
     public static <E> List<E> listSymmDiff(Collection<E> a, Collection<E> b) {
         Set<E> symmdiff = setOf();
         symmdiff.addAll(a);
