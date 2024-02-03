@@ -49,8 +49,12 @@ public class ClassPathResource {
     private final VegaFile fd;
 
     public ClassPathResource(String name) {
+        this(name, Thread.currentThread().getContextClassLoader());
+    }
+
+    public ClassPathResource(String name, ClassLoader classLoader) {
         this.fd = new VegaFile(name);
-        this.classLoader = this.getClass().getClassLoader();
+        this.classLoader = classLoader;
     }
 
     /**
