@@ -499,11 +499,15 @@ public class VegaFile extends File {
      * 将字节数据写入到文件中，默认以追加方式写入数据不会覆盖写入，且如果文件不存在则会自动创建。
      * 如果希望不追加数据写入，可以使用 {@link #write} 函数。
      *
-     * @param buffer
+     * @param buf
      *        写入字节数组数据
      */
-    public void awrite(byte[] buffer) {
-        IOUtils.write(buffer, openWriter(true));
+    public void awrite(byte[] buf) {
+        awrite(buf, 0, buf.length);
+    }
+
+    public void awrite(byte[] buf, int off, int len) {
+        write0(buf, off, len, openWriter(true));
     }
 
     /**
@@ -512,11 +516,19 @@ public class VegaFile extends File {
      * 将字节数据写入到文件中，默认以覆盖方式写入数据不会追加写入，且如果文件不存在则会自动创建。
      * 如果希望不覆盖数据写入，可以使用 {@link #awrite} 函数。
      *
-     * @param buffer
+     * @param buf
      *        写入字节数组数据
      */
-    public void write(byte[] buffer) {
-        IOUtils.write(buffer, openWriter());
+    public void write(byte[] buf) {
+        write(buf, 0, buf.length);
+    }
+
+    public void write(byte[] buf, int off, int len) {
+        write0(buf, off, len, openWriter());
+    }
+
+    private void write0(byte[] buf, int off, int len, VegaFileWriter writer) {
+        IOUtils.write(buf, off, len, writer);
     }
 
 }
