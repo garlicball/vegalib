@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.forironflower</groupId>
-    <artifactId>vegalib-package-samples</artifactId>
-    <version>v1.0.0</version>
+    <artifactId>vegalib-project-samples</artifactId>
+    <version>season.winter.2024</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -19,7 +19,7 @@
         <dependency>
             <groupId>org.forironflower</groupId>
             <artifactId>vegalib</artifactId>
-            <version>v1.0.0</version>
+            <version>season.winter.2024</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
