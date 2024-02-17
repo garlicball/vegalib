@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.samples;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,55 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           CollectionSamples.java                                           *|
+|* Create Time:    2024/2/03 19:45                                                  *|
+|* Author:         venorze                                                          *|
+|* EMail:          venorze@hotmail.com                                              *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import java.util.List;
+
+import static org.venorze.vegalib.Objects.fprintlnf;
+import static org.venorze.vegalib.collection.Collections.*;
+
+/**
+ * ClassPathResourceSamples 演示
+ *
+ * @author venorze
+ */
+public class CollectionSamples {
+
+    private static final List<Integer> X = listOf(1, 2, 3);
+    private static final List<Integer> Y = listOf(3, 4, 5);
+
+    /**
+     * listInt 获取两个集合（X, Y）之间的交集部分
+     */
+    @Test
+    public void api_sample_collection_list_int() {
+        fprintlnf(listInt(X, Y));
+    }
+
+    /**
+     * listDiff 获取一个集合对于另一个集合两个集合之间的差集
+     */
+    @Test
+    public void api_sample_collection_list_diff() {
+        fprintlnf(listDiff(X, Y));
+        fprintlnf(listDiff(Y, X));
+    }
+
+    /**
+     * listSymmDiff 获取一个集合对于另一个集合两个集合之间的对称差集
+     */
+    @Test
+    public void api_sample_collection_list_symm_diff() {
+        fprintlnf(listSymmDiff(X, Y));
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.test;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,19 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/6/19. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.io.IOUtils;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * @author venorze
+ */
+public class stdlibimptstringTest {
+
+    @Test
+    public void fmt() {
+        IOUtils.stdout.println("%s helo %s", "hello", "a");
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.test.io;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,27 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           VegaFileTest.java                                                *|
+|* Create Time:    2023/6/7                                                         *|
+|* Author:         venorze                                                          *|
+|* EMail:          venorze@hotmail.com                                              *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.io.VegaFile;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * 拷贝大（2GB）文件测试
+ *
+ * @author venorze
+ */
+public class VegaFileTest {
+
+    public static void main(String[] args) {
+        VegaFile file = new VegaFile("C:\\Users\\Lenovo\\Desktop\\ccc.rar");
+        file.copy("C:\\Users\\Lenovo\\Desktop\\ddd.rar");
+    }
+
 }

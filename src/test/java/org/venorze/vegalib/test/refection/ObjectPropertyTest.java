@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.test.refection;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,44 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/6/20. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import lombok.Getter;
+import lombok.ToString;
+import org.venorze.vegalib.refection.ObjectProperty;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import static org.venorze.vegalib.io.IOUtils.stdout;
+
+/**
+ * @author venorze
+ */
+@SuppressWarnings("all")
+public class ObjectPropertyTest {
+
+    /* Instance of A */
+    @Getter
+    @ToString
+    public static class A {
+        private String data = "i am A instance.";
+    }
+
+    /* Instance of B */
+    @Getter
+    @ToString
+    public static class B {
+        private String data = "i am B instance.";
+    }
+
+    /**
+     * 两个类，属性相同互相拷贝测试
+     */
+    @Test
+    public void diffObjectCopy() {
+        A a = new A();
+        B b = new B();
+        ObjectProperty.copy(a, b, "data");
+        stdout.println("拷贝 A 数据到 B：\n    a: %s\n    b: %s", a, b);
+    }
+
 }

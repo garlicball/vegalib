@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.annotations;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,29 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           Favorite.java                                                    *|
+|* Create Time:    2024/1/29 20:09                                                  *|
+|* Author:         venorze                                                          *|
+|* EMail:          venorze@hotmail.com                                              *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * 表示作者个人最满意、最喜欢使用函数或类
+ *
+ * @author venorze
+ */
+@Retention(RetentionPolicy.SOURCE)
+@Documented
+public @interface Favorite {
+    /**
+     * #brief：全局搜索可以查询到更详细的信息
+     */
+    String[] keyword() default "";
 }

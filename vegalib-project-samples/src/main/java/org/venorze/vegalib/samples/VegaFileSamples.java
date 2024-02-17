@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.samples;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,51 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           VegaFileSamples.java                                             *|
+|* Create Time:    2024/1/29 20:44                                                  *|
+|* Author:         venorze                                                          *|
+|* EMail:          venorze@hotmail.com                                              *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.io.IOUtils;
+import org.venorze.vegalib.io.VegaFile;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * VegaFile对象示例
+ *
+ * @author venorze
+ */
+public class VegaFileSamples {
+
+    /**
+     * 通过 VegaFile#copy 函数对文件进行拷贝
+     */
+    @Test
+    public void api_sample_file_copy() {
+        VegaFile source = new VegaFile("%user.dir%/copy/source.vegalib");
+        source.write("Hello World".getBytes());
+        source.copy("%user.dir%/copy/target.vegalib");
+    }
+
+    /**
+     * 通过 VegaFile#move 函数对文件进行移动
+     */
+    @Test
+    public void api_sample_file_move() {
+        VegaFile source = new VegaFile("%user.dir%/copy/source.vegalib");
+        source = source.move("%user.dir%/copy/source.move.vegalib");
+    }
+
+    /**
+     * 通过 VegaFile#forceDelete 函数强制删除文件或目录
+     */
+    @Test
+    public void api_sample_file_force_delete() {
+        new VegaFile("%user.dir%/copy").forceDelete();
+    }
+
 }

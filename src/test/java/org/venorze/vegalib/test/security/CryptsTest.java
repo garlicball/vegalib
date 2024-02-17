@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.test.security;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,29 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           CryptsTest.java                                                *|
+|* Create Time:    2024/1/29 17:45                                                   *|
+|* Author:         venorze                                                          *|
+|* EMail:          venorze@hotmail.com                                              *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.security.Crypts;
+import org.venorze.vegalib.Objects;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import static org.venorze.vegalib.Objects.fprintlnf;
+
+/**
+ * @author venorze
+ */
+public class CryptsTest {
+
+    @Test
+    public void md5() {
+        Objects.fprintlnf("md5lower32: %s", Crypts.Encoder.md5lower32("Hello World"));
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.test;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,59 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/6/20. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.ApiTemplateResult;
+import lombok.Getter;
+import lombok.ToString;
+import org.venorze.vegalib.BeanUtils;
+import org.venorze.vegalib.collection.Collections;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import java.util.List;
+
+import static org.venorze.vegalib.collection.Collections.listOf;
+import static org.venorze.vegalib.io.IOUtils.stdout;
+
+/**
+ * @author venorze
+ */
+@SuppressWarnings("all")
+public class BeanUtilsTest {
+
+    @Test
+    public void copyForNewInstance() {
+        ApiTemplateResult ret = ApiTemplateResult.ok("what the fuck?");
+        System.out.println(BeanUtils.copyProperties(ret, ApiTemplateResult.class));
+    }
+
+    @Test
+    public void copyForList() {
+        List<ApiTemplateResult> uncopy = Collections.listOf(ApiTemplateResult.ok("a"),
+                            ApiTemplateResult.ok("b"),
+                            ApiTemplateResult.ok("c"),
+                            ApiTemplateResult.ok("d"));
+        List<ApiTemplateResult> rets = BeanUtils.copyProperties(uncopy, ApiTemplateResult.class);
+        stdout.println(rets);
+    }
+
+    /* Instance of A */
+    @Getter
+    @ToString
+    public static class A {
+        private String data = "i am A instance.";
+    }
+
+    /* Instance of B */
+    @Getter
+    @ToString
+    public static class B {
+        private String data = "i am B instance.";
+    }
+
+    @Test
+    public void notDifferenceObjectCopy() {
+        stdout.println(BeanUtils.copyProperties(new A(), B.class));
+    }
+
 }

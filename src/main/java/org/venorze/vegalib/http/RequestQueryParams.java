@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.http;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,32 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/6/26. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.Objects;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.venorze.vegalib.Objects.atos;
+
+/**
+ * @author venorze
+ */
+public class RequestQueryParams extends HashMap<String, String> {
+
+    /** 参数拼接 */
+    public String buildUrlQueryParams(String url) {
+        if (isEmpty())
+            return url;
+
+        StringBuilder builder = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : entrySet())
+            builder.append(Objects.strfmt("%s=%s&", entry.getKey(), entry.getValue()));
+        String finalArguments = Objects.atos(builder, 0, -1); /* 删掉最后一个字符 ‘&’ */
+
+        return Objects.strfmt("%s?%s", url, finalArguments);
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.test;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,46 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/6/20. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.Bits;
+import org.venorze.vegalib.Objects;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import java.util.Date;
+
+import static org.venorze.vegalib.Assert.throwIfError;
+import static org.venorze.vegalib.io.IOUtils.stdout;
+
+/**
+ * @author venorze
+ */
+@SuppressWarnings("all")
+public class ObjectsTest {
+
+    @Test
+    public void anycmpTest() {
+        int fa = 0x1;
+        int fb = 0x2;
+        int fc = 0x4;
+        int fd = 0x8;
+
+        int flags = (fa | fb | fc);
+        stdout.println("fa, fb, fc=%s", Bits.bithas(flags, fa, fb, fc));
+        stdout.println("fa, fc=%s", Bits.bithas(flags, fa, fc));
+        stdout.println("fc, fb=%s", Bits.bithas(flags, fc, fb));
+        stdout.println("fc, fd=%s", Bits.bithas(flags, fc, fd));
+    }
+
+    @Test
+    public void dateAnycmpTest() throws InterruptedException {
+        Date d1 = new Date();
+        Thread.sleep(100);
+        Date d2 = new Date();
+
+        stdout.println("d1 > d2=%s", Objects.anycmp(d1, d2, Objects.ACMP_GT));
+        stdout.println("d1 < d2=%s", Objects.anycmp(d1, d2, Objects.ACMP_LT));
+        stdout.println("d1 = d2=%s", Objects.anycmp(d1, d2, Objects.ACMP_EQ));
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.ipv4;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,45 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/5/18. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.annotations.Upgradable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.venorze.vegalib.Objects;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * @author venorze
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Upgradable(version = "11", features = {"record"})
+public class Region {
+
+    /**
+     * 国家/地区
+     */
+    private String country;
+    /**
+     * 省
+     */
+    private String province;
+    /**
+     * 市
+     */
+    private String city;
+
+    /**
+     * 未知地区
+     */
+    public static final Region UNKNOWN_REGION =
+            new Region("0", "0", "0");
+
+    @Override
+    public String toString() {
+        return Objects.strfmt("%s/%s/%s", country, province, city);
+    }
+
 }

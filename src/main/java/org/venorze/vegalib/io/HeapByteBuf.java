@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.io;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,49 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/5/8. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import static org.venorze.vegalib.Arrays.heapcopy;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * @author venorze
+ */
+public class HeapByteBuf extends ByteBuf {
+
+    /** 字节缓冲区 */
+    private byte[] buf;
+    /** 扩容次数 */
+    private int count = 1;
+    /** 每次扩容大小为初始分配大小 */
+    private final int initializeCapacity;
+
+    HeapByteBuf(int capacity) {
+        initializeCapacity = capacity;
+        buf = new byte[initializeCapacity];
+    }
+
+    /** 确保数据写入时缓冲区内部容量足够 */
+    private void ensureCapacity(int size) {
+        if (buf.length < (capacity + size)) {
+            byte[] nbuf = new byte[((buf.length + size) + initializeCapacity) * count];
+            heapcopy(buf, 0, nbuf, 0, buf.length);
+            buf = nbuf;
+            ++count;
+        }
+    }
+
+    @Override
+    public void read0(byte[] b, int off, int len) {
+        heapcopy(buf, position, b, off, len);
+        position += len;
+    }
+
+    @Override
+    void write0(byte[] a, int off, int len) {
+        ensureCapacity(len);
+        heapcopy(a, off, buf, position, len);
+        position += len;
+        capacity += len;
+    }
+
 }

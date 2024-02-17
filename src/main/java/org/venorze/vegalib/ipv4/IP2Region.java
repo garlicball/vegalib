@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.ipv4;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,41 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/5/18. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.logging.Logger;
+import org.venorze.vegalib.logging.LoggerFactory;
+import org.venorze.vegalib.refection.ClassPathResource;
+import org.venorze.vegalib.Objects;
+import org.lionsoul.ip2region.xdb.Searcher;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * 获取IP所在区域
+ *
+ * @author venorze
+ */
+public class IP2Region {
+
+    private static final Logger logger = LoggerFactory.getLogger(IP2Region.class);
+
+    public static Searcher searcher = null;
+
+    /**
+     * 检索 ip 地址
+     */
+    public static Region search(String ip) {
+        try {
+            if (searcher == null) {
+                byte[] buf = new ClassPathResource("ip2region.xdb").read();
+                logger.info("ip table buffer size: %s", buf.length);
+                searcher = Searcher.newWithBuffer(buf);
+            }
+            String search = searcher.searchByStr(ip);
+            String[] split = Objects.strtok(search, "\\|");
+            return new Region(split[0], split[2], split[3]);
+        } catch (Exception e) {
+            return Region.UNKNOWN_REGION;
+        }
+    }
+
 }

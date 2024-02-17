@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.exception;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,37 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/4/30. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.Objects;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * @author venorze
+ */
+public class VegaRuntimeException extends RuntimeException {
+
+    public VegaRuntimeException() {
+        super();
+    }
+
+    public VegaRuntimeException(String message) {
+        super(message);
+    }
+
+    public VegaRuntimeException(String message, Object... args) {
+        super(Objects.strfmt(message, args));
+    }
+
+    public VegaRuntimeException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public VegaRuntimeException(String message, Throwable cause, Object... args) {
+        super(Objects.strfmt(message, args), cause);
+    }
+
+    public VegaRuntimeException(Throwable cause) {
+        super(cause);
+    }
+
 }

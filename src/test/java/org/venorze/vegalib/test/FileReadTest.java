@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.test;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,22 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Create on 2023/9/13 */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.io.VegaFile;
+import org.venorze.vegalib.Objects;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * @author venorze
+ */
+public class FileReadTest {
+
+    @Test
+    public void read() {
+        VegaFile mutableFile = new VegaFile("C:\\Users\\Lenovo\\Desktop\\新建文本文档 (2).txt");
+        String[] text = Objects.strxtok(mutableFile.strread(), "\n");
+        System.out.println();
+    }
+
 }

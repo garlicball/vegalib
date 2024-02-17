@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.logging.standard;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,63 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2019/11/05. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
+import org.venorze.vegalib.io.IOUtils;
+import org.venorze.vegalib.logging.Logger;
+import org.venorze.vegalib.time.DateFormatter;
+import org.venorze.vegalib.Objects;
+
+/**
+ * @author venorze
+ */
+public class StandardLogger implements Logger {
+
+    private final String classpath;
+
+    public StandardLogger(String name) {
+        this.classpath = name;
+    }
+
+    public StandardLogger(Class<?> aClass) {
+        this.classpath = aClass.getName();
+    }
+
+    @Override
+    public boolean isDebugEnabled() {
+        return true;
+    }
+
+    @Override
+    public void info(String message, Object... args) {
+        logprint(classpath, "INFO", message, args);
+    }
+
+    @Override
+    public void warn(String message, Object... args) {
+        logprint(classpath, "WARN", message, args);
+    }
+
+    @Override
+    public void debug(String message, Object... args) {
+        logprint(classpath, "DEBUG", message, args);
+    }
+
+    @Override
+    public void error(String message, Object... args) {
+        logprint(classpath, "ERROR", message, args);
+    }
+
+    private static void logprint(String classpath, String level, String message, Object... args) {
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        StackTraceElement stackTraceElement = stackTrace[stackTrace.length - 1];
+        IOUtils.stdout.println("%s %s [%s] %s --- %s",
+                DateFormatter.fmt(),
+                level,
+                stackTraceElement.getMethodName(),
+                classpath,
+                Objects.strfmt(message, args));
+    }
+
 }
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
-}

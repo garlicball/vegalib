@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.refection;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,63 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2019/5/16. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import lombok.Getter;
+import org.objectweb.asm.*;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import java.io.IOException;
+
+/**
+ * 动态类编辑技术
+ *
+ * @author luotiansheng
+ */
+public class ClassModifier {
+
+    /**
+     * 类路径
+     */
+    private final @Getter String classname;
+    /**
+     * 被修改的类
+     */
+    private final @Getter Class<?> modified;
+    /**
+     * 类写入器
+     */
+    private final ClassReader classReader;
+    /**
+     * 类读取器
+     */
+    private final ClassWriter classWriter;
+
+    /**
+     * 提交类对象，对该对象进行修改。
+     *
+     * @param modified
+     *        被修改的类对象
+     */
+    public ClassModifier(Class<?> modified) {
+        this.classname = modified.getName();
+        this.modified = modified;
+        /* 获取类的写入器和读取器 */
+        try {
+            this.classReader = new ClassReader(classname);
+            this.classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        /* 初始化 visitor 访问器 */
+        accept0(classWriter);
+    }
+
+    private void accept0(ClassVisitor visitor) {
+        classReader.accept(visitor, ClassReader.SKIP_DEBUG);
+    }
+
+    public byte[] toBytecode() {
+        return classWriter.toByteArray();
+    }
+
 }

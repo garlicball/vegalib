@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.test;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,28 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* Creates on 2023/9/6. */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.security.Crypts;
+import org.venorze.vegalib.io.IOUtils;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+/**
+ * @author venorze
+ */
+@SuppressWarnings("all")
+public class URLCoderTest {
+
+    static final String WWW_BAIDU_COM = "https://www.baidu.com?search=地铁判官";
+
+    @Test
+    public void urlEncode() {
+        IOUtils.stdout.println("url encode: %s", Crypts.Encoder.url(WWW_BAIDU_COM));
+    }
+
+    @Test
+    public void urlDecode() {
+        IOUtils.stdout.println("url decode: %s", Crypts.Decoder.url(Crypts.Encoder.url(WWW_BAIDU_COM)));
+    }
+
 }

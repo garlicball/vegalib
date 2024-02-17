@@ -1,4 +1,4 @@
-package com.bitfashion.vortextools.test
+package org.venorze.vegalib.test.ipv4;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -23,13 +23,32 @@ package com.bitfashion.vortextools.test
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-/* Creates on 2023/6/21. */
+/* -------------------------------------------------------------------------------- *\
+|*                                                                                  *|
+|* File:           IP2RegionTest.java                                                *|
+|* Create Time:    2024/1/29 19:41                                                   *|
+|* Author:         venorze                                                          *|
+|* EMail:          venorze@hotmail.com                                              *|
+|*                                                                                  *|
+\* -------------------------------------------------------------------------------- */
 
-data class _Point(private var x: Float, private var y: Float) {
-    operator fun times(vec: _Point): _Point =
-            _Point(x * vec.x, y * vec.y)
-}
+import org.venorze.vegalib.ipv4.IP2Region;
+import org.venorze.vegalib.Objects;
+import org.junit.Test;
 
-fun main() {
-    println(_Point(2.0f, 3.0f) * _Point(1.0f, 5.0f))
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import static org.venorze.vegalib.Objects.fprintlnf;
+
+/**
+ * @author venorze
+ */
+public class IP2RegionTest {
+
+    @Test
+    public void ip2Region() throws UnknownHostException {
+        Objects.fprintlnf("location: %s", IP2Region.search(InetAddress.getByName("www.baidu.com").getHostAddress()));
+    }
+
 }
