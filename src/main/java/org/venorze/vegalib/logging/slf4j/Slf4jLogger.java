@@ -46,22 +46,22 @@ public class Slf4jLogger implements Logger {
 
     @Override
     public void info(String message, Object... args) {
-        logger.info(Objects.strfmt(message, args));
+        logger.info(Objects.strxfmt(message, args));
     }
 
     @Override
     public void warn(String message, Object... args) {
-        logger.warn(Objects.strfmt(message, args));
+        logger.warn(Objects.strxfmt(message, args));
     }
 
     @Override
     public void debug(String message, Object... args) {
-        logger.debug(Objects.strfmt(message, args));
+        logger.debug(Objects.strxfmt(message, args));
     }
 
     @Override
     public void error(String message, Object... args) {
-        logger.error(Objects.strfmt(message, args));
+        logger.error(Objects.strxfmt(message, args));
     }
 
 }

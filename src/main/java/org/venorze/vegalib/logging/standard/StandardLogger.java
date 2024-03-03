@@ -78,7 +78,7 @@ public class StandardLogger implements Logger {
                 level,
                 stackTraceElement.getMethodName(),
                 classpath,
-                Objects.strfmt(message, args));
+                Objects.strxfmt(message, args));
     }
 
 }

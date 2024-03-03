@@ -170,7 +170,7 @@ public class Objects {
      *        参数
      */
     public static void fprintlnf(OutputStream stream, Object fmt, Object... args) {
-        new VegaPrintStream(stream).println(strfmt(fmt, args));
+        new VegaPrintStream(stream).println(strxfmt(fmt, args));
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -711,7 +711,7 @@ public class Objects {
      * 伪代码示例（格式化 Hello World）：
      * <pre>
      *      var text = "Hello %s";
-     *      println(Objects.strfmt(text, "World"));
+     *      println(Objects.strxfmt(text, "World"));
      * </pre>
      *
      * @param fmt 未被格式化的原字符串。字符串中需要携带占位符 %s，如果没有这个符号
@@ -721,7 +721,7 @@ public class Objects {
      *
      * @return 返回被格式化后的字符串
      */
-    public static String strfmt(Object fmt, Object... args) {
+    public static String strxfmt(Object fmt, Object... args) {
         return String.format(atos(fmt), args);
     }
 

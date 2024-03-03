@@ -25,21 +25,17 @@ package org.venorze.vegalib.io;
 
 /* Creates on 2023/5/11. */
 
+import org.jetbrains.annotations.NotNull;
 import org.venorze.vegalib.Assert;
+import org.venorze.vegalib.Objects;
 import org.venorze.vegalib.annotations.Favorite;
 import org.venorze.vegalib.exception.ValidationException;
-import org.venorze.vegalib.Objects;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
-
-import static org.venorze.vegalib.Optional.optionalIfNull;
-import static org.venorze.vegalib.collection.Collections.listMap;
-import static org.venorze.vegalib.collection.Collections.listOf;
 
 /**
  * 目录对象，提供用于操作目录相关的函数。比如获取目录大小，获取目录文件、
@@ -154,15 +150,15 @@ public class VegaDirectory implements Iterable<VegaFile> {
     public long size() {
         long total = 0L;
         for (VegaFile file : this)
-            total += size0(file);
+            total += calc_directory_size(file);
         return total;
     }
 
-    private long size0(VegaFile file) {
+    private long calc_directory_size(VegaFile file) {
         if (file.isDirectory()) {
             long total = 0L;
             for (VegaFile f : file.openDirectory())
-                total += size0(f);
+                total += calc_directory_size(f);
             return total;
         }
 

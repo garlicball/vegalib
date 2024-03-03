@@ -25,9 +25,9 @@ package org.venorze.vegalib.security;
 
 /* Creates on 2023/5/16. */
 
+import org.venorze.vegalib.Objects;
 import org.venorze.vegalib.annotations.Favorite;
 import org.venorze.vegalib.exception.VegaRuntimeException;
-import org.venorze.vegalib.Objects;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -39,7 +39,6 @@ import java.util.Base64;
 import java.util.UUID;
 
 import static org.venorze.vegalib.Assert.throwIfError;
-import static org.venorze.vegalib.Objects.atos;
 
 /**
  * 各种变量值生成器，用常用于生成 UUID、唯一标识符、MD5 等常用内容
@@ -255,7 +254,7 @@ public final class Crypts {
                     source = Objects.strcut(source, Objects.strlen(CRYPT_PREFIX_HTTP), 0);
                     temporary = CRYPT_PREFIX_HTTP;
                 }
-                return Objects.strfmt("%s%s", temporary, URLEncoder.encode(source, enc));
+                return Objects.strxfmt("%s%s", temporary, URLEncoder.encode(source, enc));
             } catch (UnsupportedEncodingException e) {
                 throw new RuntimeException(e);
             }

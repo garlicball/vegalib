@@ -75,11 +75,11 @@ public class StringSamples {
     }
 
     /**
-     * 使用 strfmt 函数对字符串进行格式化操作
+     * 使用 strxfmt 函数对字符串进行格式化操作
      */
     @Test
     public void api_sample_strfmt() {
-        fprintlnf(strfmt("Hello %s", "Word"));
+        fprintlnf(strxfmt("Hello %s", "Word"));
     }
 
     /**

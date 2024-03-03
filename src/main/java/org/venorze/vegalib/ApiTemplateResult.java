@@ -61,7 +61,7 @@ public class ApiTemplateResult<T> implements Serializable {
     public ApiTemplateResult(String code, T data, String err, Object... args) {
         this.code = code;
         this.data = data;
-        this.err = Objects.strfmt(err, args);
+        this.err = Objects.strxfmt(err, args);
     }
 
     /////////////////////////////////////////////////////////////////////////////////

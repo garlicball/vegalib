@@ -114,7 +114,7 @@ object Assert {
      */
     @JvmStatic
     fun <T> throwIfNull(obj: T?, vfmt: String, vararg args: Any): T? =
-            java.util.Objects.requireNonNull<T>(obj, strfmt(vfmt, *args))
+            java.util.Objects.requireNonNull<T>(obj, strxfmt(vfmt, *args))
 
     /**
      * 断言一个对象，要求这个对象实例不能为空，如果它是空的，则会抛出 [NullPointerException] 这种经典
@@ -178,7 +178,7 @@ object Assert {
      *
      * @param message
      *        如果断言出现异常，自定义抛出信息。支持格式化。详情请
-     *        参考 [StringUtils#strfmt] 函数。
+     *        参考 [StringUtils#strxfmt] 函数。
      *
      * @param args
      *        格式化参数
@@ -186,7 +186,7 @@ object Assert {
     @JvmStatic
     fun throwIfTrue(value: Boolean, message: String, vararg args: Any) {
         if (value)
-            throw ValidationException(strfmt(message, *args))
+            throw ValidationException(strxfmt(message, *args))
     }
 
     /**
@@ -209,7 +209,7 @@ object Assert {
      *
      * @param message
      *        如果断言出现异常，自定义抛出信息。支持格式化。详情请
-     *        参考 [StringUtils#strfmt] 函数。
+     *        参考 [StringUtils#strxfmt] 函数。
      *
      * @param args
      *        格式化参数
@@ -217,7 +217,7 @@ object Assert {
     @JvmStatic
     fun throwIfFalse(value: Boolean, message: String, vararg args: Any) {
         if (!value)
-            throw ValidationException(strfmt(message, *args))
+            throw ValidationException(strxfmt(message, *args))
     }
 
     /**
@@ -242,14 +242,14 @@ object Assert {
      *
      * @param message
      *        如果断言出现异常，自定义抛出信息。支持格式化。详情请
-     *        参考 [StringUtils.strfmt] 函数。
+     *        参考 [StringUtils.strxfmt] 函数。
      *
      * @param args
      *        格式化参数
      */
     @JvmStatic
     fun throwIfEmpty(collection: Collection<*>?, message: String, vararg args: Any) =
-            throwIfTrue(collection == null || collection.isEmpty(), strfmt(message, *args))
+            throwIfTrue(collection == null || collection.isEmpty(), strxfmt(message, *args))
 
     /**
      * 传入一个无返回值、无参的闭包函数对象，Lambda使用样例：
@@ -447,7 +447,7 @@ object Optional {
             function.apply()
         } catch (e: Throwable) {
             if (strnemp(message)) {
-                val tmp = strfmt(message, *args)
+                val tmp = strxfmt(message, *args)
                 log.error("%s - 异常信息：%s", tmp, e.message)
             }
             return orError
@@ -508,7 +508,7 @@ object Optional {
             return orSuccess
         } catch (e: Throwable) {
             if (strnemp(message)) {
-                val tmp = strfmt(message, *args)
+                val tmp = strxfmt(message, *args)
                 log.error("%s - 异常信息：%s", tmp, e.message)
             }
             return orError

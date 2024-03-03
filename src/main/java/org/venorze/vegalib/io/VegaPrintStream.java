@@ -56,7 +56,7 @@ public class VegaPrintStream extends PrintStream {
      * @see #println(Object, Object...)
      */
     public void print(Object input, Object... args) {
-        super.print(Objects.strfmt(input, args));
+        super.print(Objects.strxfmt(input, args));
     }
 
     /**
@@ -71,7 +71,7 @@ public class VegaPrintStream extends PrintStream {
      * @see System#out
      */
     public void println(Object input, Object... args) {
-        super.println(Objects.strfmt(input, args));
+        super.println(Objects.strxfmt(input, args));
     }
 
 }

@@ -102,7 +102,7 @@ public class LoggerFactory {
 
     /** 打印当前日志框架初始化使用的适配器 */
     private static String formatBestChoice(String adapter) {
-        return Objects.strfmt("Try find best choice logger adapter, current use %s adapter.", adapter);
+        return Objects.strxfmt("Try find best choice logger adapter, current use %s adapter.", adapter);
     }
 
 }

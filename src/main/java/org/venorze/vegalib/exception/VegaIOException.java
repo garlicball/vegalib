@@ -41,7 +41,7 @@ public class VegaIOException extends VegaRuntimeException {
     }
 
     public VegaIOException(String message, Object... args) {
-        super(Objects.strfmt(message, args));
+        super(Objects.strxfmt(message, args));
     }
 
     public VegaIOException(String message, Throwable cause) {
@@ -49,7 +49,7 @@ public class VegaIOException extends VegaRuntimeException {
     }
 
     public VegaIOException(String message, Throwable cause, Object... args) {
-        super(Objects.strfmt(message, args), cause);
+        super(Objects.strxfmt(message, args), cause);
     }
 
     public VegaIOException(Throwable cause) {

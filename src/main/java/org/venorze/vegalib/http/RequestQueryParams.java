@@ -45,10 +45,10 @@ public class RequestQueryParams extends HashMap<String, String> {
         StringBuilder builder = new StringBuilder();
 
         for (Map.Entry<String, String> entry : entrySet())
-            builder.append(Objects.strfmt("%s=%s&", entry.getKey(), entry.getValue()));
+            builder.append(Objects.strxfmt("%s=%s&", entry.getKey(), entry.getValue()));
         String finalArguments = Objects.atos(builder, 0, -1); /* 删掉最后一个字符 ‘&’ */
 
-        return Objects.strfmt("%s?%s", url, finalArguments);
+        return Objects.strxfmt("%s?%s", url, finalArguments);
     }
 
 }

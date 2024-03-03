@@ -109,7 +109,7 @@ public class VegaFile extends File {
      * @throws NullPointerException 如果 {@code pathname} 为 null
      */
     public VegaFile(String pathname, Object... args) {
-        this(org.venorze.vegalib.Objects.strfmt(_placeholder(pathname), args));
+        this(org.venorze.vegalib.Objects.strxfmt(_placeholder(pathname), args));
     }
 
     /**

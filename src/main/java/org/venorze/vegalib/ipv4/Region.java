@@ -61,7 +61,7 @@ public class Region {
 
     @Override
     public String toString() {
-        return Objects.strfmt("%s/%s/%s", country, province, city);
+        return Objects.strxfmt("%s/%s/%s", country, province, city);
     }
 
 }

@@ -41,7 +41,7 @@ public class VegaRuntimeException extends RuntimeException {
     }
 
     public VegaRuntimeException(String message, Object... args) {
-        super(Objects.strfmt(message, args));
+        super(Objects.strxfmt(message, args));
     }
 
     public VegaRuntimeException(String message, Throwable cause) {
@@ -49,7 +49,7 @@ public class VegaRuntimeException extends RuntimeException {
     }
 
     public VegaRuntimeException(String message, Throwable cause, Object... args) {
-        super(Objects.strfmt(message, args), cause);
+        super(Objects.strxfmt(message, args), cause);
     }
 
     public VegaRuntimeException(Throwable cause) {

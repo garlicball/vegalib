@@ -96,7 +96,7 @@ public class ClassUtils {
             for (VegaFile mutableFile : file.openDirectory()) {
                 if (mutableFile.typeEquals(".class")) {
                     Class<?> clazz = Class.forName(
-                            Objects.strfmt("%s.%s", basePackage, mutableFile.cleaname()));
+                            Objects.strxfmt("%s.%s", basePackage, mutableFile.cleaname()));
                     primaries.add(new ObjectPrimary(clazz));
                 }
             }
