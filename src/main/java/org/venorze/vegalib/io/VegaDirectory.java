@@ -148,4 +148,25 @@ public class VegaDirectory implements Iterable<VegaFile> {
         return a == null ? 0 : a.length;
     }
 
+    /**
+     * @return 获取整个文件夹的大小
+     */
+    public long size() {
+        long total = 0L;
+        for (VegaFile file : this)
+            total += size0(file);
+        return total;
+    }
+
+    private long size0(VegaFile file) {
+        if (file.isDirectory()) {
+            long total = 0L;
+            for (VegaFile f : file.openDirectory())
+                total += size0(f);
+            return total;
+        }
+
+        return file.size();
+    }
+
 }
