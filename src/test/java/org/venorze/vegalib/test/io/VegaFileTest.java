@@ -32,18 +32,19 @@ package org.venorze.vegalib.test.io;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
+import org.junit.Test;
 import org.venorze.vegalib.io.VegaFile;
 
+import static org.venorze.vegalib.Objects.fprintlnf;
+
 /**
- * 拷贝大（2GB）文件测试
- *
  * @author venorze
  */
 public class VegaFileTest {
 
-    public static void main(String[] args) {
-        VegaFile file = new VegaFile("C:\\Users\\Lenovo\\Desktop\\ccc.rar");
-        file.copy("C:\\Users\\Lenovo\\Desktop\\ddd.rar");
+    @Test
+    public void getFileSize() {
+        fprintlnf("size: %s", new VegaFile("D:\\Dev\\Projects\\vegalib\\target\\vegalib-season.winter.2023.jar").size() / 1024);
     }
 
 }

@@ -143,7 +143,7 @@ public class VegaDirectory implements Iterable<VegaFile> {
     /**
      * @return 返回文件夹中的文件数量
      */
-    public int size() {
+    public int length() {
         File[] a = vf.listFiles();
         return a == null ? 0 : a.length;
     }

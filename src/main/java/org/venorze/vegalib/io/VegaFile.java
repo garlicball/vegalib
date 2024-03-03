@@ -539,4 +539,11 @@ public class VegaFile extends File {
         return new ZipFile(this);
     }
 
+    /**
+     * @return 返回文件内容大小，单位以字节表示。
+     */
+    public long size() {
+        return exists() ? length() : 0L;
+    }
+
 }
