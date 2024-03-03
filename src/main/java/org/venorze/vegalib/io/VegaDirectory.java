@@ -37,6 +37,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static org.venorze.vegalib.Optional.optionalIfNull;
 import static org.venorze.vegalib.collection.Collections.listMap;
 import static org.venorze.vegalib.collection.Collections.listOf;
 
@@ -137,6 +138,14 @@ public class VegaDirectory implements Iterable<VegaFile> {
         if (lf == null)
             return Collections.emptyList();
         return org.venorze.vegalib.collection.Collections.listMap(lf, VegaFile::new);
+    }
+
+    /**
+     * @return 返回文件夹中的文件数量
+     */
+    public int size() {
+        File[] a = vf.listFiles();
+        return a == null ? 0 : a.length;
     }
 
 }

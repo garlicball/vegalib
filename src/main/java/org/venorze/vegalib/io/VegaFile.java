@@ -28,6 +28,7 @@ package org.venorze.vegalib.io;
 import org.venorze.vegalib.annotations.Favorite;
 import org.venorze.vegalib.exception.OpenException;
 import org.venorze.vegalib.exception.VegaRuntimeException;
+import org.venorze.vegalib.io.filetype.ZipFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -529,6 +530,13 @@ public class VegaFile extends File {
 
     private void write0(byte[] buf, int off, int len, VegaFileWriter writer) {
         IOUtils.write(buf, off, len, writer);
+    }
+
+    /**
+     * #brief：将文件类型转换为 .zip 类型
+     */
+    public ZipFile toZipFile() {
+        return new ZipFile(this);
     }
 
 }
