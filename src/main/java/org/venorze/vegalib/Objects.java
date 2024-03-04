@@ -39,7 +39,7 @@ import java.util.Map;
 import java.util.WeakHashMap;
 import java.util.regex.Pattern;
 
-import static org.venorze.vegalib.Arrays.*;
+import static org.venorze.vegalib.Arrays.array_copy_of;
 import static org.venorze.vegalib.Assert.throwIfTrue;
 import static org.venorze.vegalib.Bits.bithas;
 import static org.venorze.vegalib.Optional.optionalIfError;
