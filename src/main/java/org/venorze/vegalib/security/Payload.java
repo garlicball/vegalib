@@ -25,7 +25,7 @@ package org.venorze.vegalib.security;
 
 /* Creates on 2023/5/15. */
 
-import org.venorze.vegalib.LambdaObjectMapper;
+import org.venorze.vegalib.iface.AnyObjectMapper;
 import org.venorze.vegalib.Objects;
 
 import java.util.HashMap;
@@ -51,7 +51,7 @@ public class Payload extends HashMap<String, Object> {
      * @return 将 Payload 中的 Value 转换为字符串返回。
      */
     @SuppressWarnings("unchecked")
-    public <T, R> R getAttribute(String key, LambdaObjectMapper<T, R> mapper) {
+    public <T, R> R getAttribute(String key, AnyObjectMapper<T, R> mapper) {
         return mapper.apply((T) get(key));
     }
 

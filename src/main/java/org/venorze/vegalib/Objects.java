@@ -29,6 +29,7 @@ import org.venorze.vegalib.annotations.Favorite;
 import org.venorze.vegalib.collection.Collections;
 import org.venorze.vegalib.exception.InvalidArgumentException;
 import org.venorze.vegalib.exception.VegaRuntimeException;
+import org.venorze.vegalib.iface.AnyObjectMapper;
 import org.venorze.vegalib.io.ByteBuf;
 import org.venorze.vegalib.io.VegaPrintStream;
 
@@ -357,7 +358,7 @@ public class Objects {
      *
      * @see String#valueOf(Object)
      */
-    public static String atos(Object obj, LambdaObjectMapper<String, String> mapper) {
+    public static String atos(Object obj, AnyObjectMapper<String, String> mapper) {
         return mapper.apply(atos(obj));
     }
 

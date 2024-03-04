@@ -1,4 +1,4 @@
-package org.venorze.vegalib;
+package org.venorze.vegalib.iface;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -29,7 +29,7 @@ package org.venorze.vegalib;
  * @author luotiansheng
  */
 @FunctionalInterface
-public interface LambdaObjectMapper<T, R> {
+public interface AnyObjectMapper<T, R> {
     /**
      * 将泛型 T 的数据通过 Lambda 函数映射成为泛型 R
      *
