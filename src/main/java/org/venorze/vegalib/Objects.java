@@ -333,6 +333,9 @@ public class Objects {
     ///
     /////////////////////////////////////////////////////////////////////////////////////////////
 
+    private static final byte STRIDX_BEGINOF_IDX = 0;
+    private static final byte STRIDX_BEGINOF_EDX = 1;
+
     /**
      * 将 {@link Object} 对象实例转换成 {@link String} 类型的对象实例。修改原来的 {@link Object} 对象不会对
      * 新的创建的 {@link String} 对象实例有任何影响。该函数也不会抛出异常，如果传入的对象为 {@code null} 的话
@@ -801,6 +804,14 @@ public class Objects {
         return builder.toString();
     }
 
+    private static int parse_stridx_offset(String regex) {
+        int begin = "idx".length();
+        String offset = strcut(regex, begin, regex.lastIndexOf(":") - begin);
+        if (offset.charAt(0) == '+' || offset.charAt(0) == '-')
+            return atoi(offset);
+        return 0;
+    }
+
     /**
      * #brief: 根据指定规则获取子字符串开始索引下标。<p>
      *
@@ -821,18 +832,18 @@ public class Objects {
      *
      * @return 返回字符串索引
      */
-    public static int stridxof(Object obj, String regex) {
-        String substr = strcut(regex, "idx:".length(), 0);
+    public static int stridx(Object obj, String regex) {
+        String substr = strcut(regex, regex.indexOf(":") + 1, 0);
         /* index of */
-        if (regex.startsWith("idx:"))
-            return atos(obj).indexOf(substr);
+        if (regex.startsWith("idx"))
+            return atos(obj).indexOf(substr) + parse_stridx_offset(regex);
         
         /* last index of */
-        if (regex.startsWith("edx:"))
-            return atos(obj).lastIndexOf(substr);
+        if (regex.startsWith("edx"))
+            return atos(obj).lastIndexOf(substr) + parse_stridx_offset(regex);
 
         /* err */
-        throw new VegaRuntimeException("Error stridxof regex err!, Please use idx: or edx: prefix, example: idx:< edx:>!");
+        throw new VegaRuntimeException("Error stridx regex err!, Please use idx: or edx: prefix, example: idx:< edx:>!");
     }
 
     /**
@@ -864,7 +875,7 @@ public class Objects {
      *        类型。
      *
      * @param regex_off
-     *        开始索引，使用 stridxof 规则，详情请查看 {@link #stridxof} 函数使用规则。
+     *        开始索引，使用 stridx 规则，详情请查看 {@link #stridx} 函数使用规则。
      *
      * @param len
      *        结束索引
@@ -872,7 +883,7 @@ public class Objects {
      * @return 返回截取好的字符串
      */
     public static String strcut(Object obj, String regex_off, int len) {
-        return strcut(obj, stridxof(obj, regex_off), len);
+        return strcut(obj, Math.abs(stridx(obj, regex_off)), len);
     }
 
     /**
@@ -887,12 +898,12 @@ public class Objects {
      *        开始索引
      *
      * @param regex_end
-     *        结束索引，使用 stridxof 规则，详情请查看 {@link #stridxof} 函数使用规则。
+     *        结束索引，使用 stridx 规则，详情请查看 {@link #stridx} 函数使用规则。
      *
      * @return 返回截取好的字符串
      */
     public static String strcut(Object obj, int off, String regex_end) {
-        return strcut(obj, off, stridxof(obj, regex_end));
+        return strcut(obj, off, stridx(obj, regex_end));
     }
 
     /**
@@ -904,10 +915,10 @@ public class Objects {
      *        类型。
      *
      * @param regex_off
-     *        开始索引，使用 stridxof 规则，详情请查看 {@link #stridxof} 函数使用规则。
+     *        开始索引，使用 stridx 规则，详情请查看 {@link #stridx} 函数使用规则。
      *
      * @param regex_end
-     *        结束索引，使用 stridxof 规则，详情请查看 {@link #stridxof} 函数使用规则。
+     *        结束索引，使用 stridx 规则，详情请查看 {@link #stridx} 函数使用规则。
      *
      * @return 返回截取好的字符串
      */
@@ -915,7 +926,7 @@ public class Objects {
             "api_sample_strcut"
     })
     public static String strcut(Object obj, String regex_off, String regex_end) {
-        return strcut(obj, stridxof(obj, regex_off), stridxof(obj, regex_end));
+        return strcut(obj, stridx(obj, regex_off), stridx(obj, regex_end));
     }
 
     /**
