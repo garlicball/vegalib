@@ -30,13 +30,10 @@ import org.venorze.vegalib.exception.ReadException;
 import org.venorze.vegalib.exception.VegaIOException;
 import org.venorze.vegalib.exception.WriteException;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 import static org.venorze.vegalib.Assert.throwIfError;
-import static org.venorze.vegalib.Objects.atos;
+import static org.venorze.vegalib.Assert.throwIfFalse;
 
 /**
  * IO操作工具包，整合大部分IO操作，使得在Java中更多的IO操作
@@ -96,6 +93,22 @@ public class IOUtils {
     public static void closeQuietly(Closeable closeable) {
         if (closeable != null)
             throwIfError(closeable::close);
+    }
+
+    /**
+     * 这个方法会读取整个 {@code file} 文件中的数据到新创建的字节数组中，数据读完以后这个函数会自动
+     * 关闭输入流，外部无需手动关闭流。
+     * <p>
+     * 文件对象不能为空或是一个目录，必须是可读取的文件对象。
+     *
+     * @param file
+     *        文件对象
+     *
+     * @return 返回所有文件中的字节数据
+     */
+    public static byte[] read(File file) {
+        throwIfFalse(file != null && file.isFile(), "文件不能为空且不能是目录！");
+        return read(new VegaFile(file).openReader());
     }
 
     /**
