@@ -46,7 +46,7 @@ public class RequestQueryParams extends HashMap<String, String> {
 
         for (Map.Entry<String, String> entry : entrySet())
             builder.append(Objects.strxfmt("%s=%s&", entry.getKey(), entry.getValue()));
-        String finalArguments = Objects.atos(builder, 0, -1); /* 删掉最后一个字符 ‘&’ */
+        String finalArguments = atos(builder, 0, -1); /* 删掉最后一个字符 ‘&’ */
 
         return Objects.strxfmt("%s?%s", url, finalArguments);
     }

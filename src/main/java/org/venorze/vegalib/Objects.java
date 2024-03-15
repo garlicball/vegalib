@@ -757,6 +757,7 @@ public class Objects {
      *
      * @return 返回被格式化后的字符串
      */
+    @Deprecated
     public static String xstrfmt(Object fmt, String markerCharacter, Object... args) {
         // markerCharacter 属性定义
         int markerLength = markerCharacter.length();
