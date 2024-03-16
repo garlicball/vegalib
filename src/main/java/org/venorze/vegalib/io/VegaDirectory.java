@@ -137,6 +137,10 @@ public class VegaDirectory implements Iterable<VegaFile> {
     }
 
     /**
+     * #brief：获取当前文件夹下的文件数。
+     * <P>
+     * 该函数用于获取一个目录下的所有文件数（不包括子目录）文件。
+     *
      * @return 返回文件夹中的文件数量
      */
     public int length() {
@@ -145,6 +149,11 @@ public class VegaDirectory implements Iterable<VegaFile> {
     }
 
     /**
+     * #brief：统计整个文件夹大小<p>
+     *
+     * 该函数用于统计一个目录下的所有文件包括子文件夹等文件的大小之和。用于统计一个目录具体占用
+     * 多少内存。
+     *
      * @return 获取整个文件夹的大小
      */
     public long size() {
