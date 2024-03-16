@@ -38,6 +38,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 import static org.venorze.vegalib.Assert.throwIfTrue;
+import static org.venorze.vegalib.Objects.strcut;
 
 /**
  * Java标准库文件增强版封装
@@ -109,46 +110,6 @@ public class VegaFile extends File {
      */
     public VegaFile(String pathname, Object... args) {
         this(org.venorze.vegalib.Objects.strxfmt(_placeholder(pathname), args));
-    }
-
-    /**
-     * 从 {@code parent} 父路径字符串和 {@code child} 子路径字符串构建一个新的 {@link #VegaFile} 对象
-     * 实例。如果{@code parent} 父路径字符串为 {@code null} 那么新的文件实例就像是调用了
-     * 单参数构建 {@link #VegaFile(String)} 一样被创建。<p>
-     *
-     * 如果父路径不为 {@code null} 那么 {@code parent} 父路径字符串会被表示成一个目录。而 {@code child} 子路径
-     * 字符串会被视为是父路径下的一个目录或文件。<p>
-     *
-     * 如果子路径字符串是绝对路径，那么它将基于当前操作系统被转换成一个相对路径。如果父路径是一个空字符串，那么
-     * 新的文件实例将基于操作系统把子路径转换成一个新的相对路径解析。否则每个路径的字符串都会被转为相对路径名。
-     * 并且将子路径解析为父目录。
-     *
-     * @param parent 父路径名称字符串
-     * @param child 子路径名称字符串
-     * @throws NullPointerException 子路径不能为空
-     */
-    public VegaFile(String parent, String child) {
-        super(parent, child);
-    }
-
-    /**
-     * 从 {@code parent} 父路径文件实例和 {@code child} 子路径字符串构建一个新的 {@link #VegaFile} 对象
-     * 实例。如果{@code parent} 父路径文件实例为 {@code null} 那么新的文件实例就像是调用了
-     * 单参数构建 {@link #VegaFile(String)} 一样被创建。<p>
-     *
-     * 如果父路径不为 {@code null} 那么 {@code parent} 父路径文件实例会被表示成一个目录。而 {@code child} 子路径
-     * 字符串会被视为是父路径下的一个目录或文件。<p>
-     *
-     * 如果子路径字符串是绝对路径，那么它将基于当前操作系统被转换成一个相对路径。如果父路径是一个空字符串，那么
-     * 新的文件实例将基于操作系统把子路径转换成一个新的相对路径解析。否则每个路径的字符串都会被转为相对路径名。
-     * 并且将子路径解析为父目录。
-     *
-     * @param parent 父路径文件实例
-     * @param child 子路径名称字符串
-     * @throws NullPointerException 子路径不能为空
-     */
-    public VegaFile(File parent, String child) {
-        super(parent, child);
     }
 
     /**
@@ -271,8 +232,7 @@ public class VegaFile extends File {
      * @return 返回文件的后缀名称
      */
     public String extension() {
-        String name = name();
-        return name.substring(name.lastIndexOf("."));
+        return strcut(name(), "edx+1:.", 0);
     }
 
     /**

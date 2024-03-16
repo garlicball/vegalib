@@ -513,6 +513,8 @@ public class Objects {
      * @see String#String(char[], int, int)
      */
     public static String atos(char[] a, int off, int len) {
+        if (off <= 0 && len <= 0)
+            return "";
         return new String(array_copy_of(a, off, len));
     }
 
