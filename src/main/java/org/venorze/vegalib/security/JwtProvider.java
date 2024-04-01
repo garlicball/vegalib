@@ -32,14 +32,11 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import org.venorze.vegalib.Assert;
 import org.venorze.vegalib.collection.Collections;
-import org.venorze.vegalib.time.VegaTimeUnit;
 import org.venorze.vegalib.time.DateFormatter;
+import org.venorze.vegalib.time.VegaTimeUnit;
 
 import java.util.Date;
 import java.util.Map;
-
-import static org.venorze.vegalib.Assert.throwIfFalse;
-import static org.venorze.vegalib.collection.Collections.mapOf;
 
 /**
  * Jwt token 生成器。
