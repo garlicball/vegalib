@@ -27,6 +27,7 @@ package org.venorze.vegalib.io;
 
 import org.venorze.vegalib.annotations.Favorite;
 import org.venorze.vegalib.exception.OpenException;
+import org.venorze.vegalib.exception.VegaIOException;
 import org.venorze.vegalib.exception.VegaRuntimeException;
 
 import java.io.File;
@@ -488,7 +489,13 @@ public class VegaFile extends File {
     }
 
     private void write0(byte[] buf, int off, int len, VegaFileWriter writer) {
-        IOUtils.write(buf, off, len, writer);
+        try {
+            IOUtils.write(buf, off, len, writer);
+        } catch (Exception e) {
+            throw new VegaIOException(e);
+        } finally {
+            IOUtils.closeQuietly(writer);
+        }
     }
 
     /**

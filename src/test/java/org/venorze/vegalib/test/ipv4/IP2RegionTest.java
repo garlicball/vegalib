@@ -32,14 +32,13 @@ package org.venorze.vegalib.test.ipv4;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.venorze.vegalib.ipv4.IP2Region;
-import org.venorze.vegalib.Objects;
 import org.junit.Test;
+import org.venorze.vegalib.ipv4.IP2Region;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import static org.venorze.vegalib.Objects.fprintlnf;
+import static org.venorze.vegalib.Objects.vfprintln;
 
 /**
  * @author venorze
@@ -48,7 +47,7 @@ public class IP2RegionTest {
 
     @Test
     public void ip2Region() throws UnknownHostException {
-        Objects.fprintlnf("location: %s", IP2Region.search(InetAddress.getByName("www.baidu.com").getHostAddress()));
+        vfprintln("location: %s", IP2Region.search(InetAddress.getByName("www.baidu.com").getHostAddress()));
     }
 
 }

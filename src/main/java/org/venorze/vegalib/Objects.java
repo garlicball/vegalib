@@ -154,25 +154,10 @@ public class Objects {
      * @param args
      *        参数
      */
-    public static void fprintlnf(Object fmt, Object... args) {
-        fprintlnf(stdout, fmt, args);
+    public static void vfprintln(Object fmt, Object... args) {
+        System.out.println(strxfmt(fmt, args));
     }
 
-    /**
-     * #brief: 向指定的输出流格式化打印输出<p>
-     *
-     * @param stream
-     *        输出流
-     *
-     * @param fmt
-     *        格式化字符串
-     *
-     * @param args
-     *        参数
-     */
-    public static void fprintlnf(OutputStream stream, Object fmt, Object... args) {
-        new VegaPrintStream(stream).println(strxfmt(fmt, args));
-    }
 
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// int

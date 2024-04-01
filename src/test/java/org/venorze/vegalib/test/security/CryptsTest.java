@@ -32,11 +32,10 @@ package org.venorze.vegalib.test.security;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.venorze.vegalib.security.Crypts;
-import org.venorze.vegalib.Objects;
 import org.junit.Test;
+import org.venorze.vegalib.security.Crypts;
 
-import static org.venorze.vegalib.Objects.fprintlnf;
+import static org.venorze.vegalib.Objects.vfprintln;
 
 /**
  * @author venorze
@@ -45,7 +44,7 @@ public class CryptsTest {
 
     @Test
     public void md5() {
-        Objects.fprintlnf("md5lower32: %s", Crypts.Encoder.md5lower32("Hello World"));
+        vfprintln("md5lower32: %s", Crypts.Encoder.md5lower32("Hello World"));
     }
 
 }

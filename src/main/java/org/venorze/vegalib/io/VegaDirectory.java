@@ -27,7 +27,6 @@ package org.venorze.vegalib.io;
 
 import org.jetbrains.annotations.NotNull;
 import org.venorze.vegalib.Assert;
-import org.venorze.vegalib.Objects;
 import org.venorze.vegalib.annotations.Favorite;
 import org.venorze.vegalib.exception.ValidationException;
 
@@ -36,6 +35,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
+
+import static org.venorze.vegalib.Objects.streq;
 
 /**
  * 目录对象，提供用于操作目录相关的函数。比如获取目录大小，获取目录文件、
@@ -89,7 +90,7 @@ public class VegaDirectory implements Iterable<VegaFile> {
      */
     public VegaFile find(String findname) {
         for (VegaFile ivf : this)
-            if (Objects.streq(ivf.name(), findname))
+            if (streq(ivf.name(), findname))
                 return ivf;
         return null;
     }
