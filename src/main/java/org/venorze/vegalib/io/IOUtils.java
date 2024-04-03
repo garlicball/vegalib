@@ -34,6 +34,7 @@ import java.io.*;
 
 import static org.venorze.vegalib.Assert.throwIfError;
 import static org.venorze.vegalib.Assert.throwIfFalse;
+import static org.venorze.vegalib.Objects.strxfmt;
 
 /**
  * IO操作工具包，整合大部分IO操作，使得在Java中更多的IO操作
@@ -81,6 +82,10 @@ public class IOUtils {
      */
     public static final VegaPrintStream stdout
             = new VegaPrintStream(System.out);
+
+    public static void printf(Object obj, Object... args) {
+        stdout.print(strxfmt(obj, args));
+    }
 
     /**
      * 关闭所有实现了 {@link Closeable} 的对象实例，并且不需要捕获

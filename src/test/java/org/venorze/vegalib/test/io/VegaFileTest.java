@@ -36,7 +36,7 @@ import org.junit.Test;
 import org.venorze.vegalib.io.VegaDirectory;
 import org.venorze.vegalib.io.VegaFile;
 
-import static org.venorze.vegalib.Objects.vfprintln;
+import static org.venorze.vegalib.io.IOUtils.printf;
 
 /**
  * @author venorze
@@ -45,15 +45,15 @@ public class VegaFileTest {
 
     @Test
     public void getFileSize() {
-        vfprintln("size: %s", new VegaFile("D:\\Dev\\Projects\\vegalib\\target\\vegalib-season.winter.2023.jar").size() / 1024);
+        printf("size: %s\n", new VegaFile("D:\\Dev\\Projects\\vegalib\\target\\vegalib-season.winter.2023.jar").size() / 1024);
     }
 
     @Test
     public void getDirectorySize() {
         long size = new VegaDirectory("C:\\Windows").size();
-        vfprintln("size: %sBytes", size);
-        vfprintln("size: %sKB", size / 1024);
-        vfprintln("size: %sMB", size / 1024 / 1024);
+        printf("size: %sBytes\n", size);
+        printf("size: %sKB\n", size / 1024);
+        printf("size: %sMB\n", size / 1024 / 1024);
     }
 
 }

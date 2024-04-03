@@ -1,4 +1,4 @@
-package org.venorze.vegalib.samples;
+package org.venorze.vegalib.samples.heap;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -25,41 +25,35 @@ package org.venorze.vegalib.samples;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|* File:           IPv4LocationQuerySamples.java                                    *|
-|* Create Time:    2024/1/29 19:17                                                  *|
+|* File:           MethodStackGCSamples.java                                        *|
+|* Create Time:    2024/4/3 13:32                                                   *|
 |* Author:         venorze                                                          *|
 |* EMail:          venorze@hotmail.com                                              *|
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.venorze.vegalib.ipv4.IP2Region;
-import org.junit.Test;
+import java.util.List;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
-import static org.venorze.vegalib.Objects.fprintlnf;
+import static org.forironflower.vegalib.collection.Collections.listOf;
 
 /**
- * IP地址查询
- *
  * @author venorze
  */
-public class IPv4LocationQuerySamples {
+public class MethodStackGCSamples {
 
-    /**
-     * 通过 IP2Region#search 函数查询 IP 所属区域
-     */
-    @Test
-    public void api_sample_ip2region_search() throws UnknownHostException {
-        InetAddress ip_google_com = InetAddress.getByName("www.google.com"); /* www.google.com */
-        fprintlnf("host %s, location: %s", ip_google_com, IP2Region.search(ip_google_com.getHostAddress()));
-        InetAddress ip_baidu_com = InetAddress.getByName("www.baidu.com"); /* www.baidu.com */
-        fprintlnf("host %s, location: %s", ip_baidu_com, IP2Region.search(ip_baidu_com.getHostAddress()));
-        InetAddress ip_bilibili_com = InetAddress.getByName("www.bilibili.com"); /* www.bilibili.com */
-        fprintlnf("host %s, location: %s", ip_bilibili_com, IP2Region.search(ip_bilibili_com.getHostAddress()));
-        InetAddress ip_steampower_com = InetAddress.getByName("www.steampower.com"); /* www.steampower.com */
-        fprintlnf("host %s, location: %s", ip_steampower_com, IP2Region.search(ip_steampower_com.getHostAddress()));
+    public static void main(String[] args) {
+        new MethodStackGCSamples().call();
+    }
+
+    public void call() {
+        for (int i = 0; i < 100000; i++)
+            foo();
+    }
+
+    public void foo() {
+        List<Object> list = listOf();
+        for (int i = 0; i < 100000000; i++)
+            list.add(new Object());
     }
 
 }

@@ -145,20 +145,6 @@ public class Objects {
         return bithas(flags, ACMP_GT);
     }
 
-    /**
-     * #brief: 向控制台格式化打印输出<p>
-     *
-     * @param fmt
-     *        格式化字符串
-     *
-     * @param args
-     *        参数
-     */
-    public static void vfprintln(Object fmt, Object... args) {
-        System.out.println(strxfmt(fmt, args));
-    }
-
-
     /////////////////////////////////////////////////////////////////////////////////////////////
     /// int
     /////////////////////////////////////////////////////////////////////////////////////////////
