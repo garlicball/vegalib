@@ -29,6 +29,8 @@ import org.venorze.vegalib.security.Crypts;
 import org.venorze.vegalib.io.IOUtils;
 import org.junit.Test;
 
+import java.nio.charset.Charset;
+
 /**
  * @author venorze
  */
@@ -45,6 +47,13 @@ public class URLCoderTest {
     @Test
     public void urlDecode() {
         IOUtils.stdout.println("url decode: %s", Crypts.Decoder.url(Crypts.Encoder.url(WWW_BAIDU_COM)));
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 1000000000; i++) {
+            Charset.forName("GBK");
+            Charset.forName("UTF-8");
+        }
     }
 
 }

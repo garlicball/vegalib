@@ -31,6 +31,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 
 import static org.venorze.vegalib.Assert.throwIfNull;
+import static org.venorze.vegalib.Objects.strxfmt;
 
 /**
  * 可格式化的 {@link PrintStream} 封装类
@@ -47,6 +48,10 @@ public class VegaPrintStream extends PrintStream {
         super(out);
     }
 
+    public void printf(Object input, Object... args) {
+        super.printf(strxfmt(input, args));
+    }
+
     /**
      * 打印字符串到输出流中，并显示在控制台上。该函数是针对 {@link PrintStream#println} 函数
      * 的增强实现。实现了对字符串的格式化打印输出、色彩打印（该功能暂时搁置）等操作。方便快速打印
@@ -56,7 +61,7 @@ public class VegaPrintStream extends PrintStream {
      * @see #println(Object, Object...)
      */
     public void print(Object input, Object... args) {
-        super.print(Objects.strxfmt(input, args));
+        super.print(strxfmt(input, args));
     }
 
     /**
@@ -71,7 +76,7 @@ public class VegaPrintStream extends PrintStream {
      * @see System#out
      */
     public void println(Object input, Object... args) {
-        super.println(Objects.strxfmt(input, args));
+        super.println(strxfmt(input, args));
     }
 
 }

@@ -84,7 +84,7 @@ public class IOUtils {
             = new VegaPrintStream(System.out);
 
     public static void printf(Object obj, Object... args) {
-        stdout.print(strxfmt(obj, args));
+        stdout.printf(strxfmt(obj, args));
     }
 
     /**
