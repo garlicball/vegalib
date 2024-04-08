@@ -546,12 +546,17 @@ public class Objects {
      *        输入的字符串对象
      *
      * @param has
-     *       包含某个字符
+     *       包含列表中的某个字符
      *
      * @return {@code true} 表示 {@code input} 字符串种包含了 {@code has} 字符。
      */
-    public static boolean strhas(Object obj, Object has) {
-        return atos(obj).contains(atos(has));
+    public static boolean strhas(Object obj, Object... has) {
+        String cmp = atos(obj);
+        for (Object str : has) {
+            if (cmp.contains(atos(str)))
+                return true;
+        }
+        return false;
     }
 
     /**
