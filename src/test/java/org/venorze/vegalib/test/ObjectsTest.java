@@ -32,6 +32,7 @@ import org.junit.Test;
 import java.util.Date;
 
 import static org.venorze.vegalib.Assert.throwIfError;
+import static org.venorze.vegalib.Objects.strcut;
 import static org.venorze.vegalib.io.IOUtils.stdout;
 
 /**
@@ -63,6 +64,11 @@ public class ObjectsTest {
         stdout.println("d1 > d2=%s", Objects.anycmp(d1, d2, Objects.ACMP_GT));
         stdout.println("d1 < d2=%s", Objects.anycmp(d1, d2, Objects.ACMP_LT));
         stdout.println("d1 = d2=%s", Objects.anycmp(d1, d2, Objects.ACMP_EQ));
+    }
+
+    @Test
+    public void strcutTest() {
+        stdout.println("%s", strcut("/imgs/personal/", 0, -1));
     }
 
 }
