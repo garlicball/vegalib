@@ -56,4 +56,14 @@ public class VegaFileTest {
         printf("size: %sMB\n", size / 1024 / 1024);
     }
 
+    @Test
+    public void  getCleanName() {
+        printf("%s\n", new VegaFile("/a.pdf").getCleanName());
+    }
+
+    @Test
+    public void  getExtensions() {
+        printf("%s\n", new VegaFile("/a.pdf").getExtension());
+    }
+
 }

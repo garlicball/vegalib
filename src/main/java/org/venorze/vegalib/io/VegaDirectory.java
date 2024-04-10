@@ -90,7 +90,7 @@ public class VegaDirectory implements Iterable<VegaFile> {
      */
     public VegaFile find(String findname) {
         for (VegaFile ivf : this)
-            if (streq(ivf.name(), findname))
+            if (streq(ivf.getName(), findname))
                 return ivf;
         return null;
     }
@@ -115,7 +115,7 @@ public class VegaDirectory implements Iterable<VegaFile> {
         List<VegaFile> retval = org.venorze.vegalib.collection.Collections.listOf();
         Pattern pattern = Pattern.compile(regexp);
         for (VegaFile ivf : this)
-            if (pattern.matcher(ivf.name()).find())
+            if (pattern.matcher(ivf.getName()).find())
                 retval.add(ivf);
         return retval;
     }

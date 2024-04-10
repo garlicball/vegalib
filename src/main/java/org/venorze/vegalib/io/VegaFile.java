@@ -25,6 +25,7 @@ package org.venorze.vegalib.io;
 
 /* Creates on 2023/4/29. */
 
+import org.jetbrains.annotations.NotNull;
 import org.venorze.vegalib.annotations.Favorite;
 import org.venorze.vegalib.exception.OpenException;
 import org.venorze.vegalib.exception.VegaIOException;
@@ -192,8 +193,10 @@ public class VegaFile extends File {
      *
      * @see     File#isAbsolute()
      */
-    public String absolute() {
-        return getAbsolutePath();
+    @NotNull
+    @Override
+    public String getAbsolutePath() {
+        return asLinuxPath(super.getAbsolutePath());
     }
 
     /**
@@ -203,37 +206,25 @@ public class VegaFile extends File {
      *
      * @return  The StringUtils form of this abstract pathname
      */
-    public String path() {
-        return getPath();
+    @NotNull
+    @Override
+    public String getPath() {
+        return asLinuxPath(super.getPath());
     }
 
-    /**
-     * Returns the name of the file or directory denoted by this abstract
-     * pathname.  This is just the last name in the pathname's name
-     * sequence.  If the pathname's name sequence is empty, then the empty
-     * StringUtils is returned.
-     *
-     * @return  The name of the file or directory denoted by this abstract
-     *          pathname, or the empty StringUtils if this pathname's name sequence
-     *          is empty
-     */
-    public String name() {
-        return getName();
-    }
-
-    /**
+    /**ev
      * @return 返回一个不带后缀的文件名称
      */
-    public String cleaname() {
-        String name = name();
-        return name.substring(0, name.lastIndexOf("."));
+    public String getCleanName() {
+        String name = strcut(getName(), 0, "edx+1:.");
+        return !name.endsWith(".") ? name : strcut(name, 0, -1);
     }
 
     /**
      * @return 返回文件的后缀名称
      */
-    public String extension() {
-        return strcut(name(), "edx+1:.", 0);
+    public String getExtension() {
+        return strcut(getName(), "edx:.", 0);
     }
 
     /**
@@ -246,7 +237,7 @@ public class VegaFile extends File {
      * @return {@code true} 表示后缀匹配成功，反之匹配不成功。
      */
     public boolean typeEquals(String extension) {
-        return name().endsWith(extension);
+        return getName().endsWith(extension);
     }
 
     /**
@@ -262,8 +253,9 @@ public class VegaFile extends File {
      *          abstract pathname, or {@code null} if this pathname
      *          does not name a parent
      */
-    public String parent() {
-        return getParent();
+    @Override
+    public String getParent() {
+        return asLinuxPath(super.getParent());
     }
 
     /**
@@ -283,7 +275,8 @@ public class VegaFile extends File {
      * @since 1.2
      */
     public VegaFile parentVegaFile() {
-        return new VegaFile(getParentFile());
+        File parentFile = getParentFile();
+        return parentFile == null ? null : new VegaFile(parentFile);
     }
 
     /**
@@ -503,6 +496,10 @@ public class VegaFile extends File {
      */
     public long size() {
         return exists() ? length() : 0L;
+    }
+
+    private static String asLinuxPath(String path) {
+        return path == null ? null : path.replaceAll("\\\\", "/");
     }
 
 }

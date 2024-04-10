@@ -65,7 +65,7 @@ public class ClassPathResource {
      *
      */
     public InputStream getInputStream() {
-        return classLoader.getResourceAsStream(fd.name());
+        return classLoader.getResourceAsStream(fd.getName());
     }
 
     /**
