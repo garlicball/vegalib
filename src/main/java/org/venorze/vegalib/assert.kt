@@ -352,6 +352,49 @@ object Optional {
     private val log = LoggerFactory.getLogger(Optional::class.java)
 
     /**
+     * #brief：如果[obj]对象为`null`则返回[orElse]
+     *
+     * 如果[obj]为`null`则返回[orElse]，[obj]是一个任意类型的对象，
+     *
+     * @param obj
+     *        任意一个对象
+     *
+     * @param orElse
+     *        如果d对象引用为`null`，那么则返回`orElse`
+     *
+     */
+    @JvmStatic
+    fun <T> optionalIfNull(obj: T, orElse: T): T =
+            optionalIfNull(obj, orElse, "")
+
+    /**
+     * #brief：如果[obj]对象为`null`则返回[orElse]
+     *
+     * 如果[obj]为`null`则返回[orElse]，[obj]是一个任意类型的对象，
+     *
+     * @param obj
+     *        任意一个对象
+     *
+     * @param orElse
+     *        如果d对象引用为`null`，那么则返回`orElse`
+     *
+     * @param message
+     *        自定义异常信息
+     *
+     * @param args
+     *        格式化参数
+     */
+    @JvmStatic
+    fun <T> optionalIfNull(obj: T, orElse: T, message: String, vararg args: Any): T {
+        if (obj == null) {
+            if (strnemp(message))
+                log.error("%s - 异常信息：%s", message, *args)
+            return orElse
+        }
+        return obj
+    }
+
+    /**
      * #brief：如果[function]执行结果为`null`则返回[orElse]
      *
      * 如果[function]执行结果为`null`则返回[orElse]，[function]是一个闭包函数，这个

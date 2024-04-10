@@ -41,6 +41,8 @@ import java.util.Objects;
 
 import static org.venorze.vegalib.Assert.throwIfTrue;
 import static org.venorze.vegalib.Objects.strcut;
+import static org.venorze.vegalib.Objects.strhas;
+import static org.venorze.vegalib.Optional.optionalIfNull;
 
 /**
  * Java标准库文件增强版封装
@@ -53,14 +55,16 @@ public class VegaFile extends File {
     private static final String PLACEHOLDER_USER_DIR_VALUE = "%user.dir%";
     private static final String PLACEHOLDER_USER_HOME_VALUE = "%user.home%";
 
+    private static final File[] EMPTY_DIRECTORY = new File[0];
+
     /**
      * 解析占位符
      */
     static String _placeholder(String pathname) {
-        if (org.venorze.vegalib.Objects.strhas(pathname, PLACEHOLDER_USER_DIR_VALUE))
+        if (strhas(pathname, PLACEHOLDER_USER_DIR_VALUE))
             pathname = pathname.replace(PLACEHOLDER_USER_DIR_VALUE, System.getProperty("user.dir"));
 
-        if (org.venorze.vegalib.Objects.strhas(pathname, PLACEHOLDER_USER_HOME_VALUE))
+        if (strhas(pathname, PLACEHOLDER_USER_HOME_VALUE))
             pathname = pathname.replace(PLACEHOLDER_USER_HOME_VALUE, System.getProperty("user.home"));
 
         return pathname.replaceAll("\\\\", "/");
@@ -210,6 +214,12 @@ public class VegaFile extends File {
     @Override
     public String getPath() {
         return asLinuxPath(super.getPath());
+    }
+
+    @NotNull
+    @Override
+    public File[] listFiles() {
+        return optionalIfNull(super.listFiles(), EMPTY_DIRECTORY);
     }
 
     /**ev

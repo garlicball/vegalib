@@ -26,7 +26,6 @@ package org.venorze.vegalib.io;
 /* Creates on 2023/5/11. */
 
 import org.jetbrains.annotations.NotNull;
-import org.venorze.vegalib.Assert;
 import org.venorze.vegalib.annotations.Favorite;
 import org.venorze.vegalib.exception.ValidationException;
 
@@ -36,6 +35,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static org.venorze.vegalib.Assert.throwIfFalse;
 import static org.venorze.vegalib.Objects.streq;
 
 /**
@@ -47,7 +47,7 @@ import static org.venorze.vegalib.Objects.streq;
 @Favorite
 public class VegaDirectory implements Iterable<VegaFile> {
 
-    private final VegaFile vf;
+    private final VegaFile fd;
 
     /**
      * 通过 {@code pathname} 创建一个新的 {@link #VegaDirectory} 实例对象。将
@@ -68,14 +68,14 @@ public class VegaDirectory implements Iterable<VegaFile> {
      * 给定的 {@link VegaFile vf} 参数转换成一个相对路径，并且这个相对路径它必须是一个
      * 文件夹目录，如果不是目录的话则会抛出断言异常。
      *
-     * @param vf
+     * @param fd
      *        {@link VegaFile} 目录对象实例
      *
      * @throws ValidationException 如果 {@link VegaFile vf} 不是目录
      */
-    public VegaDirectory(VegaFile vf) {
-        Assert.throwIfFalse(vf.isDirectory(), "VortexFile object instance not a valid directory.");
-        this.vf = vf;
+    public VegaDirectory(VegaFile fd) {
+        throwIfFalse(fd.isDirectory(), "VortexFile object instance not a valid directory.");
+        this.fd = fd;
     }
 
     /**
@@ -131,7 +131,7 @@ public class VegaDirectory implements Iterable<VegaFile> {
      * 并且这个函数不做缓存处理，避免有新的文件增加时刷新不及时导致获取不到文件的问题。
      */
     private List<VegaFile> openDirectory() {
-        File[] lf = vf.listFiles();
+        File[] lf = fd.listFiles();
         if (lf == null)
             return Collections.emptyList();
         return org.venorze.vegalib.collection.Collections.listMap(lf, VegaFile::new);
@@ -145,8 +145,32 @@ public class VegaDirectory implements Iterable<VegaFile> {
      * @return 返回文件夹中的文件数量
      */
     public int length() {
-        File[] a = vf.listFiles();
+        File[] a = fd.listFiles();
         return a == null ? 0 : a.length;
+    }
+
+    /**
+     * #brief：统计文件夹下的文件个数
+     * <p>
+     *
+     * 该函数用于统计一个目录下包括子目录加起来的所有文件个数。
+     *
+     * @return 文件夹下包括子文件夹包含的总文件数。
+     */
+    public int total() {
+        return total0(fd);
+    }
+
+    private static int total0(VegaFile directory) {
+        int total_number = 0;
+        File[] files = directory.listFiles();
+        for (File file : files) {
+            if (file.isDirectory())
+                total_number += total0(new VegaFile(file));
+            else
+                total_number++;
+        }
+        return total_number;
     }
 
     /**
