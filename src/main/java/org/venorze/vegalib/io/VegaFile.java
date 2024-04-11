@@ -30,6 +30,7 @@ import org.venorze.vegalib.annotations.Favorite;
 import org.venorze.vegalib.exception.OpenException;
 import org.venorze.vegalib.exception.VegaIOException;
 import org.venorze.vegalib.exception.VegaRuntimeException;
+import org.w3c.dom.ls.LSOutput;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,8 +41,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 import static org.venorze.vegalib.Assert.throwIfTrue;
-import static org.venorze.vegalib.Objects.strcut;
-import static org.venorze.vegalib.Objects.strhas;
+import static org.venorze.vegalib.Objects.*;
 import static org.venorze.vegalib.Optional.optionalIfNull;
 
 /**
@@ -52,22 +52,12 @@ import static org.venorze.vegalib.Optional.optionalIfNull;
 @Favorite
 public class VegaFile extends File {
 
-    private static final String PLACEHOLDER_USER_DIR_VALUE = "%user.dir%";
-    private static final String PLACEHOLDER_USER_HOME_VALUE = "%user.home%";
-
     private static final File[] EMPTY_DIRECTORY = new File[0];
 
-    /**
-     * 解析占位符
-     */
-    static String _placeholder(String pathname) {
-        if (strhas(pathname, PLACEHOLDER_USER_DIR_VALUE))
-            pathname = pathname.replace(PLACEHOLDER_USER_DIR_VALUE, System.getProperty("user.dir"));
+    private static boolean isLinux;
 
-        if (strhas(pathname, PLACEHOLDER_USER_HOME_VALUE))
-            pathname = pathname.replace(PLACEHOLDER_USER_HOME_VALUE, System.getProperty("user.home"));
-
-        return pathname.replaceAll("\\\\", "/");
+    static {
+        isLinux = strihas(System.getProperty("os.name"), "linux");
     }
 
     /**
@@ -96,7 +86,7 @@ public class VegaFile extends File {
      * @throws NullPointerException 如果 {@code pathname} 为 null
      */
     public VegaFile(String pathname) {
-        super(_placeholder(pathname));
+        super(asLinuxPath(pathname));
     }
 
     /**
@@ -115,7 +105,7 @@ public class VegaFile extends File {
      * @throws NullPointerException 如果 {@code pathname} 为 null
      */
     public VegaFile(String pathname, Object... args) {
-        this(org.venorze.vegalib.Objects.strxfmt(_placeholder(pathname), args));
+        this(org.venorze.vegalib.Objects.strxfmt(asLinuxPath(pathname), args));
     }
 
     /**
@@ -428,7 +418,7 @@ public class VegaFile extends File {
     })
     public VegaFile move(String path) {
         try {
-            Files.move(toPath(), Paths.get(_placeholder(path)));
+            Files.move(toPath(), Paths.get(asLinuxPath(path)));
             return new VegaFile(path);
         } catch (IOException e) {
             throw new VegaRuntimeException(e);
@@ -508,8 +498,21 @@ public class VegaFile extends File {
         return exists() ? length() : 0L;
     }
 
+    /**
+     * 如果当前操作是 Linux，那么会将路径转换成 Linux 下的路径风格。如果
+     * 操作系统非 Linux，则只会将 Windows 下的 '\' 替换为 '/'
+     */
     private static String asLinuxPath(String path) {
-        return path == null ? null : path.replaceAll("\\\\", "/");
+        path = path.replaceAll("\\\\", "/");
+        String[] names = strtok(path, "/");
+        StringBuilder pathBuilder = new StringBuilder();
+        for (String name : names) {
+            if (strhas(name, " "))
+                pathBuilder.append(strxfmt("'%s'/", name));
+            else
+                pathBuilder.append(strxfmt("%s/", name));
+        }
+        return strcut(pathBuilder, 0, -1);
     }
 
 }

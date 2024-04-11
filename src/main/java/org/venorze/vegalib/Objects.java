@@ -558,6 +558,27 @@ public class Objects {
     }
 
     /**
+     * 判断 {@code input} 字符串中是否包含 {@code has} 字符对象。忽略大小写，如果包含则返回
+     * {@code true} 否则返回 {@code false}.
+     *
+     * @param obj
+     *        输入的字符串对象
+     *
+     * @param has
+     *       包含列表中的某个字符
+     *
+     * @return {@code true} 表示 {@code input} 字符串种包含了 {@code has} 字符。
+     */
+    public static boolean strihas(Object obj, Object... has) {
+        String cmp = strlower(obj);
+        for (Object str : has) {
+            if (cmp.contains(strlower(str)))
+                return true;
+        }
+        return false;
+    }
+
+    /**
      * #brief：将字符串转为小写字符串<p>
      *
      * @param obj
