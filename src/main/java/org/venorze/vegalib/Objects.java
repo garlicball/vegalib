@@ -31,9 +31,7 @@ import org.venorze.vegalib.exception.InvalidArgumentException;
 import org.venorze.vegalib.exception.VegaRuntimeException;
 import org.venorze.vegalib.iface.AnyObjectMapper;
 import org.venorze.vegalib.io.ByteBuf;
-import org.venorze.vegalib.io.VegaPrintStream;
 
-import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -45,7 +43,6 @@ import static org.venorze.vegalib.Bits.bithas;
 import static org.venorze.vegalib.Optional.optionalIfError;
 import static org.venorze.vegalib.collection.Collections.collectionEnd;
 import static org.venorze.vegalib.io.ByteBuf.SEEK_SET;
-import static org.venorze.vegalib.io.IOUtils.stdout;
 
 /**
  * @author venorze
@@ -1080,6 +1077,39 @@ public class Objects {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static boolean strdig(Object obj) {
         return optionalIfError(() -> Double.parseDouble(atos(obj)), true, false);
+    }
+
+    /**
+     * #biref：字符串下划线转驼峰<p>
+     *
+     * 将下划线风格的字符串转成驼峰形式并返回。
+     *
+     * @param obj
+     *        任意对象类型，通过 {@code atos()} 转换成 String
+     *
+     * @return 转换为驼峰后的字符串
+     */
+    public static String strlinehmp(Object obj) {
+        char[] charArray = atos(obj).toCharArray();
+        StringBuilder buffer = new StringBuilder();
+
+        boolean next = false;
+        for (char c : charArray) {
+            char append = c;
+            if (!next && append == '_') {
+                next = true;
+                continue;
+            }
+
+            if (next) {
+                append = strupper(c).charAt(0);
+                next = !next;
+            }
+
+            buffer.append(append);
+        }
+
+        return buffer.toString();
     }
 
 }

@@ -30,7 +30,6 @@ import org.venorze.vegalib.annotations.Favorite;
 import org.venorze.vegalib.exception.OpenException;
 import org.venorze.vegalib.exception.VegaIOException;
 import org.venorze.vegalib.exception.VegaRuntimeException;
-import org.w3c.dom.ls.LSOutput;
 
 import java.io.File;
 import java.io.IOException;
