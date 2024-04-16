@@ -286,10 +286,15 @@ public class VegaFile extends File {
      */
     private boolean builtin_force_delete() {
         boolean retval;
+
+        if (!exists())
+            return true;
+
         if (!(retval = delete())) {
             System.gc();
             retval = delete();
         }
+
         return retval;
     }
 
