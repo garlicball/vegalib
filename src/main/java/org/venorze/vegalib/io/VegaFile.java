@@ -507,16 +507,7 @@ public class VegaFile extends File {
      * 操作系统非 Linux，则只会将 Windows 下的 '\' 替换为 '/'
      */
     private static String asLinuxPath(String path) {
-        path = path.replaceAll("\\\\", "/");
-        String[] names = strtok(path, "/");
-        StringBuilder pathBuilder = new StringBuilder();
-        for (String name : names) {
-            if (strhas(name, " "))
-                pathBuilder.append(strxfmt("'%s'/", name));
-            else
-                pathBuilder.append(strxfmt("%s/", name));
-        }
-        return strcut(pathBuilder, 0, -1);
+        return path.replaceAll("\\\\", "/");
     }
 
 }
